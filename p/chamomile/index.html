@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>chamomile｜カモミール（見本）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3f2; --paper:#f7faf9; --ink:#1d2a2a; --sub:#5d6e6c; --line:#d5e1df;
+  --acc:#2f7d7a; --acc2:#9fd0c8; --dark:#14302e; --onDark:#eaf4f2; --heroFg:#14302e;
+  --disp:'Manrope','Helvetica Neue',sans-serif; --jp:'Zen Kaku Gothic New','Hiragino Sans',sans-serif; --body:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:2;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--acc);color:#fff}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
+#loader{position:fixed;inset:0;z-index:100;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:var(--onDark)}
+#loader .l{font-family:var(--disp);font-size:56px;line-height:1;}
+#loader .bar{width:140px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
+#loader .bar i{display:block;height:100%;width:0;background:var(--acc2)}
+.cursor{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--acc);pointer-events:none;z-index:90;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .35s}
+.cursor.big{width:60px;height:60px;opacity:.35}
+@media (hover:none){.cursor{display:none}}
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,color .5s;color:var(--heroFg)}
+header.solid{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);color:var(--ink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-family:var(--disp);font-size:22px;letter-spacing:.02em;}
+.brand small{font-family:var(--body);font-style:normal;font-weight:400;font-size:10px;letter-spacing:.3em;margin-left:10px;opacity:.7}
+nav{display:flex;gap:28px;font-size:12px;letter-spacing:.2em;align-items:center}
+nav a{position:relative;padding:4px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{border:1px solid currentColor;border-radius:999px;padding:8px 18px!important}
+.nav-cta::after{display:none}
+@media(max-width:820px){nav a:not(.nav-cta){display:none}}
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--heroFg);background:#eef3f2}
+#hero{position:absolute;inset:0;width:100%;height:100%}
+.hero-in{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding-bottom:clamp(28px,5vh,56px);pointer-events:none}
+.hero-in a,.hero-in button{pointer-events:auto}
+.hero h1{align-self:center;font-family:var(--disp);font-weight:800;font-size:clamp(64px,13vw,200px);line-height:.9;letter-spacing:-.04em;}
+.hero h1 .ch{display:inline-block;transform:translateY(110%);opacity:0;white-space:pre}
+.hero h1 .mask{display:inline-block;overflow:hidden;padding:0 .04em .1em}
+.hero .tate{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);font-size:clamp(17px,1.7vw,22px);letter-spacing:.4em;line-height:2.2;opacity:0}
+.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;letter-spacing:.2em;opacity:0}
+.hero-foot p{max-width:26em;line-height:2.1;letter-spacing:.08em;font-size:13px}
+.scroll{display:flex;align-items:center;gap:12px}
+.scroll i{display:block;width:1px;height:56px;background:currentColor;opacity:.3;position:relative;overflow:hidden}
+@media(max-width:820px){.hero .tate{top:auto;bottom:150px;transform:none}.hero-foot{flex-direction:column;align-items:flex-start}}
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0;background:var(--paper)}
+.ticker .row{display:inline-flex;gap:48px;font-family:var(--disp);font-size:26px;color:var(--sub);animation:tick 40s linear infinite;}
+.ticker .row span::after{content:"+";font-style:normal;font-size:12px;color:var(--acc);margin-left:48px;vertical-align:middle}
+@keyframes tick{to{transform:translateX(-50%)}}
+.state{padding-block:clamp(110px,16vw,220px)}
+.eyebrow{font-size:11px;letter-spacing:.35em;color:var(--acc);text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+.state h2{font-family:var(--jp);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.7;letter-spacing:.06em;margin-top:36px}
+.line{display:block;overflow:hidden}
+.line>span{display:inline-block;transform:translateY(105%)}
+.state .lead{margin-top:44px;max-width:34em;color:var(--sub)}
+.state-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,96px);align-items:end}
+.photo{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:18px;overflow:hidden;background:var(--paper)}
+.photo canvas{position:absolute;inset:0;width:100%;height:100%}
+.photo .ph{position:absolute;inset:auto 0 0 0;text-align:center;padding:24px;font-size:11px;letter-spacing:.3em;color:var(--onDark);mix-blend-mode:difference;opacity:.7}
+@media(max-width:820px){.state-grid{grid-template-columns:1fr}.photo{max-width:420px}}
+.feat{padding-block:0 clamp(100px,14vw,180px)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.f{padding:44px 32px 44px 0;border-right:1px solid var(--line);min-width:0}
+.f:last-child{border-right:0}
+.f+.f{padding-left:32px}
+.f svg{width:34px;height:34px;color:var(--acc)}
+.f h3{font-family:var(--jp);font-size:21px;font-weight:500;margin:22px 0 10px;letter-spacing:.08em}
+.f p{color:var(--sub);font-size:14px}
+@media(max-width:820px){.feat-grid{grid-template-columns:1fr}.f,.f+.f{padding:32px 0;border-right:0;border-bottom:1px solid var(--line)}}
+.sig{background:var(--dark);color:var(--onDark);overflow:hidden;position:relative}
+.sig .head{padding-block:clamp(90px,12vw,150px) 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.sig h2{font-family:var(--disp);font-weight:800;font-size:clamp(48px,8vw,116px);line-height:.95;}
+.sig .head p{max-width:26em;opacity:.72;font-size:14px}
+.sig .body{padding-bottom:clamp(90px,12vw,150px)}
+.menu{padding-block:clamp(110px,15vw,190px)}
+.menu-grid,.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
+.menu h2,.voice h2,.faq h2{font-family:var(--disp);font-weight:800;font-size:clamp(46px,7vw,92px);line-height:.95;margin-top:18px;}
+.menu .note{margin-top:28px;color:var(--sub);font-size:13px}
+.list{list-style:none;border-top:1px solid var(--ink)}
+.list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative}
+.list li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.list li:hover::before{transform:scaleX(1)}
+.list b{font-family:var(--jp);font-weight:500;font-size:clamp(17px,1.8vw,21px);letter-spacing:.06em}
+.list .p{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;font-style:normal}
+.voice{padding-block:clamp(100px,14vw,170px);background:var(--paper);border-block:1px solid var(--line)}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);margin-top:64px}
+.quotes figure{border-top:1px solid var(--line);padding-top:30px}
+.quotes blockquote{font-family:var(--jp);font-size:clamp(19px,2vw,24px);line-height:1.9;letter-spacing:.06em}
+.quotes blockquote::before{content:"“";display:block;font-family:Georgia,serif;font-size:80px;line-height:.6;color:var(--acc);height:40px}
+.quotes figcaption{margin-top:18px;font-size:12px;letter-spacing:.2em;color:var(--sub)}
+@media(max-width:820px){.quotes,.menu-grid,.faq-grid{grid-template-columns:1fr}}
+.faq{padding-block:clamp(110px,15vw,190px)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--jp);font-size:clamp(16px,1.6vw,19px);letter-spacing:.06em}
+.qa button:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+.qa .pm{position:relative;width:14px;height:14px;flex:none;margin-top:8px}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--ink);transition:transform .5s var(--ease)}
+.qa .pm::after{transform:rotate(90deg)}
+.qa.open .pm::after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding-bottom:26px;color:var(--sub);font-size:14px}
+.reserve{position:relative;background:var(--dark);color:var(--onDark);padding-block:clamp(120px,16vw,210px);overflow:hidden;text-align:center}
+.reserve h2{font-family:var(--disp);font-weight:800;font-size:clamp(52px,10vw,160px);line-height:.95;}
+.reserve p{margin:30px auto 0;max-width:30em;opacity:.78}
+.mag{display:inline-flex;align-items:center;justify-content:center;width:184px;height:184px;border-radius:50%;background:var(--acc);color:#fff;margin-top:56px;font-size:13px;letter-spacing:.2em;transition:background .4s;will-change:transform;text-align:center;line-height:1.6}
+.mag:hover{background:var(--acc2)}
+.info{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:12px 48px;margin-top:64px;font-size:13px;opacity:.85}
+.info dt{font-size:10px;letter-spacing:.3em;color:var(--acc2)}
+@media(max-width:820px){.info{grid-template-columns:1fr}}
+.partner{padding-block:56px}
+.nc{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:4px;padding:22px 26px;background:var(--paper);transition:border-color .4s}
+.nc:hover{border-color:var(--acc)}
+.nc .m{font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:.3em;color:#b8956a}
+.nc b{display:block;font-family:var(--jp);font-weight:500;font-size:17px}
+.nc small{color:var(--sub);font-size:12px}
+.nc .go{margin-left:auto;font-size:12px;letter-spacing:.2em}
+footer{padding-block:28px 64px;font-size:11px;letter-spacing:.15em;color:var(--sub);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;background:rgba(20,20,20,.8);color:#fff;font:600 10px/1 sans-serif;letter-spacing:.25em;padding:9px 14px;border-radius:20px}
+@media (prefers-reduced-motion:reduce){.hero h1 .ch,.line>span{transform:none!important;opacity:1!important}.hero .tate,.hero-foot{opacity:1!important}.ticker .row{animation:none}#loader{display:none}}
+.bmap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:center}.bodyfig{width:100%;max-width:300px;height:auto;justify-self:center}.sil{fill:rgba(234,244,242,.08);stroke:rgba(234,244,242,.4);stroke-width:1}
+.zones circle{fill:rgba(159,208,200,.25);stroke:#9fd0c8;stroke-width:1;cursor:pointer;transition:fill .3s,r .3s;animation:pulse 2.4s ease-in-out infinite}.zones circle:hover,.zones circle.on{fill:#9fd0c8}@keyframes pulse{50%{stroke-opacity:.3}}
+.zinfo{border-top:1px solid rgba(234,244,242,.2);padding-top:28px;min-height:260px}.zinfo .zl{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.3em;color:var(--acc2)}.zinfo h3{font-size:clamp(22px,2.6vw,32px);font-weight:700;margin:10px 0 16px}.zinfo p{opacity:.78}.zinfo dl{display:grid;grid-template-columns:5em 1fr;gap:10px 18px;margin-top:18px;font-size:14px}.zinfo dt{color:var(--acc2)}
+@media(max-width:820px){.bmap{grid-template-columns:1fr}}.hero h1{font-size:min(19vw,calc(150vw/9),300px)!important;white-space:nowrap}</style></head><body>
+<div id="loader"><div class="l">c</div><div class="bar"><i></i></div></div><div class="cursor"></div>
+<header id="hd"><div class="wrap"><a class="brand" href="#top">chamomile<small>BODY CARE</small></a>
+<nav><a href="#about">ABOUT</a><a href="#sig">BODY MAP</a><a href="#menu">MENU</a><a href="#faq">FAQ</a><a class="nav-cta" href="#reserve">BOOK</a></nav></div></header>
+<main id="top">
+<section class="hero"><canvas id="hero" aria-hidden="true"></canvas>
+<div class="wrap hero-in"><h1 aria-label="chamomile"><span class="mask">chamomile</span></h1><p class="tate">その不調、くり返さない体へ。</p>
+<div class="hero-foot"><p>肩こり・腰痛・姿勢の悩みに。<br>ボキボキしないやさしい整体で、<br>くり返さない体へ整えます。</p><div class="scroll"><i></i>SCROLL</div></div></div></section>
+<div class="ticker" aria-hidden="true"><div class="row"><span>Body Care chamomile</span><span>Gentle Technique</span><span>Posture</span><span>Self Care Advice</span><span>Since 2015</span><span>Body Care chamomile</span><span>Gentle Technique</span><span>Posture</span><span>Self Care Advice</span><span>Since 2015</span></div></div>
+<section class="state" id="about"><div class="wrap state-grid"><div><p class="eyebrow">About</p><h2 class="split"><span class="line"><span>痛いところだけを</span></span><span class="line"><span>見るのではなく、</span></span><span class="line"><span>体ぜんぶのつながりを見ます。</span></span></h2><p class="lead reveal">痛いところだけでなく、体全体のバランスを見て施術します。おうちでできるセルフケアもお伝えし、くり返さない体づくりをお手伝いします。</p></div>
+<div class="photo reveal"><canvas id="ph1" aria-hidden="true"></canvas><span class="ph">PHOTO — 施術室</span></div></div></section>
+<section class="feat"><div class="wrap feat-grid"><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><h3>ボキボキしない</h3><p>やさしい手技で、初めての方も安心。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 9.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-5.2-3L5 13.5a1.5 1.5 0 0 1 2.4-1.8L9 13.5"/></svg><h3>丁寧な検査</h3><p>姿勢と動きを見て、原因を探します。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><h3>セルフケア指導</h3><p>通院の合間も、自分で整えられるように。</p></div></div></section>
+<section class="sig" id="sig"><div class="wrap head"><h2>Body Map</h2><p>気になる場所を押してください。よくある原因と、当院での施術の考え方をご説明します。</p></div><div class="body"><div class="wrap bmap"><svg viewBox="0 0 200 420" class="bodyfig" aria-label="体の図">
+<path class="sil" d="M100 20c14 0 24 11 24 25s-10 27-24 27-24-13-24-27 10-25 24-25zM70 84h60c16 0 26 10 28 26l10 90c1 9-12 11-14 2l-12-74v84l8 150c1 12-17 13-18 1l-12-128-12 128c-1 12-19 11-18-1l8-150v-84l-12 74c-2 9-15 7-14-2l10-90c2-16 12-26 28-26z"/>
+<g class="zones"><circle data-z="neck" cx="100" cy="80" r="13"/><circle data-z="shoulder" cx="66" cy="96" r="13"/><circle data-z="shoulder" cx="134" cy="96" r="13"/><circle data-z="back" cx="100" cy="135" r="15"/><circle data-z="waist" cx="100" cy="190" r="15"/><circle data-z="pelvis" cx="100" cy="228" r="15"/><circle data-z="knee" cx="84" cy="320" r="12"/><circle data-z="knee" cx="116" cy="320" r="12"/></g></svg>
+<div class="zinfo" id="zinfo" aria-live="polite"><p class="zl">SELECT</p><h3>体の気になる場所を押してください</h3><p>首・肩・背中・腰・骨盤・ひざから選べます。</p></div></div></div></section>
+<section class="menu" id="menu"><div class="wrap menu-grid"><div><p class="eyebrow">Menu</p><h2>Price<br>List</h2><p class="note">表示はすべて税込です。</p></div><ul class="list"><li class="reveal"><div><b>初回（カウンセリング・検査込み）</b></div><div class="p">6,600円</div></li><li class="reveal"><div><b>整体 40分</b></div><div class="p">5,500円</div></li><li class="reveal"><div><b>整体 60分</b></div><div class="p">7,700円</div></li><li class="reveal"><div><b>骨盤調整</b></div><div class="p">5,500円</div></li><li class="reveal"><div><b>回数券（5回）</b></div><div class="p">25,000円</div></li></ul></div></section>
+<section class="voice"><div class="wrap"><p class="eyebrow">Voice</p><h2>Our Guests</h2><div class="quotes"><figure class="reveal"><blockquote>デスクワークの肩こりが軽くなりました。</blockquote><figcaption>40代・会社員</figcaption></figure><figure class="reveal"><blockquote>歩くのが楽になって、散歩が楽しみに。</blockquote><figcaption>60代・主婦</figcaption></figure></div></div></section>
+<section class="faq" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow">FAQ</p><h2>Q &amp; A</h2></div><div><div class="qa"><button aria-expanded="false">保険は使えますか？<span class="pm"></span></button><div class="ans"><div><p>自費の施術のみです。</p></div></div></div><div class="qa"><button aria-expanded="false">どんな服装で行けばいいですか？<span class="pm"></span></button><div class="ans"><div><p>動きやすい服装でお越しください。着替えもあります。</p></div></div></div><div class="qa"><button aria-expanded="false">どれくらい通えばいいですか？<span class="pm"></span></button><div class="ans"><div><p>状態によりますが、最初は週1回をおすすめしています。</p></div></div></div></div></div></section>
+<section class="reserve" id="reserve"><div class="wrap"><h2>Book Now</h2><p>初回はカウンセリングと検査を含めて約70分です。ご予約はWEBかお電話で承ります。</p><a class="mag" href="#reserve" data-mag>初回を<br>予約する</a>
+<dl class="info"><div><dt>HOURS</dt><dd>9:00〜20:00（日曜定休）</dd></div><div><dt>ACCESS</dt><dd>〇〇駅 徒歩3分</dd></div><div><dt>ADDRESS</dt><dd>東京都〇〇区〇〇 1-2-3</dd></div></dl></div></section>
+<section class="partner"><div class="wrap"><a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><div><span class="m">NOCTURNE CONCIERGE</span><b>当店のお客さまへ：夜だけの家事代行</b><small>18:00〜翌3:00。作り置き・洗濯・片付けを、帰ってからの時間に。</small></div><span class="go">VIEW →</span></a></div></section>
+</main><footer class="wrap"><span>© カモミール</span><span>※見本です。写真・文章・料金はお店の内容に差し替えてお作りします。</span></footer><div class="sample">SAMPLE</div>
+<script>window.__photo=['#d7e6e3','#9fd0c8','#f2f7f6','#5aa39d'];
+window.__heroFx=function(cv){const x=cv.getContext('2d');let w,h,d=Math.min(devicePixelRatio,2);const sz=()=>{w=cv.clientWidth;h=cv.clientHeight;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);};sz();addEventListener('resize',sz);
+let s=0,ts=0;addEventListener('scroll',()=>{ts=Math.min(1,scrollY/(innerHeight*.6));},{passive:true});const N=24;const start=performance.now();
+const f=t=>{const intro=Math.min(1,(t-start-1800)/2600);s+=(Math.max(ts,Math.max(0,intro))-s)*.05;x.clearRect(0,0,w,h);const cx=w*.72,top=h*.12,bot=h*.88;
+for(let k=0;k<3;k++){x.strokeStyle=`rgba(47,125,122,${.12-k*.03})`;x.beginPath();x.arc(cx,(top+bot)/2,(bot-top)*(.36+k*.09),0,Math.PI*2);x.stroke();}
+x.strokeStyle='rgba(20,48,46,.5)';x.lineWidth=1.2;x.beginPath();const pts=[];for(let i=0;i<N;i++){const v=i/(N-1);const curve=Math.sin(v*Math.PI*1.4)*w*.06*(1-s)+Math.sin(t/900+v*4)*2*(1-s);const px=cx+curve,py=top+v*(bot-top);pts.push([px,py]);i?x.lineTo(px,py):x.moveTo(px,py);}x.stroke();
+pts.forEach(([px,py],i)=>{const r=4+3*Math.sin(Math.PI*i/(N-1));x.fillStyle=i%6===0?'#2f7d7a':'#14302e';x.beginPath();x.ellipse(px,py,r*1.8,r,0,0,Math.PI*2);x.fill();});
+x.fillStyle='rgba(47,125,122,.85)';x.font='600 11px Manrope,sans-serif';x.fillText(s>.9?'ALIGNED':'ALIGNING…',cx+w*.08,bot);if(!window.__reduce)requestAnimationFrame(f);};requestAnimationFrame(f);};
+window.__sigFx=function(){const Z={neck:['NECK','首のこり・頭痛','長時間のスマホやデスクワークで、頭が前に出た姿勢が続くことが主な原因です。','首だけでなく、胸と背中の硬さをゆるめて頭の位置を戻します。'],shoulder:['SHOULDER','肩こり','巻き肩で肩甲骨が外に開き、肩まわりの筋肉が引っ張られ続けています。','肩甲骨の動きを取り戻し、腕の付け根から整えます。'],back:['BACK','背中のはり','呼吸が浅くなると、背中の筋肉が固まりやすくなります。','肋骨まわりをゆるめ、深く息が吸える状態にします。'],waist:['LOWER BACK','腰痛','腰そのものより、股関節やお尻の硬さが腰に負担をかけていることが多いです。','股関節とお尻をゆるめ、腰にかかる負担を分散させます。'],pelvis:['PELVIS','骨盤のゆがみ','足を組む・片足に体重をかけるなどの癖で、左右の高さがずれていきます。','左右の筋肉のバランスを整え、立ち方・座り方もお伝えします。'],knee:['KNEE','ひざの痛み','ひざは、股関節と足首の動きの悪さをかばって痛むことがあります。','股関節と足首から整え、ひざへの負担を減らします。']};
+const box=document.getElementById('zinfo');document.querySelectorAll('.zones circle').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.zones circle').forEach(o=>o.classList.toggle('on',o.dataset.z===c.dataset.z));const z=Z[c.dataset.z];box.innerHTML=`<p class="zl">${z[0]}</p><h3>${z[1]}</h3><dl><dt>よくある原因</dt><dd>${z[2]}</dd><dt>施術の考え方</dt><dd>${z[3]}</dd></dl>`;}));};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasG = typeof gsap !== 'undefined';
+window.__reduce = reduce;
+/* 写真の枠：お店の色でゆっくり揺らぐ（本番はお店の写真に差し替え） */
+function photoFx(cv,cols){const x=cv.getContext('2d');let w,h;const sz=()=>{w=cv.width=cv.clientWidth;h=cv.height=cv.clientHeight;};sz();addEventListener('resize',sz);
+  const blobs=cols.map((c,i)=>({c,x:Math.random(),y:Math.random(),r:.45+Math.random()*.3,s:.0002+Math.random()*.0003,p:Math.random()*6}));
+  let vis=true;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(cv);
+  const f=t=>{if(vis){x.fillStyle=cols[0];x.fillRect(0,0,w,h);x.globalCompositeOperation='lighter';
+    blobs.forEach((b,i)=>{const bx=(b.x+.25*Math.sin(t*b.s*3+b.p))*w,by=(b.y+.25*Math.cos(t*b.s*2+b.p))*h;const g=x.createRadialGradient(bx,by,0,bx,by,b.r*Math.max(w,h));g.addColorStop(0,b.c);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.globalAlpha=.55;x.fillRect(0,0,w,h);});
+    x.globalCompositeOperation='source-over';x.globalAlpha=1;}
+    if(!reduce)requestAnimationFrame(f);};requestAnimationFrame(f);}
+window.__photoFx=photoFx;
+const h1=document.querySelector('.hero h1 .mask');
+h1.innerHTML=[...h1.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
+const hd=document.getElementById('hd');const onScroll=()=>hd.classList.toggle('solid',scrollY>innerHeight*.6);addEventListener('scroll',onScroll,{passive:true});onScroll();
+document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}));
+const cur=document.querySelector('.cursor');
+if(matchMedia('(hover:hover)').matches){let cx=0,cy=0,x=0,y=0;addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;});
+  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
+  (function f(){x+=(cx-x)*.18;y+=(cy-y)*.18;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();}
+document.querySelectorAll('[data-mag]').forEach(m=>{m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
+  m.addEventListener('pointerleave',()=>{m.style.transition='transform .8s cubic-bezier(.22,1,.36,1),background .4s';m.style.transform='';setTimeout(()=>m.style.transition='',800);});});
+try{ window.__heroFx && window.__heroFx(document.getElementById('hero')); }catch(e){}
+try{ window.__photo && photoFx(document.getElementById('ph1'), window.__photo); }catch(e){}
+try{ window.__sigFx && window.__sigFx(); }catch(e){}
+const loader=document.getElementById('loader');
+if(reduce||!hasG){loader.remove();document.querySelectorAll('.hero .tate,.hero-foot').forEach(e=>e.style.opacity=1);document.querySelectorAll('.ch,.line>span').forEach(e=>{e.style.transform='none';e.style.opacity=1;});return;}
+gsap.registerPlugin(ScrollTrigger);
+const tl=gsap.timeline();
+tl.to('#loader .bar i',{width:'100%',duration:.9,ease:'power2.inOut'}).to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1').set('#loader',{display:'none'})
+  .to('.hero h1 .ch',{y:0,opacity:1,duration:1.3,ease:'expo.out',stagger:.045},'-=.45').to('.hero .tate',{opacity:1,duration:1.2},'-=.9').to('.hero-foot',{opacity:1,duration:1},'-=.9');
+gsap.to('.hero h1',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.line>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 80%'}}));
+gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+gsap.from('.photo',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.photo',start:'top 80%'}});
+try{ window.__sigGsap && window.__sigGsap(gsap); }catch(e){}
+})();
+</script>
+</body></html>
