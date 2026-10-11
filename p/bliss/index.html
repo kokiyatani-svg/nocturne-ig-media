@@ -1,407 +1,678 @@
 <!doctype html>
 <html lang="ja">
-<head><script>try{history.scrollRestoration='manual'}catch(e){};if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));addEventListener('pageshow',()=>scrollTo(0,0));</script>
+<head><script>try{history.scrollRestoration='manual'}catch(e){};scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
-<title>bliss｜ブリス（見本）</title>
+<meta name="robots" content="noindex">
+<title>nailsalon bliss｜門前仲町の完全個室ネイルサロン（見本）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Noto+Serif+JP:wght@300;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* 構成：全画面のジェル質感（WebGL）→ 一文ずつ浮かぶ宣言 → 横に流れるデザイン見本（爪のチップ）→ メニュー → 声 → 写真 → 質問 → 予約 */
+/* コンセプト：「路地の奥の扉を開けると、私だけの至福の時間」── 夜色・ろうそくの金・扉が開く */
 :root{
-  --milk:#f7f2ed; --paper:#fffaf6; --ink:#2b2220; --sub:#7a6a64; --line:#e7dbd2;
-  --rose:#c9998a; --gold:#b8956a; --plum:#3a272c;
-  --disp:'Cormorant Garamond','Times New Roman',serif;
-  --mincho:'Shippori Mincho B1','Hiragino Mincho ProN',serif;
-  --body:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+  --night:#16111a; --plum:#241a26; --wine:#5a2438; --gold:#c9a36a; --gold2:#e6cc9a;
+  --cream:#f4ece2; --paper:#fbf6ef; --ink:#221a22; --sub:#7d6e74; --mist:#b6a9b1; --line:rgba(34,26,34,.14);
+  --disp:'Bodoni Moda','Didot',serif; --min:'Noto Serif JP','Hiragino Mincho ProN',serif; --body:'Noto Sans JP','Hiragino Sans',sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--milk);color:var(--ink);font-family:var(--body);font-size:15px;line-height:2;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--night);color:var(--cream);font-family:var(--body);font-weight:300;font-size:15px;line-height:2.05;letter-spacing:.06em;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background-color .9s var(--ease),color .9s var(--ease)}
+body.light{color:var(--ink)}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--rose);color:#fff}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--gold);color:var(--night)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,60px)}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:inline-block;transform:translateY(112%)}
+.eyebrow{font-family:var(--disp);font-style:italic;font-size:15px;letter-spacing:.06em;color:var(--gold);display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
+.h2{font-family:var(--min);font-weight:500;font-size:clamp(26px,3.4vw,44px);line-height:1.65;letter-spacing:.1em;margin-top:20px}
+.h2 i{font-family:var(--disp);font-weight:400;color:var(--gold);letter-spacing:.02em}
+.rei{display:inline-block;font-family:var(--body);font-size:11px;letter-spacing:.1em;border:1px solid currentColor;border-radius:3px;padding:0 6px;line-height:1.7;vertical-align:middle;margin-left:10px;opacity:.7}
+.reveal{opacity:0;transform:translateY(26px)}
+section{position:relative}
 
-/* ローディング */
-#loader{position:fixed;inset:0;z-index:100;background:var(--plum);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:var(--milk)}
-#loader .l{font-family:var(--disp);font-style:italic;font-size:64px;line-height:1}
-#loader .bar{width:140px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
-#loader .bar i{display:block;height:100%;width:0;background:var(--gold)}
+/* ローディング：鍵穴に灯りがともる */
+#loader{position:fixed;inset:0;z-index:200;background:var(--night);display:grid;place-items:center;transition:opacity .9s var(--ease),visibility .9s}
+#loader.done{opacity:0;visibility:hidden}
+#loader svg{width:64px;height:auto;overflow:visible}
+#loader .k{fill:none;stroke:var(--gold);stroke-width:1.2;stroke-dasharray:240;stroke-dashoffset:240;animation:draw 1.4s var(--ease) forwards}
+#loader .glow{fill:var(--gold2);opacity:0;animation:lit .8s .9s forwards}
+#loader p{font-family:var(--disp);font-style:italic;font-size:15px;letter-spacing:.3em;color:var(--mist);text-align:center;margin-top:16px;opacity:0;animation:lit .8s .5s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes lit{to{opacity:1}}
 
-/* カーソル（マウスのときだけ） */
-.cursor{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--plum);pointer-events:none;z-index:90;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .35s var(--ease),height .35s var(--ease),background .35s}
-.cursor.big{width:64px;height:64px;background:rgba(201,153,138,.35)}
-@media (hover:none){.cursor{display:none}}
+/* カーソル */
+.cur,.cur-r{position:fixed;left:0;top:0;pointer-events:none;z-index:150;border-radius:50%;transform:translate(-50%,-50%);opacity:0}
+body.moved .cur,body.moved .cur-r{opacity:1}
+.cur{width:6px;height:6px;background:var(--gold)}
+.cur-r{width:34px;height:34px;border:1px solid rgba(201,163,106,.6);transition:width .4s var(--ease),height .4s var(--ease),background .4s,border-color .4s}
+.cur-r.big{width:76px;height:76px;background:rgba(201,163,106,.12);border-color:transparent}
+@media (hover:none),(pointer:coarse){.cur,.cur-r{display:none}}
 
 /* ヘッダー */
-header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,backdrop-filter .5s}
-header.solid{background:rgba(247,242,237,.82);backdrop-filter:blur(14px)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{font-family:var(--disp);font-size:24px;font-style:italic;letter-spacing:.02em}
-.brand small{font-family:var(--body);font-style:normal;font-size:10px;letter-spacing:.3em;margin-left:10px;color:var(--sub)}
-nav{display:flex;gap:28px;font-size:12px;letter-spacing:.2em}
+header{position:fixed;inset:0 0 auto;z-index:100;transition:background .6s,color .6s,backdrop-filter .6s}
+header.solid{background:rgba(22,17,26,.72);backdrop-filter:blur(14px)}
+body.light header.solid{background:rgba(244,236,226,.8)}
+header .wrap{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-family:var(--disp);font-style:italic;font-size:26px;letter-spacing:.02em;line-height:1}
+.logo small{font-family:var(--body);font-style:normal;font-size:10px;letter-spacing:.32em;margin-left:12px;opacity:.6}
+nav{display:flex;align-items:center;gap:30px;font-size:12px;letter-spacing:.22em}
 nav a{position:relative;padding:4px 0}
-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
-nav a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{border:1px solid var(--ink);border-radius:999px;padding:8px 18px!important}
-.nav-cta::after{display:none}
-@media(max-width:820px){nav a:not(.nav-cta){display:none}}
+nav a:not(.cta)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+nav a:not(.cta):hover::after{transform:scaleX(1);transform-origin:left}
+nav .cta{border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:9px 20px;transition:background .4s,color .4s}
+nav .cta:hover{background:var(--gold);color:var(--night)}
+@media(max-width:900px){nav a:not(.cta){display:none}.logo small{display:none}}
 
-/* ヒーロー */
-.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--plum)}
-#gel{position:absolute;inset:0;width:100%;height:100%}
-.hero .grain{position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-.hero-in{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding-bottom:clamp(28px,5vh,56px)}
-.hero h1{align-self:center;font-family:var(--disp);font-weight:400;font-style:italic;font-size:clamp(84px,19vw,300px);line-height:.85;letter-spacing:-.02em;white-space:nowrap}
-.hero h1 .ch{display:inline-block;transform:translateY(110%);opacity:0}
-.hero h1 .mask{display:inline-block;overflow:hidden;padding:0 .04em .08em}
-.hero .tate{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--mincho);font-size:clamp(17px,1.7vw,22px);letter-spacing:.4em;line-height:2.2;opacity:0}
-.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;letter-spacing:.2em;opacity:0}
-.hero-foot p{max-width:24em;line-height:2.1;letter-spacing:.08em;font-size:13px}
-.scroll{display:flex;align-items:center;gap:12px}
-.scroll i{display:block;width:1px;height:56px;background:rgba(58,39,44,.25);position:relative;overflow:hidden}
-.scroll i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--plum);animation:drip 2.2s var(--ease) infinite}
-@keyframes drip{to{top:100%}}
-@media(max-width:820px){.hero .tate{top:auto;bottom:140px;transform:none}.hero-foot{flex-direction:column;align-items:flex-start}}
+/* ヒーロー：扉 */
+.hero{height:100svh;min-height:600px;overflow:hidden;background:var(--night)}
+.hero .bg{position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 60%,rgba(90,36,56,.55),transparent 70%),radial-gradient(40% 30% at 15% 20%,rgba(201,163,106,.08),transparent 70%)}
+.hero .grain{position:absolute;inset:0;opacity:.14;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .9  0 0 0 0 .8  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.door-wrap{position:absolute;left:50%;top:54%;width:min(30vw,380px);height:min(64vh,560px);transform:translate(-50%,-50%)}
+.door{position:absolute;inset:0;border-radius:999px 999px 6px 6px;overflow:hidden;background:radial-gradient(90% 70% at 50% 78%,#fff6e6 0%,#f4e4cc 38%,#d8b98c 72%,#9c7550 100%);box-shadow:0 0 120px 10px rgba(230,204,154,.28),0 0 0 1px rgba(230,204,154,.4);will-change:transform}
+.door canvas{position:absolute;inset:0;width:100%;height:100%}
+.door .frame{position:absolute;inset:-14px;border:1px solid rgba(201,163,106,.45);border-radius:999px 999px 8px 8px;pointer-events:none}
+.leaf{position:absolute;top:0;bottom:0;width:50.5%;background:linear-gradient(90deg,#2b1f2c,#3a2939 60%,#2b1f2c);transform-origin:left center;will-change:transform}
+.leaf.r{right:0;transform-origin:right center;background:linear-gradient(270deg,#2b1f2c,#3a2939 60%,#2b1f2c)}
+.leaf.l{left:0;border-radius:999px 0 0 0/999px 0 0 0}
+.leaf.r{border-radius:0 999px 0 0/0 999px 0 0}
+.leaf::after{content:"";position:absolute;top:52%;width:5px;height:38px;border-radius:4px;background:var(--gold);box-shadow:0 0 12px rgba(201,163,106,.6)}
+.leaf.l::after{right:12px}.leaf.r::after{left:12px}
+.leaf i{position:absolute;inset:16% 18% 10%;border:1px solid rgba(201,163,106,.22);border-radius:999px 999px 2px 2px}
+.hero-txt{position:absolute;inset:0;pointer-events:none}
+.hero .big{position:absolute;left:clamp(20px,5vw,60px);bottom:clamp(24px,6vh,60px);font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(84px,15vw,230px);line-height:.8;letter-spacing:-.02em;color:var(--cream)}
+.hero .big .ch{display:inline-block;transform:translateY(105%);opacity:0}
+.hero .big .mask{display:inline-block;overflow:hidden;padding:0 .06em .1em 0}
+.hero .tate{position:absolute;right:clamp(20px,6vw,90px);top:50%;transform:translateY(-46%);writing-mode:vertical-rl;font-family:var(--min);font-weight:300;font-size:clamp(17px,1.7vw,23px);letter-spacing:.42em;line-height:2.3}
+.hero .tate span{display:block;opacity:0}
+.hero .meta{position:absolute;left:clamp(20px,5vw,60px);top:clamp(100px,16vh,150px);font-size:11px;letter-spacing:.3em;color:var(--mist);line-height:2.2;opacity:0}
+.hero .meta b{display:block;font-family:var(--disp);font-style:italic;font-weight:400;font-size:14px;letter-spacing:.08em;color:var(--gold)}
+.hero .scroll{position:absolute;right:clamp(20px,5vw,60px);bottom:clamp(24px,6vh,60px);font-size:10px;letter-spacing:.35em;color:var(--mist);display:flex;align-items:center;gap:12px;opacity:0}
+.hero .scroll i{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:drip 2.2s var(--ease) infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media(max-width:760px){
+  .door-wrap{width:52vw;height:48svh;top:47%;left:44%}
+  .hero .tate{right:16px;top:auto;bottom:26svh;transform:none;font-size:15px;letter-spacing:.32em}
+  .hero .meta{top:96px}
+  .hero .big{font-size:27vw;bottom:5svh}
+  .hero .scroll{display:none}
+}
 
-/* 流れる帯 */
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0;background:var(--paper)}
-.ticker .row{display:inline-flex;gap:48px;font-family:var(--disp);font-style:italic;font-size:28px;color:var(--sub);animation:tick 40s linear infinite}
-.ticker .row span::after{content:"✦";font-style:normal;font-size:12px;color:var(--gold);margin-left:48px;vertical-align:middle}
-@keyframes tick{to{transform:translateX(-50%)}}
+/* コンセプト */
+.about{padding-block:clamp(110px,15vw,200px)}
+.about-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(40px,7vw,120px);align-items:start}
+.about .lead{font-family:var(--min);font-size:clamp(15px,1.25vw,17px);line-height:2.4;color:#4c3f47}
+.about .lead p+p{margin-top:1.4em}
+.rituals{list-style:none;margin-top:60px;border-top:1px solid var(--line)}
+.rituals li{display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.rituals li::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(201,163,106,.16),transparent);transform:translateX(-101%);transition:transform .8s var(--ease)}
+.rituals li:hover::before{transform:none}
+.rituals .n{font-family:var(--disp);font-style:italic;font-size:30px;color:var(--gold);line-height:1}
+.rituals b{font-family:var(--min);font-weight:500;font-size:17px;letter-spacing:.1em}
+.rituals small{display:block;font-size:12.5px;color:var(--sub);letter-spacing:.06em}
+.rituals .ic{width:28px;height:28px;color:var(--gold)}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}.rituals li{grid-template-columns:52px 1fr}.rituals .ic{display:none}}
 
-/* 宣言 */
-.state{padding-block:clamp(110px,16vw,220px)}
-.eyebrow{font-size:11px;letter-spacing:.35em;color:var(--rose);text-transform:uppercase;display:flex;align-items:center;gap:14px}
-.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
-.state h2{font-family:var(--mincho);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.7;letter-spacing:.06em;margin-top:36px}
-.line{display:block;overflow:hidden}
-.line>span{display:inline-block;transform:translateY(105%)}
-.state .lead{margin-top:44px;max-width:34em;color:var(--sub)}
-.state-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,96px);align-items:end}
-.photo{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:200px 200px 6px 6px;overflow:hidden;background:linear-gradient(160deg,#efe1d8,#d9b8aa)}
-.photo .ph{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:28px;font-size:11px;letter-spacing:.3em;color:rgba(58,39,44,.55)}
-.photo canvas{position:absolute;inset:0;width:100%;height:100%}
-@media(max-width:820px){.state-grid{grid-template-columns:1fr}.photo{max-width:420px}}
+/* パラジェル（店の特徴） */
+.para{padding-block:clamp(90px,12vw,160px)}
+.para-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center;margin-top:50px}
+.layers{position:relative;background:var(--paper);border-radius:28px;padding:clamp(22px,3vw,40px);box-shadow:0 40px 80px -60px rgba(60,30,40,.5)}
+.layers svg{width:100%;height:auto;display:block}
+.switch{display:inline-flex;background:#efe5d8;border-radius:999px;padding:4px;position:relative;margin-bottom:18px}
+.switch button{position:relative;z-index:1;padding:8px 18px;font-size:12.5px;letter-spacing:.1em;border-radius:999px;transition:color .4s}
+.switch button[aria-pressed="true"]{color:var(--cream)}
+.switch .pill{position:absolute;top:4px;bottom:4px;left:4px;border-radius:999px;background:var(--wine);transition:transform .6s var(--ease),width .6s var(--ease)}
+.layers .cap{font-size:12px;color:var(--sub);margin-top:14px;min-height:3.6em}
+.para .points{list-style:none;display:grid;gap:30px}
+.para .points li{padding-left:26px;position:relative}
+.para .points li::before{content:"";position:absolute;left:0;top:.75em;width:9px;height:9px;transform:rotate(45deg);border:1px solid var(--gold)}
+.para .points b{font-family:var(--min);font-weight:500;font-size:18px;letter-spacing:.08em;display:block}
+.para .points p{font-size:13.5px;color:var(--sub);margin-top:4px}
+@media(max-width:860px){.para-grid{grid-template-columns:1fr}.switch button{padding:8px 13px;font-size:12px}}
 
-/* 特長 */
-.feat{padding-block:0 clamp(100px,14vw,180px)}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.f{padding:44px 32px 44px 0;border-right:1px solid var(--line);min-width:0}
-.f:last-child{border-right:0}
-.f+.f{padding-left:32px}
-.f svg{width:34px;height:34px;color:var(--rose)}
-.f h3{font-family:var(--mincho);font-size:21px;font-weight:500;margin:22px 0 10px;letter-spacing:.08em}
-.f p{color:var(--sub);font-size:14px}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr}.f,.f+.f{padding:32px 0;border-right:0;border-bottom:1px solid var(--line)}}
+/* マグネットジェル体験 */
+.sig{padding-block:clamp(100px,12vw,160px);overflow:hidden}
+.sig-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(40px,6vw,100px);align-items:center}
+.sig p.d{color:var(--mist);margin-top:22px;max-width:30em}
+.mstage{position:relative;aspect-ratio:1/1.08;border-radius:30px;background:radial-gradient(70% 60% at 50% 45%,#2f2331,#1a141c 80%);box-shadow:inset 0 0 0 1px rgba(201,163,106,.18);display:grid;place-items:center;touch-action:pan-y;cursor:none}
+.mstage canvas{width:72%;height:auto;display:block}
+.mstage .hint{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-size:11px;letter-spacing:.24em;color:var(--mist)}
+.mstage .mag{position:absolute;top:50%;left:50%;width:46px;height:16px;border-radius:4px;background:linear-gradient(90deg,#b23a3a 50%,#3a4fb2 50%);box-shadow:0 6px 20px rgba(0,0,0,.4);transform:translate(-50%,-50%);pointer-events:none;opacity:.9}
+.swatches{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.sw{width:46px;height:46px;border-radius:50%;position:relative;transition:transform .4s var(--ease)}
+.sw::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--gold);opacity:0;transform:scale(.8);transition:opacity .4s,transform .4s var(--ease)}
+.sw[aria-pressed="true"]::after{opacity:1;transform:none}
+.sw:hover{transform:translateY(-3px)}
+.swname{margin-top:14px;font-family:var(--disp);font-style:italic;color:var(--gold);font-size:18px}
+.modes{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.modes button{border:1px solid rgba(201,163,106,.4);border-radius:999px;padding:7px 16px;font-size:12px;letter-spacing:.12em;color:var(--mist);transition:background .4s,color .4s,border-color .4s}
+.modes button[aria-pressed="true"]{background:var(--gold);color:var(--night);border-color:var(--gold)}
+@media(max-width:860px){.sig-grid{grid-template-columns:1fr}.mstage{cursor:auto}.mstage canvas{width:64%}}
 
-/* デザイン見本（横スクロール） */
-.designs{background:var(--plum);color:var(--milk);overflow:hidden}
-.designs .head{padding-block:clamp(90px,12vw,150px) 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.designs h2{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(52px,8vw,120px);line-height:.9}
-.designs .head p{max-width:24em;color:rgba(247,242,237,.7);font-size:14px}
-.track{display:flex;gap:clamp(18px,3vw,40px);padding-inline:clamp(20px,5vw,56px);padding-bottom:clamp(90px,12vw,150px);width:max-content}
-.tip{width:clamp(200px,22vw,280px);flex:none}
-.tip .nail{aspect-ratio:3/4.4;border-radius:48% 48% 14% 14%/38% 38% 8% 8%;position:relative;overflow:hidden;box-shadow:inset 0 -18px 30px rgba(0,0,0,.08),0 24px 50px -20px rgba(0,0,0,.6)}
-.tip .nail::after{content:"";position:absolute;left:18%;top:8%;width:18%;height:60%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,0));filter:blur(2px);opacity:.7}
-.tip h3{font-family:var(--disp);font-style:italic;font-weight:400;font-size:26px;margin-top:22px;line-height:1.2}
-.tip p{font-size:12px;letter-spacing:.15em;color:rgba(247,242,237,.65);display:flex;justify-content:space-between;margin-top:6px}
-.n1{background:linear-gradient(170deg,#ecd5c8,#d9b29f)}
-.n2{background:linear-gradient(180deg,#f3e6df 0 72%,#fff 72%)}
-.n3{background:radial-gradient(120% 60% at 50% 30%,#f6eaf0,#cfa9b8 60%,#7e5468)}
-.n3::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.75) 46%,transparent 60%);background-size:260% 100%;animation:cat 3.6s var(--ease) infinite}
-@keyframes cat{0%{background-position:120% 0}100%{background-position:-60% 0}}
-.n4{background:repeating-linear-gradient(118deg,#f4efea 0 18px,#e8ded6 18px 21px,#f4efea 21px 46px,#d9cdc4 46px 48px)}
-.n5{background:#efe2d9}
-.n5::before{content:"";position:absolute;left:50%;top:-10%;width:1.5px;height:130%;background:linear-gradient(var(--gold),#e9d3a8,var(--gold));transform:rotate(18deg)}
-.n6{background:linear-gradient(180deg,#8f3b45,#5a2029)}
-.n7{background:radial-gradient(circle at 30% 30%,#fff 0 6%,transparent 7%),radial-gradient(circle at 65% 55%,#fff 0 5%,transparent 6%),radial-gradient(circle at 40% 75%,#fff 0 4%,transparent 5%),linear-gradient(170deg,#dfe7ee,#b8c7d4)}
-.n8{background:conic-gradient(from 200deg at 50% 60%,#f2d7d9,#e3c4e6,#c9daf0,#d6eee2,#f2e3c6,#f2d7d9)}
+/* デザインの幅：横スクロール */
+.range{overflow:hidden}
+.range .pinbox{height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(24px,4vh,46px)}
+.range .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.range .scale{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.24em;color:var(--sub);min-width:260px;flex:0 1 380px}
+.range .scale .bar{flex:1;height:1px;background:var(--line);position:relative}
+.range .scale .bar i{position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--wine);transform:scaleX(0);transform-origin:left}
+.track{display:flex;gap:clamp(18px,2.4vw,34px);padding-inline:clamp(20px,5vw,60px);will-change:transform;width:max-content}
+.card{width:clamp(250px,26vw,360px);flex:none}
+.card .art{aspect-ratio:4/5;border-radius:22px;overflow:hidden;position:relative;background:var(--paper);box-shadow:0 30px 60px -45px rgba(60,30,40,.55);transition:transform .7s var(--ease)}
+.card:hover .art{transform:translateY(-8px) rotate(-.6deg)}
+.card .art svg{position:absolute;inset:0;width:100%;height:100%}
+.card .k{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;gap:10px}
+.card b{font-family:var(--min);font-weight:500;font-size:16px;letter-spacing:.1em}
+.card small{font-family:var(--disp);font-style:italic;color:var(--wine);font-size:14px;white-space:nowrap}
+.card p{font-size:12.5px;color:var(--sub);margin-top:2px}
 
 /* メニュー */
-.menu{padding-block:clamp(110px,15vw,190px)}
-.menu-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.menu h2,.voice h2,.faq h2{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,96px);line-height:.95;margin-top:18px}
-.menu .note{margin-top:28px;color:var(--sub);font-size:13px}
-.list{list-style:none;border-top:1px solid var(--ink)}
-.list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative;cursor:default}
-.list li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.list li:hover::before{transform:scaleX(1)}
-.list b{font-family:var(--mincho);font-weight:500;font-size:clamp(17px,1.8vw,21px);letter-spacing:.08em}
-.list small{display:block;font-size:12px;color:var(--sub);margin-top:2px;letter-spacing:.06em}
-.list .p{font-family:var(--disp);font-size:clamp(24px,2.6vw,32px);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
-.list .p span{font-size:13px;font-family:var(--body);margin-left:4px;color:var(--sub)}
-@media(max-width:820px){.menu-grid{grid-template-columns:1fr}}
+.menu{padding-block:clamp(110px,13vw,180px)}
+.menu-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,110px);margin-top:10px}
+.menu .side p{color:var(--sub);font-size:13.5px;margin-top:24px}
+.mgroup+.mgroup{margin-top:52px}
+.mgroup h3{font-family:var(--disp);font-style:italic;font-weight:400;font-size:24px;color:var(--wine);display:flex;align-items:baseline;gap:14px}
+.mgroup h3 span{font-family:var(--min);font-style:normal;font-size:13px;letter-spacing:.2em;color:var(--sub)}
+.mrow{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);position:relative}
+.mrow::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.mrow:hover::after{transform:none}
+.mrow b{font-family:var(--min);font-weight:500;font-size:16px;letter-spacing:.08em}
+.mrow b small{display:block;font-family:var(--body);font-weight:300;font-size:12px;color:var(--sub);letter-spacing:.04em;margin-top:2px}
+.mrow .dots{border-bottom:1px dotted rgba(34,26,34,.25);transform:translateY(-6px)}
+.mrow .p{font-family:var(--disp);font-size:24px;white-space:nowrap;font-variant-numeric:lining-nums}
+.mrow .p small{font-family:var(--body);font-size:11px;margin-left:3px;color:var(--sub)}
+.mrow .tag{font-size:10.5px;color:var(--cream);background:var(--wine);border-radius:3px;padding:1px 7px;margin-left:8px;vertical-align:2px;letter-spacing:.1em}
+.menu .note{font-size:12px;color:var(--sub);margin-top:22px}
+@media(max-width:860px){.menu-grid{grid-template-columns:1fr}.mrow{grid-template-columns:1fr auto}.mrow .dots{display:none}}
 
-/* 声 */
-.voice{padding-block:clamp(100px,14vw,170px);background:var(--paper);border-block:1px solid var(--line)}
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);margin-top:64px}
-.quotes figure{border-top:1px solid var(--line);padding-top:30px}
-.quotes blockquote{font-family:var(--mincho);font-size:clamp(19px,2vw,25px);line-height:1.9;letter-spacing:.06em}
-.quotes blockquote::before{content:"“";display:block;font-family:var(--disp);font-size:80px;line-height:.6;color:var(--rose);height:40px}
-.quotes figcaption{margin-top:18px;font-size:12px;letter-spacing:.2em;color:var(--sub)}
-@media(max-width:820px){.quotes{grid-template-columns:1fr}}
+/* 初めての方へ */
+.flow{padding-block:clamp(100px,12vw,160px)}
+.flow-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(40px,7vw,110px)}
+.flow .sticky{position:sticky;top:120px;align-self:start}
+.flow .sticky p{color:var(--mist);margin-top:22px;font-size:14px}
+.steps{list-style:none;position:relative;padding-left:64px}
+.steps .rail{position:absolute;left:21px;top:8px;bottom:8px;width:1px;background:rgba(201,163,106,.25)}
+.steps .rail i{position:absolute;inset:0;background:var(--gold);transform:scaleY(0);transform-origin:top}
+.steps li{position:relative;padding-bottom:54px}
+.steps li:last-child{padding-bottom:0}
+.steps .num{position:absolute;left:-64px;top:0;width:43px;height:43px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--disp);font-style:italic;color:var(--gold);background:var(--plum);font-size:16px}
+.steps h3{font-family:var(--min);font-weight:500;font-size:19px;letter-spacing:.1em;line-height:1.6;padding-top:6px}
+.steps p{color:var(--mist);font-size:13.5px;margin-top:8px}
+@media(max-width:860px){.flow-grid{grid-template-columns:1fr}.flow .sticky{position:static}.steps{padding-left:58px}.steps .num{left:-58px}}
 
-/* 質問 */
-.faq{padding-block:clamp(110px,15vw,190px)}
-.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.qa{border-bottom:1px solid var(--line)}
-.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--mincho);font-size:clamp(16px,1.6vw,19px);letter-spacing:.06em}
-.qa button:focus-visible{outline:1px solid var(--rose);outline-offset:4px}
-.qa .pm{position:relative;width:14px;height:14px;flex:none;margin-top:8px}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--ink);transition:transform .5s var(--ease)}
-.qa .pm::after{transform:rotate(90deg)}
-.qa.open .pm::after{transform:rotate(0)}
-.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
-.qa.open .ans{grid-template-rows:1fr}
-.qa .ans>div{overflow:hidden}
-.qa .ans p{padding-bottom:26px;color:var(--sub);font-size:14px}
-@media(max-width:820px){.faq-grid{grid-template-columns:1fr}}
+/* お客さまの声（例） */
+.voice{padding-block:clamp(100px,12vw,160px);text-align:center}
+.qbox{position:relative;max-width:820px;margin:50px auto 0;min-height:260px}
+.q{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1s var(--ease),visibility 1s}
+.q.on{opacity:1;visibility:visible}
+.q blockquote{font-family:var(--min);font-weight:300;font-size:clamp(18px,2vw,25px);line-height:2.1;letter-spacing:.1em}
+.q cite{display:block;font-style:normal;font-size:12px;color:var(--sub);margin-top:22px;letter-spacing:.16em}
+.qmark{font-family:var(--disp);font-style:italic;font-size:110px;line-height:.4;color:var(--gold);opacity:.45;display:block;height:40px}
+.qnav{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.qnav button{width:34px;height:34px;display:grid;place-items:center}
+.qnav button i{width:22px;height:2px;background:var(--line);transition:background .4s,width .4s var(--ease)}
+.qnav button[aria-current="true"] i{background:var(--wine);width:34px}
+.voice .note{font-size:11.5px;color:var(--sub);margin-top:26px}
+@media(max-width:600px){.qbox{min-height:300px}}
+
+/* よくある質問 */
+.faq{padding-block:clamp(90px,11vw,150px)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,110px)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:var(--min);font-weight:500;font-size:16px;letter-spacing:.08em}
+summary::-webkit-details-marker{display:none}
+summary .pm{width:16px;height:16px;position:relative;flex:none}
+summary .pm::before,summary .pm::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--wine);transition:transform .5s var(--ease)}
+summary .pm::after{transform:rotate(90deg)}
+details[open] summary .pm::after{transform:rotate(0)}
+details .a{overflow:hidden}
+details .a p{padding:0 0 24px;color:var(--sub);font-size:14px}
+@media(max-width:860px){.faq-grid{grid-template-columns:1fr}}
+
+/* アクセス */
+.access{padding-block:clamp(90px,11vw,150px)}
+.acc-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,6vw,90px);align-items:center;margin-top:46px}
+.map{border-radius:26px;overflow:hidden;background:#efe6da;aspect-ratio:4/3}
+.map svg{width:100%;height:100%;display:block}
+.map .train{stroke-dasharray:6 8;animation:run 3s linear infinite}
+@keyframes run{to{stroke-dashoffset:-56}}
+dl.info{display:grid;grid-template-columns:auto 1fr;gap:16px 26px;font-size:14px}
+dl.info dt{font-family:var(--min);font-weight:500;color:var(--wine);letter-spacing:.12em;white-space:nowrap}
+dl.info dd{color:var(--sub)}
+@media(max-width:860px){.acc-grid{grid-template-columns:1fr}}
 
 /* 予約 */
-.reserve{position:relative;background:var(--plum);color:var(--milk);padding-block:clamp(120px,16vw,210px);overflow:hidden;text-align:center}
-.reserve h2{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(56px,11vw,170px);line-height:.9}
-.reserve p{margin:30px auto 0;max-width:30em;color:rgba(247,242,237,.75)}
-.mag{display:inline-flex;align-items:center;justify-content:center;width:184px;height:184px;border-radius:50%;background:var(--rose);color:#fff;margin-top:56px;font-size:13px;letter-spacing:.25em;transition:background .4s;will-change:transform}
-.mag:hover{background:var(--gold)}
-.info{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:12px 48px;margin-top:64px;font-size:13px;color:rgba(247,242,237,.75)}
-.info dt{font-size:10px;letter-spacing:.3em;color:var(--gold)}
-@media(max-width:820px){.info{grid-template-columns:1fr}}
+.reserve{padding-block:clamp(120px,15vw,210px);text-align:center;overflow:hidden}
+.reserve .halo{position:absolute;left:50%;top:50%;width:min(90vw,820px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(201,163,106,.18),transparent 62%);pointer-events:none}
+.reserve h2{font-family:var(--min);font-weight:300;font-size:clamp(28px,4.6vw,62px);line-height:1.6;letter-spacing:.14em}
+.reserve h2 i{font-family:var(--disp);font-weight:400;color:var(--gold)}
+.reserve p.s{color:var(--mist);margin:26px auto 0;max-width:32em;font-size:14px}
+.cta-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:46px}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-width:240px;padding:20px 30px;border-radius:999px;font-size:13px;letter-spacing:.18em;border:1px solid var(--gold);color:var(--gold);overflow:hidden;will-change:transform;transition:color .5s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);border-radius:inherit;transition:transform .6s var(--ease)}
+.btn:hover::before{transform:none}
+.btn:hover{color:var(--night)}
+.btn>*{position:relative}
+.btn.fill{background:var(--gold);color:var(--night)}
+.btn.fill::before{background:var(--cream)}
+.btn svg{width:17px;height:17px}
+.reserve .small{font-size:11.5px;color:var(--mist);margin-top:22px}
 
-/* ノクターン紹介・フッター */
-.partner{padding-block:56px}
-.nc{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:4px;padding:22px 26px;background:var(--paper);transition:border-color .4s}
-.nc:hover{border-color:var(--gold)}
-.nc .m{font-family:var(--disp);font-size:12px;letter-spacing:.3em;color:var(--gold)}
-.nc b{display:block;font-family:var(--mincho);font-weight:500;font-size:17px}
-.nc small{color:var(--sub);font-size:12px}
-.nc .go{margin-left:auto;font-size:12px;letter-spacing:.2em}
-footer{padding-block:28px 64px;font-size:11px;letter-spacing:.15em;color:var(--sub);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;background:rgba(43,34,32,.82);color:#fff;font:600 10px/1 var(--body);letter-spacing:.25em;padding:9px 14px;border-radius:20px}
+/* パートナー・フッター */
+.partner{padding-block:30px 10px}
+.pbox{display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap;max-width:640px;border:1px solid rgba(201,163,106,.3);border-radius:16px;padding:16px 22px;font-size:12px;color:var(--mist)}
+.pbox b{display:block;font-family:var(--disp);font-style:italic;font-weight:400;color:var(--gold);font-size:14px;letter-spacing:.04em}
+.pbox a{border-bottom:1px solid currentColor;white-space:nowrap}
+footer{padding-block:30px 80px;font-size:11.5px;color:var(--mist);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;letter-spacing:.08em}
+.badge{position:fixed;right:14px;bottom:14px;z-index:120;background:var(--gold);color:var(--night);font-family:var(--disp);font-style:italic;font-size:12px;letter-spacing:.2em;padding:7px 14px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
 @media (prefers-reduced-motion:reduce){
-  .hero h1 .ch,.line>span{transform:none!important;opacity:1!important}
-  .hero .tate,.hero-foot{opacity:1!important}
-  .ticker .row,.n3::before,.scroll i::after{animation:none}
-  #loader{display:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ln>span,.hero .big .ch{transform:none!important;opacity:1!important}
+  .reveal,.hero .tate span,.hero .meta,.hero .scroll{opacity:1!important;transform:none!important}
 }
-.hero h1{font-size:min(19vw,calc(150vw/5),300px)!important;white-space:nowrap}</style>
+</style>
 </head>
 <body>
-<div id="loader"><div class="l">L</div><div class="bar"><i></i></div></div>
-<div class="cursor"></div>
+<div id="loader" aria-hidden="true"><div><svg viewBox="0 0 60 90"><path class="k" d="M30 6a18 18 0 0 1 9 33.6L44 84H16l5-44.4A18 18 0 0 1 30 6z"/><circle class="glow" cx="30" cy="24" r="5"/></svg><p>bliss</p></div></div>
+<div class="cur" aria-hidden="true"></div><div class="cur-r" aria-hidden="true"></div>
 
 <header id="hd"><div class="wrap">
-  <a class="brand" href="#top">bliss<small>NAIL SALON</small></a>
-  <nav><a href="#about">ABOUT</a><a href="#designs">DESIGN</a><a href="#menu">MENU</a><a href="#faq">FAQ</a><a class="nav-cta" href="#reserve">RESERVE</a></nav>
+  <a class="logo" href="#top">bliss<small>NAIL SALON</small></a>
+  <nav><a href="#about">コンセプト</a><a href="#feature">パラジェル</a><a href="#sig">マグネット</a><a href="#menu">メニュー</a><a href="#access">アクセス</a><a class="cta" href="#reserve" data-mag>DMで予約</a></nav>
 </div></header>
 
 <main id="top">
-<section class="hero">
-  <canvas id="gel" aria-hidden="true"></canvas>
-  <div class="grain"></div>
-  <div class="wrap hero-in">
-    <h1 aria-label="bliss"><span class="mask">bliss</span></h1>
-    <p class="tate">指先から、毎日を少し特別に。</p>
-    <div class="hero-foot">
-      <p>門前仲町のプライベートネイルサロン。<br>ひとりのお客さまに、ひとりのネイリスト。<br>1日4名さま限定・完全予約制。</p>
-      <div class="scroll"><i></i>SCROLL</div>
+<section class="hero" data-theme="dark">
+  <div class="bg"></div><div class="grain"></div>
+  <div class="door-wrap" id="doorWrap">
+    <div class="door" id="door"><canvas id="dust" aria-hidden="true"></canvas><div class="leaf l"><i></i></div><div class="leaf r"><i></i></div></div>
+    <div class="frame" style="position:absolute;inset:-14px;border:1px solid rgba(201,163,106,.4);border-radius:999px 999px 8px 8px;pointer-events:none"></div>
+  </div>
+  <div class="hero-txt">
+    <p class="meta"><b>Private nail salon</b>門前仲町 ／ 完全個室</p>
+    <h1 class="big" aria-label="bliss"><span class="mask"><span class="ch">b</span><span class="ch">l</span><span class="ch">i</span><span class="ch">s</span><span class="ch">s</span></span></h1>
+    <p class="tate"><span>扉の向こうに、</span><span>わたしだけの時間。</span></p>
+    <p class="scroll">SCROLL<i></i></p>
+  </div>
+</section>
+
+<section class="about" id="about" data-theme="light" data-bg="#f4ece2"><div class="wrap about-grid">
+  <div>
+    <p class="eyebrow">Concept</p>
+    <h2 class="h2 split"><span class="ln"><span>路地の奥の、</span></span><span class="ln"><span>ひとりのための</span></span><span class="ln"><span><i>private</i> room.</span></span></h2>
+  </div>
+  <div>
+    <div class="lead reveal">
+      <p>門前仲町の駅からすぐ。にぎやかな通りから一本入った先に、nailsalon blissはあります。</p>
+      <p>完全個室のプライベートサロンなので、ほかのお客さまと顔を合わせることはありません。お仕事帰りでも、休日のひとり時間でも。扉を閉めたら、そこから先はあなただけの時間です。</p>
+    </div>
+    <ul class="rituals reveal">
+      <li><span class="n">i.</span><div><b>一枠ずつ、おひとりだけ</b><small>予約はお一人ずつ。時間に追われない施術を（運用は例）。</small></div><svg class="ic" viewBox="0 0 28 28" fill="none" stroke="currentColor"><circle cx="14" cy="14" r="11"/><path d="M14 7v7l4 3"/></svg></li>
+      <li><span class="n">ii.</span><div><b>話しても、話さなくても</b><small>おしゃべりも、静かに過ごすのも、その日の気分で。</small></div><svg class="ic" viewBox="0 0 28 28" fill="none" stroke="currentColor"><path d="M5 7h18v11H12l-5 4v-4H5z"/></svg></li>
+      <li><span class="n">iii.</span><div><b>爪にやさしいパラジェル</b><small>自爪を削らないジェルで、続けやすいネイルを。</small></div><svg class="ic" viewBox="0 0 28 28" fill="none" stroke="currentColor"><path d="M8 24V11a6 6 0 0 1 12 0v13z"/></svg></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="para" id="feature" data-theme="light" data-bg="#fbf6ef"><div class="wrap">
+  <p class="eyebrow">Paragel</p>
+  <h2 class="h2 split"><span class="ln"><span>削らないから、</span></span><span class="ln"><span>爪が<i>つづく</i>。</span></span></h2>
+  <div class="para-grid">
+    <div class="layers reveal">
+      <div class="switch" role="group" aria-label="ジェルの違い"><i class="pill"></i><button aria-pressed="false" data-m="0">削るジェル（一般例）</button><button aria-pressed="true" data-m="1">パラジェル</button></div>
+      <svg viewBox="0 0 520 300" aria-hidden="true">
+        <defs><linearGradient id="nailG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2d6cc"/><stop offset="1" stop-color="#e3b3a6"/></linearGradient>
+        <linearGradient id="colG" x1="0" x2="1"><stop offset="0" stop-color="#6b2a42"/><stop offset="1" stop-color="#8f4a5f"/></linearGradient></defs>
+        <rect x="20" y="214" width="480" height="64" rx="6" fill="#f6e3da"/>
+        <text x="34" y="256" font-size="13" fill="#9b7f86" font-family="Noto Sans JP">皮膚・指先</text>
+        <path id="natural" d="M20 214 L20 170 L60 170 L100 170 L140 170 L180 170 L220 170 L260 170 L300 170 L340 170 L380 170 L420 170 L460 170 L500 170 L500 214 Z" fill="url(#nailG)"/>
+        <g id="gelLayers">
+          <path id="lBase" d="M20 170 L500 170 L500 146 L20 146 Z" fill="#f5efe6" opacity=".95"/>
+          <path id="lColor" d="M20 146 L500 146 L500 112 L20 112 Z" fill="url(#colG)"/>
+          <path id="lTop" d="M20 112 L500 112 L500 92 L20 92 Z" fill="#f1e7ee" stroke="#e3d2dc"/>
+        </g>
+        <g font-family="Noto Sans JP" font-size="12.5" fill="#5c4a52">
+          <text x="34" y="107" id="tTop" fill="#7d6e74">トップ（ツヤ）</text>
+          <text x="34" y="135" fill="#f4ece2">カラー</text>
+          <text x="34" y="163" fill="#7d6e74">ベース</text>
+          <text x="34" y="200" fill="#7d6e74" id="tNat">自爪の表面：なめらか</text>
+        </g>
+        <g id="dustG" fill="#c9a36a" opacity="0"><circle cx="120" cy="60" r="2"/><circle cx="160" cy="44" r="1.5"/><circle cx="240" cy="70" r="2"/><circle cx="300" cy="40" r="1.6"/><circle cx="360" cy="64" r="2.2"/><circle cx="420" cy="48" r="1.4"/></g>
+      </svg>
+      <p class="cap" id="layerCap">パラジェルは自爪の表面を削らずにのせられるジェル。付け替えのたびに爪が薄くなりにくいのが特長です。</p>
+    </div>
+    <ul class="points reveal">
+      <li><b>登録サロンのパラジェル</b><p>サンディング（爪の表面を削る工程）なしで仕上げます。ジェルを続けたい方の、いちばんの味方です。</p></li>
+      <li><b>オフィスから手描きアートまで</b><p>職場でも浮かないワンカラーから、トレンドのニュアンス、細い筆で描くアートまで。その日の気分にあわせてご提案します。</p></li>
+      <li><b>マグネットのきらめき</b><p>磁石で光の筋を動かすマグネットジェルも。色と光の入り方で、印象がまったく変わります。</p></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="sig" id="sig" data-theme="dark" data-bg="#16111a"><div class="wrap sig-grid">
+  <div>
+    <p class="eyebrow">Magnet Gel Studio</p>
+    <h2 class="h2 split"><span class="ln"><span>光の筋を、</span></span><span class="ln"><span>指先で<i>動かす</i>。</span></span></h2>
+    <p class="d reveal">マグネットジェルは、磁石を近づけて光の帯をつくるジェルです。爪の上でカーソル（スマホは指）を動かして、光の入り方を試してみてください。</p>
+    <div class="reveal">
+      <div class="swatches" role="group" aria-label="ベースの色">
+        <button class="sw" aria-pressed="true" data-i="0" style="background:#5d1f34" aria-label="ボルドー"></button>
+        <button class="sw" aria-pressed="false" data-i="1" style="background:#8a6676" aria-label="モーヴ"></button>
+        <button class="sw" aria-pressed="false" data-i="2" style="background:#b5976d" aria-label="シャンパン"></button>
+        <button class="sw" aria-pressed="false" data-i="3" style="background:#1f2442" aria-label="ミッドナイト"></button>
+      </div>
+      <p class="swname" id="swname">Bordeaux</p>
+      <div class="modes" role="group" aria-label="光の入れ方"><button aria-pressed="true" data-k="0">ライン</button><button aria-pressed="false" data-k="1">ふんわり</button><button aria-pressed="false" data-k="2">ダブル</button></div>
     </div>
   </div>
-</section>
-
-<div class="ticker" aria-hidden="true"><div class="row">
-  <span>Private Nail Salon</span><span>One-to-one</span><span>Fill-in Care</span><span>4 Guests a Day</span><span>Tsukishima, Tokyo</span>
-  <span>Private Nail Salon</span><span>One-to-one</span><span>Fill-in Care</span><span>4 Guests a Day</span><span>Tsukishima, Tokyo</span>
-</div></div>
-
-<section class="state" id="about"><div class="wrap state-grid">
-  <div>
-    <p class="eyebrow">About</p>
-    <h2 class="split"><span class="line"><span>にぎやかなサロンが</span></span><span class="line"><span>少し苦手な方のための、</span></span><span class="line"><span>静かな指先の時間。</span></span></h2>
-    <p class="lead reveal">完全個室で、施術はすべてオーナーネイリストがひとりで担当します。爪を削りすぎないフィルイン施術で、自爪を育てながら、長くきれいが続くネイルを。おしゃべりも、ひと休みも、どうぞご自由に。</p>
-  </div>
-  <div class="photo reveal"><canvas id="ph1" aria-hidden="true"></canvas><span class="ph">PHOTO — 店内</span></div>
+  <div class="mstage reveal" id="mstage"><canvas id="mag" width="520" height="700" aria-label="マグネットジェルのイメージ"></canvas><span class="mag" id="magnet" aria-hidden="true"></span><p class="hint">MOVE TO SHIFT THE LIGHT</p></div>
 </div></section>
 
-<section class="feat"><div class="wrap feat-grid">
-  <div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="4" y="5" width="16" height="14" rx="1"/><path d="M12 5v14"/></svg><h3>完全個室</h3><p>ほかのお客さまと顔を合わせることはありません。周りを気にせず、自分の時間を。</p></div>
-  <div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M8 21V10a4 4 0 0 1 8 0v11"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0V13h-5z"/></svg><h3>フィルイン施術</h3><p>ジェルを全部落とさず、ベースを残して付け替え。自爪への負担をおさえます。</p></div>
-  <div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg><h3>デザインの持ち込み可</h3><p>好きな写真を見せてください。手の形や肌の色に合わせて、似合う形に整えます。</p></div>
-</div></section>
-
-<section class="designs" id="designs">
-  <div class="wrap head">
-    <h2>Designs</h2>
-    <p>定額デザインの一例です。季節ごとに入れ替えています。気になるものがあれば、ご予約のときにお伝えください。</p>
-  </div>
-  <div class="track" id="track">
-    <div class="tip"><div class="nail n1"></div><h3>Nude Beige</h3><p><span>ワンカラー</span><span>¥6,000</span></p></div>
-    <div class="tip"><div class="nail n2"></div><h3>Soft French</h3><p><span>シンプル</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n3"></div><h3>Cat Eye Mauve</h3><p><span>マグネット</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n4"></div><h3>Linen Stripe</h3><p><span>シンプル</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n5"></div><h3>Gold Line</h3><p><span>シンプル</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n6"></div><h3>Bordeaux</h3><p><span>ワンカラー</span><span>¥6,000</span></p></div>
-    <div class="tip"><div class="nail n7"></div><h3>Pearl Dot</h3><p><span>こだわり</span><span>¥9,000</span></p></div>
-    <div class="tip"><div class="nail n8"></div><h3>Aurora</h3><p><span>こだわり</span><span>¥9,000</span></p></div>
+<section class="range" id="gallery" data-theme="light" data-bg="#f4ece2">
+  <div class="pinbox">
+    <div class="wrap head">
+      <div><p class="eyebrow">Design Range</p><h2 class="h2" style="word-break:keep-all">オフィスから、<wbr><i>手描き</i>まで。</h2></div>
+      <div class="scale"><span>OFFICE</span><span class="bar"><i id="rbar"></i></span><span>ART</span></div>
+    </div>
+    <div class="track" id="track"></div>
   </div>
 </section>
 
-<section class="menu" id="menu"><div class="wrap menu-grid">
-  <div><p class="eyebrow">Menu</p><h2>Price<br>List</h2><p class="note">表示はすべて税込です。オフは他店ジェルも承ります（+1,000円）。</p></div>
-  <ul class="list">
-    <li class="reveal"><div><b>ワンカラー</b><small>ハンド・ケア込み</small></div><div class="p">6,000<span>円</span></div></li>
-    <li class="reveal"><div><b>シンプルアート（定額）</b><small>フレンチ・ライン・マグネット</small></div><div class="p">7,500<span>円</span></div></li>
-    <li class="reveal"><div><b>こだわりアート（定額）</b><small>持ち込みデザイン・パーツ</small></div><div class="p">9,000<span>円</span></div></li>
-    <li class="reveal"><div><b>フットワンカラー</b><small>角質ケアは+1,500円</small></div><div class="p">7,000<span>円</span></div></li>
-    <li class="reveal"><div><b>オフのみ</b><small>ケア・保湿仕上げ</small></div><div class="p">2,500<span>円</span></div></li>
-  </ul>
-</div></section>
-
-<section class="voice"><div class="wrap">
-  <p class="eyebrow">Voice</p><h2>Our Guests</h2>
-  <div class="quotes">
-    <figure class="reveal"><blockquote>落ち着いた空間で、毎月のご褒美の時間になっています。仕事の話をしなくていいのも嬉しい。</blockquote><figcaption>30代・会社員</figcaption></figure>
-    <figure class="reveal"><blockquote>持ちがよくて、3週間たってもきれいなまま。自爪も前より強くなりました。</blockquote><figcaption>40代・主婦</figcaption></figure>
+<section class="menu" id="menu" data-theme="light" data-bg="#fbf6ef"><div class="wrap menu-grid">
+  <div class="side">
+    <p class="eyebrow">Menu &amp; Price</p>
+    <h2 class="h2 split"><span class="ln"><span>メニュー</span></span><span class="ln"><span>と料金<span class="rei">例</span></span></span></h2>
+    <p class="reveal">はじめての方も、まずはインスタのDMでお気軽にご相談ください。デザインの写真を送っていただければ、目安の料金をお伝えします。</p>
+  </div>
+  <div class="reveal">
+    <div class="mgroup">
+      <h3>Hand <span>ハンド・パラジェル</span></h3>
+      <div class="mrow"><b>ワンカラー<small>オフィスにも。シンプルを丁寧に</small></b><i class="dots"></i><span class="p">6,600<small>円</small></span></div>
+      <div class="mrow"><b>定額デザイン<span class="tag">人気・例</span><small>ニュアンス・マグネット・フレンチなど</small></b><i class="dots"></i><span class="p">8,800<small>円</small></span></div>
+      <div class="mrow"><b>手描きアート<small>細筆で描くフラワーやモチーフ</small></b><i class="dots"></i><span class="p">9,900<small>円〜</small></span></div>
+    </div>
+    <div class="mgroup">
+      <h3>Care <span>オフ・ケア</span></h3>
+      <div class="mrow"><b>当店オフ（付け替え）</b><i class="dots"></i><span class="p">0<small>円</small></span></div>
+      <div class="mrow"><b>他店オフ</b><i class="dots"></i><span class="p">1,650<small>円</small></span></div>
+      <div class="mrow"><b>ケアのみ<small>甘皮・形の調整・保湿</small></b><i class="dots"></i><span class="p">4,400<small>円</small></span></div>
+    </div>
+    <p class="note">※料金・内容はすべて見本用の例です。実際のメニューに差し替えてお作りします。</p>
   </div>
 </div></section>
 
-<section class="faq" id="faq"><div class="wrap faq-grid">
-  <div><p class="eyebrow">FAQ</p><h2>Q &amp; A</h2></div>
-  <div>
-    <div class="qa"><button aria-expanded="false">当日の予約はできますか？<span class="pm"></span></button><div class="ans"><div><p>空きがあれば承ります。LINEからお気軽にお問い合わせください。</p></div></div></div>
-    <div class="qa"><button aria-expanded="false">子ども連れでも大丈夫ですか？<span class="pm"></span></button><div class="ans"><div><p>事前にご相談いただければ対応いたします。個室なので、周りを気にせず過ごせます。</p></div></div></div>
-    <div class="qa"><button aria-expanded="false">他店のジェルのオフもできますか？<span class="pm"></span></button><div class="ans"><div><p>はい。オフ代は+1,000円です。爪の状態を見て、フィルインにするか全部落とすかをご提案します。</p></div></div></div>
-    <div class="qa"><button aria-expanded="false">どのくらいの頻度で通えばいいですか？<span class="pm"></span></button><div class="ans"><div><p>3〜4週間に一度が目安です。次回のご予約はお帰りのときに承ります。</p></div></div></div>
+<section class="flow" id="flow" data-theme="dark" data-bg="#241a26"><div class="wrap flow-grid">
+  <div class="sticky">
+    <p class="eyebrow">For First Visit</p>
+    <h2 class="h2 split"><span class="ln"><span>はじめての方へ</span></span></h2>
+    <p class="reveal">予約から帰り道まで。扉の向こうで過ごす時間の流れです（内容は例）。</p>
+  </div>
+  <ol class="steps" id="steps"><i class="rail"><i id="rail"></i></i>
+    <li class="reveal"><span class="num">I</span><h3>インスタのDMでご予約</h3><p>ご希望の日時と、気になるデザインの写真があれば一緒にお送りください。</p></li>
+    <li class="reveal"><span class="num">II</span><h3>扉をあけて、個室へ</h3><p>詳しい道順はご予約の方にお送りします。お荷物を置いて、まずはひと息。</p></li>
+    <li class="reveal"><span class="num">III</span><h3>爪を見ながらカウンセリング</h3><p>爪の状態とご希望をうかがい、デザインと長さを一緒に決めていきます。</p></li>
+    <li class="reveal"><span class="num">IV</span><h3>施術、そして仕上がりの確認</h3><p>パラジェルで丁寧に。おうちでのケアと、次回の目安もお伝えします。</p></li>
+  </ol>
+</div></section>
+
+<section class="voice" id="voice" data-theme="light" data-bg="#f4ece2"><div class="wrap">
+  <p class="eyebrow" style="justify-content:center">Voices</p>
+  <h2 class="h2">お客さまの声<span class="rei">例</span></h2>
+  <div class="qbox" id="qbox">
+    <div class="q on"><span class="qmark">“</span><blockquote>個室なので人目を気にせず、<br>ゆっくり話しながら過ごせました。<br>帰り道、手元を見るたびにうれしくなります。</blockquote><cite>30代・会社員（例文）</cite></div>
+    <div class="q"><span class="qmark">“</span><blockquote>削らないジェルにしてから、<br>付け替えのあとも爪がペラペラになりにくくて。<br>続けやすいのがうれしいです。</blockquote><cite>20代・看護職（例文）</cite></div>
+    <div class="q"><span class="qmark">“</span><blockquote>職場で浮かないデザインを、<br>と相談したらぴったりの提案をもらえました。<br>マグネットの光り方が上品です。</blockquote><cite>40代・事務職（例文）</cite></div>
+  </div>
+  <div class="qnav" id="qnav"><button aria-current="true" aria-label="1つめ"><i></i></button><button aria-label="2つめ"><i></i></button><button aria-label="3つめ"><i></i></button></div>
+  <p class="note">※掲載している声は見本用の例文です。実在のお客さまのものではありません。</p>
+</div></section>
+
+<section class="faq" id="faq" data-theme="light" data-bg="#fbf6ef"><div class="wrap faq-grid">
+  <div><p class="eyebrow">Q &amp; A</p><h2 class="h2 split"><span class="ln"><span>よくある質問</span></span></h2></div>
+  <div class="reveal">
+    <details><summary>パラジェルは普通のジェルと何が違いますか？<i class="pm"></i></summary><div class="a"><p>一般的なジェルは密着のために爪の表面を削ることがありますが、パラジェルは削らずにのせられます。付け替えを続けても自爪が薄くなりにくいのが特長です。</p></div></details>
+    <details><summary>オフィス向けの控えめなデザインもできますか？<i class="pm"></i></summary><div class="a"><p>もちろんです。ワンカラーや肌なじみのよい色、短めの長さなど、お仕事に合わせてご提案します。</p></div></details>
+    <details><summary>デザインの持ち込みはできますか？<i class="pm"></i></summary><div class="a"><p>できます。写真をDMで送っていただければ、目安の料金と時間をお伝えします（見本の記載例）。</p></div></details>
+    <details><summary>サロンの場所がわかりません。<i class="pm"></i></summary><div class="a"><p>門前仲町駅からすぐの場所です。プライベートサロンのため、詳しい道順はご予約の方にお送りしています。</p></div></details>
+    <details><summary>当日の予約はできますか？<i class="pm"></i></summary><div class="a"><p>空きがあればお受けできます。インスタのDMでお気軽にお問い合わせください。</p></div></details>
   </div>
 </div></section>
 
-<section class="reserve" id="reserve">
-  <div class="wrap">
-    <h2>Reserve</h2>
-    <p>ご予約はLINEで承っています。空き状況をお送りしますので、ご希望の日時をお知らせください。</p>
-    <a class="mag" href="#reserve" data-mag>LINE で予約</a>
-    <dl class="info">
-      <div><dt>HOURS</dt><dd>10:00 – 20:00（不定休）</dd></div>
-      <div><dt>ACCESS</dt><dd>〇〇線 門前仲町駅 徒歩2分</dd></div>
-      <div><dt>ADDRESS</dt><dd>東京都中央区〇〇 1-2-3</dd></div>
+<section class="access" id="access" data-theme="light" data-bg="#f4ece2"><div class="wrap">
+  <p class="eyebrow">Access</p>
+  <h2 class="h2">アクセス</h2>
+  <div class="acc-grid">
+    <div class="map reveal"><svg viewBox="0 0 480 360" aria-label="門前仲町駅周辺のイメージ図">
+      <rect width="480" height="360" fill="#efe6da"/>
+      <path d="M-10 250 C 80 230, 150 285, 260 262 S 420 220, 500 246" stroke="#cfdcd8" stroke-width="22" fill="none"/>
+      <path d="M90 -10 L120 370" stroke="#e3d6c4" stroke-width="12"/><path d="M380 -10 L340 370" stroke="#e3d6c4" stroke-width="12"/>
+      <path d="M-10 168 L490 150" stroke="#2a8fbd" stroke-width="5" opacity=".75"/><path class="train" d="M-10 168 L490 150" stroke="#fff" stroke-width="2" fill="none"/>
+      <path d="M250 -10 L232 370" stroke="#b3366b" stroke-width="5" opacity=".7"/><path class="train" d="M250 -10 L232 370" stroke="#fff" stroke-width="2" fill="none"/>
+      <circle cx="243" cy="159" r="13" fill="#fbf6ef" stroke="#241a26" stroke-width="3"/>
+      <text x="262" y="140" font-family="Noto Serif JP" font-weight="600" font-size="17" fill="#241a26">門前仲町</text>
+      <text x="22" y="190" font-family="Noto Sans JP" font-size="11" fill="#2a8fbd">東西線</text>
+      <text x="198" y="340" font-family="Noto Sans JP" font-size="11" fill="#b3366b">大江戸線</text>
+      <g transform="translate(300 205)"><circle r="26" fill="#c9a36a" opacity=".22"><animate attributeName="r" values="14;30;14" dur="3s" repeatCount="indefinite"/></circle><path d="M0 -12a9 9 0 0 1 4.5 16.8L7 12H-7l2.5-7.2A9 9 0 0 1 0-12z" fill="#5a2438"/></g>
+      <text x="334" y="226" font-family="Noto Sans JP" font-size="12" fill="#5a2438">このあたり（イメージ）</text>
+    </svg></div>
+    <dl class="info reveal">
+      <dt>最寄り駅</dt><dd>門前仲町駅（東京メトロ東西線・都営大江戸線）</dd>
+      <dt>場所</dt><dd>ご予約の方に詳しい道順をお送りします</dd>
+      <dt>営業日</dt><dd>火〜土曜（例）</dd>
+      <dt>スタイル</dt><dd>完全個室・おひとりずつのご案内</dd>
+      <dt>ご予約</dt><dd>インスタDM／ホットペッパービューティー</dd>
     </dl>
   </div>
-</section>
-
-<section class="partner"><div class="wrap">
-  <a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><div><span class="m">NOCTURNE CONCIERGE</span><b>当店のお客さまへ：夜だけの家事代行</b><small>18:00〜翌3:00。作り置き・洗濯・片付けを、帰ってからの時間に。</small></div><span class="go">VIEW →</span></a>
 </div></section>
+
+<section class="reserve" id="reserve" data-theme="dark" data-bg="#16111a"><div class="halo"></div><div class="wrap" style="position:relative">
+  <p class="eyebrow" style="justify-content:center">Reservation</p>
+  <h2 class="split" style="margin-top:22px"><span class="ln"><span>次の扉は、</span></span><span class="ln"><span>あなたの<i>指先</i>から。</span></span></h2>
+  <p class="s reveal">ご予約・ご相談はインスタグラムのDMがいちばんスムーズです。気になるデザインの写真を添えてどうぞ。</p>
+  <div class="cta-row reveal">
+    <a class="btn fill" href="#" data-mag><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor"/></svg><span>インスタDMで予約</span></a>
+    <a class="btn" href="#" data-mag><span>ホットペッパーで予約</span></a>
+  </div>
+  <p class="small">※リンク先は見本のため仮のものです</p>
+</div></section>
+
+<section class="partner" data-theme="dark" data-bg="#16111a"><div class="wrap">
+  <div class="pbox"><div><b>Partner: Nocturne Concierge（夜だけの家事代行）</b>ネイルのあとは、家事をおまかせして手を休める夜を。<br><small>2.5万円プランでページ下に掲載する提携紹介枠の例です。</small></div><a href="#">詳しく →</a></div>
+</div></section>
+<footer class="wrap"><span>© nailsalon bliss（見本）</span><span>この見本は提案用に作成したもので、内容は仮のものです。</span></footer>
 </main>
-<footer class="wrap"><span>© Nail Salon bliss</span><span>※見本です。写真・文章・料金はお店の内容に差し替えてお作りします。</span></footer>
-<div class="sample">SAMPLE</div>
+<a class="badge" href="#top" aria-label="見本サイトです">SAMPLE</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(() => {
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hasG = typeof gsap !== 'undefined';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasG=typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined';
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
-/* ジェルの質感：パール・ローズ・ベージュが溶け合うシェーダー */
-function gel(canvas, opts){
-  const gl = canvas.getContext('webgl', {premultipliedAlpha:false});
-  if(!gl) { canvas.style.background = 'linear-gradient(160deg,#f4e4dc,#e2c3b6,#f6ece6)'; return null; }
-  const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  const fs = `precision mediump float;uniform vec2 r;uniform float t;uniform vec2 m;
-  float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-  float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+1.),f.x),f.y);}
-  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.02;a*=.5;}return v;}
-  void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.6;
-    float tt=t*${opts.speed};
-    vec2 q=vec2(fbm(p+tt*.6),fbm(p+vec2(5.2,1.3)-tt*.4));
-    vec2 w=vec2(fbm(p+3.*q+vec2(1.7,9.2)+m*.6),fbm(p+3.*q+vec2(8.3,2.8)));
-    float f=fbm(p+3.5*w);
-    vec3 c1=vec3(.976,.945,.925),c2=vec3(.90,.76,.72),c3=vec3(.83,.66,.62),c4=vec3(.98,.90,.86);
-    vec3 col=mix(c1,c2,smoothstep(.2,.8,f));col=mix(col,c3,smoothstep(.55,.95,length(w)*.9));
-    col=mix(col,c4,smoothstep(.6,1.,q.x));
-    float sheen=pow(smoothstep(.45,.75,f+.25*sin(uv.x*6.+tt*2.)),3.)*.28;col+=sheen;
-    gl_FragColor=vec4(col,1.);}`;
-  const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;};
-  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
-  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  const loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  const ur=gl.getUniformLocation(pr,'r'),ut=gl.getUniformLocation(pr,'t'),um=gl.getUniformLocation(pr,'m');
-  let mx=0,my=0,tx=0,ty=0;
-  if(opts.follow) addEventListener('pointermove',e=>{tx=e.clientX/innerWidth;ty=e.clientY/innerHeight;});
-  const size=()=>{const d=Math.min(devicePixelRatio,1.5);canvas.width=canvas.clientWidth*d*.6;canvas.height=canvas.clientHeight*d*.6;gl.viewport(0,0,canvas.width,canvas.height);};
-  size();addEventListener('resize',size);
-  let start=performance.now(),vis=true;
-  new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(canvas);
-  const draw=now=>{mx+=(tx-mx)*.04;my+=(ty-my)*.04;
-    gl.uniform2f(ur,canvas.width,canvas.height);gl.uniform1f(ut,reduce?8.:(now-start)/1000);gl.uniform2f(um,mx,my);
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);};
-  const loop=now=>{if(vis)draw(now);if(!reduce)requestAnimationFrame(loop);};
+/* ===== デザインの幅（SVGで描く爪） ===== */
+const designs=[
+ {n:'ワンカラー',e:'Office',d:'肌なじみのよいベージュ。毎日に。',bg:'#f3e7dc',draw:(i)=>`<rect x="0" y="0" width="80" height="120" rx="40" fill="#d9b6a3"/><rect x="12" y="10" width="7" height="60" rx="4" fill="#fff" opacity=".45"/>`},
+ {n:'フレンチ',e:'Classic',d:'細いラインで、きちんと上品に。',bg:'#efe4dd',draw:(i)=>`<rect width="80" height="120" rx="40" fill="#f2dcd3"/><path d="M0 40 A40 40 0 0 1 80 40 L80 ${30+i*2} Q40 ${50+i*2} 0 ${30+i*2} Z" fill="#fbf6ef"/><path d="M0 ${30+i*2} Q40 ${50+i*2} 80 ${30+i*2}" stroke="#c9a36a" stroke-width="2" fill="none"/>`},
+ {n:'マグネット',e:'Magnet',d:'光の帯が動く、夜の色。',bg:'#2a2030',draw:(i)=>`<defs><linearGradient id="mg${i}" x1="0" x2="1"><stop offset="0" stop-color="#4a1a2c"/><stop offset="${.35+i*.08}" stop-color="#e6cc9a"/><stop offset="${.5+i*.08}" stop-color="#5d1f34"/><stop offset="1" stop-color="#3a1424"/></linearGradient></defs><rect width="80" height="120" rx="40" fill="url(#mg${i})"/>`},
+ {n:'ニュアンス',e:'Trend',d:'くすみ色を重ねた、ゆらぎの質感。',bg:'#ece5df',draw:(i)=>`<rect width="80" height="120" rx="40" fill="#e9ddd6"/><path d="M-10 ${60+i*8} C 20 ${40+i*6}, 50 ${90-i*5}, 90 ${55+i*4} L90 130 L-10 130Z" fill="#b6a0a8" opacity=".65"/><path d="M10 ${30+i*10} C 30 ${50}, 50 ${20+i*6}, 70 ${44}" stroke="#c9a36a" stroke-width="1.6" fill="none"/>`},
+ {n:'手描きフラワー',e:'Hand-painted',d:'細筆で一枚ずつ描くお花。',bg:'#f6efe6',draw:(i)=>`<rect width="80" height="120" rx="40" fill="#f7ece6"/>${i%2?`<g transform="translate(40 ${58+i*4})">${[0,72,144,216,288].map(a=>`<ellipse rx="7" ry="13" cy="-11" fill="#d98fa0" transform="rotate(${a+i*10})"/>`).join('')}<circle r="5" fill="#c9a36a"/></g>`:`<path d="M20 100 C 30 70, 50 70, 58 40" stroke="#7d8f6a" stroke-width="2" fill="none"/><ellipse cx="54" cy="58" rx="5" ry="10" fill="#9bb08a" transform="rotate(40 54 58)"/><circle cx="58" cy="38" r="7" fill="#d98fa0"/>`}`},
+ {n:'季節のアート',e:'Seasonal',d:'その季節だけの色とモチーフ。',bg:'#2a2030',draw:(i)=>`<rect width="80" height="120" rx="40" fill="${['#3c2a40','#f3e2c9','#5d1f34','#e7d3c4'][i]}"/>${[[22,40],[52,70],[34,92],[58,30]].map(([x,y],k)=>`<path d="M${x} ${y-6}l1.6 4.4 4.4 1.6-4.4 1.6L${x} ${y+6}l-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#e6cc9a" opacity="${k%2?.7:1}"/>`).join('')}`},
+];
+const track=$('#track');
+designs.forEach((d,ci)=>{
+  const nails=[0,1,2,3].map(i=>{const x=22+i*100, y=[150,96,84,128][i], s=1;
+    return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-8" y="-14" width="96" height="560" rx="48" fill="url(#skin${ci})"/><path d="M4 150 Q40 160 76 150" stroke="#d9b29c" stroke-width="1.4" fill="none" opacity=".7"/><clipPath id="cl${ci}_${i}"><rect width="80" height="120" rx="40"/></clipPath><g style="filter:drop-shadow(0 8px 10px rgba(40,20,30,.18))"><g clip-path="url(#cl${ci}_${i})">${d.draw(i).replace(/id="mg/g,`id="c${ci}mg`).replace(/url\(#mg/g,`url(#c${ci}mg`)}</g></g><rect x="10" y="8" width="6" height="40" rx="3" fill="#fff" opacity=".35"/></g>`}).join('');
+  track.insertAdjacentHTML('beforeend',`<article class="card"><div class="art" style="background:${d.bg}"><svg viewBox="0 0 420 525" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="skin${ci}" x1="0" x2="1"><stop offset="0" stop-color="#e9c4ae"/><stop offset=".5" stop-color="#f6dccb"/><stop offset="1" stop-color="#e4bba4"/></linearGradient></defs>${nails}<text x="22" y="46" font-family="Bodoni Moda" font-style="italic" font-size="22" fill="${d.bg.startsWith('#2')?'#e6cc9a':'#5a2438'}" opacity=".8">No.${String(ci+1).padStart(2,'0')}</text></svg></div><div class="k"><b>${d.n}</b><small>${d.e}</small></div><p>${d.d}</p></article>`);
+});
+
+/* ===== 扉の中の光の粒 ===== */
+const dust=$('#dust'), dctx=dust.getContext('2d');
+let parts=[];
+function sizeDust(){const r=dust.getBoundingClientRect();dust.width=Math.max(1,r.width*1.5);dust.height=Math.max(1,r.height*1.5);
+  parts=Array.from({length:60},()=>({x:Math.random()*dust.width,y:Math.random()*dust.height,r:Math.random()*2+.6,v:Math.random()*.35+.1,p:Math.random()*6.28}));}
+sizeDust();
+function drawDust(t){dctx.clearRect(0,0,dust.width,dust.height);
+  for(const p of parts){p.y-=p.v;if(p.y<-4){p.y=dust.height+4;p.x=Math.random()*dust.width}
+    const a=.35+.35*Math.sin(t/900+p.p);dctx.fillStyle=`rgba(255,240,210,${a})`;dctx.beginPath();dctx.arc(p.x+Math.sin(t/1400+p.p)*6,p.y,p.r,0,6.28);dctx.fill();}
+}
+
+/* ===== マグネットジェル ===== */
+const mc=$('#mag'), mx=mc.getContext('2d'), W=mc.width, H=mc.height;
+const bases=[{c:['#3a1222','#6b2740','#2a0d18'],s:[255,214,170],n:'Bordeaux'},{c:['#5b4150','#9a7686','#4a3340'],s:[255,232,236],n:'Mauve'},{c:['#7d6342','#c4a77c','#6b5236'],s:[255,246,222],n:'Champagne'},{c:['#12162e','#2a3160','#0b0e20'],s:[200,214,255],n:'Midnight'}];
+let base=0, mode=0, mPos={x:.5,y:.4}, mTgt={x:.5,y:.4}, lastMove=0;
+const nailPath=new Path2D();
+(function(){const l=70,r=W-70,t=40,b=H-30,cx=W/2;nailPath.moveTo(l,b);nailPath.lineTo(l,t+230);nailPath.bezierCurveTo(l,t+40,cx-120,t,cx,t);nailPath.bezierCurveTo(cx+120,t,r,t+40,r,t+230);nailPath.lineTo(r,b);nailPath.quadraticCurveTo(cx,b+26,l,b);nailPath.closePath();})();
+const flakes=Array.from({length:2600},()=>({x:Math.random()*W,y:Math.random()*H,a:Math.random()*Math.PI,l:Math.random()*5+2,j:Math.random()}));
+function drawMag(t){
+  const b=bases[base];
+  mx.clearRect(0,0,W,H);
+  mx.save();mx.shadowColor='rgba(0,0,0,.45)';mx.shadowBlur=40;mx.shadowOffsetY=20;mx.fillStyle=b.c[0];mx.fill(nailPath);mx.restore();
+  mx.save();mx.clip(nailPath);
+  const g=mx.createLinearGradient(0,0,W,H);g.addColorStop(0,b.c[1]);g.addColorStop(.55,b.c[0]);g.addColorStop(1,b.c[2]);mx.fillStyle=g;mx.fillRect(0,0,W,H);
+  const bx=mPos.x*W, by=mPos.y*H;
+  const tilt=(mPos.y-.5)*.9;
+  const width=mode===1?110:mode===2?26:34;
+  mx.globalCompositeOperation='lighter';
+  for(const f of flakes){
+    const lineX=bx+(f.y-by)*tilt;
+    let d=Math.abs(f.x-lineX);
+    if(mode===2){d=Math.min(Math.abs(f.x-(lineX-70)),Math.abs(f.x-(lineX+70)));}
+    const k=Math.exp(-(d*d)/(width*width));
+    const amb=.05+.04*Math.sin(t/700+f.j*20);
+    const a=Math.min(1,k*(.55+.45*f.j)+amb*.6);
+    if(a<.04)continue;
+    mx.strokeStyle=`rgba(${b.s[0]},${b.s[1]},${b.s[2]},${a.toFixed(3)})`;
+    mx.lineWidth=k>.3?1.6:1;
+    const ang=Math.atan(tilt)+Math.PI/2+(1-k)*(f.a-1.5);
+    const ll=f.l*(.5+k);
+    mx.beginPath();mx.moveTo(f.x-Math.cos(ang)*ll,f.y-Math.sin(ang)*ll);mx.lineTo(f.x+Math.cos(ang)*ll,f.y+Math.sin(ang)*ll);mx.stroke();
+  }
+  const glow=mx.createRadialGradient(bx,by,0,bx,by,width*3);glow.addColorStop(0,`rgba(${b.s.join(',')},.22)`);glow.addColorStop(1,'rgba(0,0,0,0)');mx.fillStyle=glow;mx.fillRect(0,0,W,H);
+  mx.globalCompositeOperation='source-over';
+  const hl=mx.createLinearGradient(100,0,170,0);hl.addColorStop(0,'rgba(255,255,255,0)');hl.addColorStop(.5,'rgba(255,255,255,.22)');hl.addColorStop(1,'rgba(255,255,255,0)');
+  mx.fillStyle=hl;mx.beginPath();mx.ellipse(135,300,22,200,0,0,6.28);mx.fill();
+  mx.restore();
+}
+const stage=$('#mstage'), magnet=$('#magnet');
+function setTarget(e){const r=mc.getBoundingClientRect();mTgt.x=Math.min(1.1,Math.max(-.1,(e.clientX-r.left)/r.width));mTgt.y=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height));lastMove=performance.now();
+  const sr=stage.getBoundingClientRect();magnet.style.left=(e.clientX-sr.left)+'px';magnet.style.top=(e.clientY-sr.top)+'px';}
+stage.addEventListener('pointermove',setTarget);stage.addEventListener('pointerdown',setTarget);
+$$('.sw').forEach(b=>b.addEventListener('click',()=>{base=+b.dataset.i;$$('.sw').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#swname').textContent=bases[base].n;if(reduce)drawMag(0);}));
+$$('.modes button').forEach(b=>b.addEventListener('click',()=>{mode=+b.dataset.k;$$('.modes button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(reduce)drawMag(0);}));
+let magVisible=true, heroVisible=true;
+if('IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>{if(e.target===stage)magVisible=e.isIntersecting;else heroVisible=e.isIntersecting;})).observe(stage);
+  new IntersectionObserver(es=>es.forEach(e=>heroVisible=e.isIntersecting)).observe($('.hero'));}
+function loop(t){
+  if(magVisible){
+    if(t-lastMove>2200){mTgt.x=.5+Math.sin(t/1600)*.24;mTgt.y=.4+Math.cos(t/2300)*.15;
+      const r=mc.getBoundingClientRect(),sr=stage.getBoundingClientRect();magnet.style.left=(r.left-sr.left+mPos.x*r.width)+'px';magnet.style.top=(r.top-sr.top+mPos.y*r.height)+'px';}
+    mPos.x+=(mTgt.x-mPos.x)*.08;mPos.y+=(mTgt.y-mPos.y)*.08;drawMag(t);}
+  if(heroVisible)drawDust(t);
   requestAnimationFrame(loop);
-  return true;
 }
-gel(document.getElementById('gel'),{speed:'.05',follow:true});
-gel(document.getElementById('ph1'),{speed:'.03',follow:false});
+if(reduce){drawMag(0);drawDust(0);}else requestAnimationFrame(loop);
 
-/* 見出しを1文字ずつに */
-const h1=document.querySelector('.hero h1 .mask');
-h1.innerHTML=[...h1.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
-
-/* ヘッダーの背景 */
-const hd=document.getElementById('hd');
-const onScroll=()=>hd.classList.toggle('solid',scrollY>innerHeight*.6);
-addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-/* よくある質問 */
-document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>{
-  const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);
-}));
-
-/* カーソル */
-const cur=document.querySelector('.cursor');
-if(matchMedia('(hover:hover)').matches){
-  let cx=0,cy=0,x=0,y=0;
-  addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;});
-  document.querySelectorAll('a,button,.tip').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
-  (function f(){x+=(cx-x)*.18;y+=(cy-y)*.18;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();
+/* ===== パラジェル比較 ===== */
+const nat=$('#natural');
+const smooth='M20 214 L20 170 L60 170 L100 170 L140 170 L180 170 L220 170 L260 170 L300 170 L340 170 L380 170 L420 170 L460 170 L500 170 L500 214 Z';
+const rough ='M20 214 L20 176 L60 182 L100 175 L140 184 L180 176 L220 185 L260 177 L300 186 L340 175 L380 183 L420 176 L460 184 L500 177 L500 214 Z';
+const caps=['一般的なジェルは、密着させるために爪の表面を削る（サンディング）ことがあります。付け替えのたびに、少しずつ爪が薄くなりがちです。','パラジェルは自爪の表面を削らずにのせられるジェル。付け替えのたびに爪が薄くなりにくいのが特長です。'];
+const sw=$('.switch'), pill=$('.switch .pill');
+function setLayer(m,anim=true){
+  $$('.switch button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.m===m));
+  const btn=$(`.switch button[data-m="${m}"]`);pill.style.width=btn.offsetWidth+'px';pill.style.transform=`translateX(${btn.offsetLeft-4}px)`;
+  $('#layerCap').textContent=caps[m];$('#tNat').textContent=m?'自爪の表面：なめらか':'自爪の表面：削った跡';
+  if(hasG&&anim&&!reduce){gsap.to(nat,{attr:{d:m?smooth:rough},duration:.9,ease:'expo.out'});gsap.fromTo('#dustG',{opacity:m?0:1,y:0},{opacity:0,y:-20,duration:1.4,ease:'power2.out',onStart(){if(!m)gsap.set('#dustG',{opacity:1})}});}
+  else nat.setAttribute('d',m?smooth:rough);
 }
+$$('.switch button').forEach(b=>b.addEventListener('click',()=>setLayer(+b.dataset.m)));
+addEventListener('load',()=>setLayer(1,false));setLayer(1,false);
 
-/* 磁石のボタン */
-document.querySelectorAll('[data-mag]').forEach(m=>{
-  m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
-  m.addEventListener('pointerleave',()=>{m.style.transition='transform .8s cubic-bezier(.22,1,.36,1),background .4s';m.style.transform='';setTimeout(()=>m.style.transition='',800);});
-});
+/* ===== 声 ===== */
+const qs=$$('.q'), qb=$$('#qnav button');let qi=0, qt;
+function showQ(i){qi=i;qs.forEach((q,k)=>q.classList.toggle('on',k===i));qb.forEach((b,k)=>b.setAttribute('aria-current',k===i));}
+qb.forEach((b,i)=>b.addEventListener('click',()=>{showQ(i);clearInterval(qt);}));
+if(!reduce)qt=setInterval(()=>showQ((qi+1)%qs.length),6000);
 
-const loader=document.getElementById('loader');
-if(reduce||!hasG){loader.remove();document.querySelectorAll('.hero .tate,.hero-foot').forEach(e=>e.style.opacity=1);document.querySelectorAll('.ch,.line>span').forEach(e=>{e.style.transform='none';e.style.opacity=1;});return;}
+/* ===== FAQ のなめらかな開閉 ===== */
+$$('details').forEach(d=>{const s=d.querySelector('summary'),a=d.querySelector('.a');
+  s.addEventListener('click',e=>{if(!hasG||reduce)return;e.preventDefault();
+    if(d.open){gsap.to(a,{height:0,duration:.5,ease:'expo.out',onComplete:()=>{d.open=false;a.style.height=''}});}
+    else{d.open=true;gsap.fromTo(a,{height:0},{height:a.scrollHeight,duration:.7,ease:'expo.out',onComplete:()=>a.style.height=''});}});});
 
-gsap.registerPlugin(ScrollTrigger);
-/* はじまりの演出 */
-const tl=gsap.timeline();
-tl.to('#loader .bar i',{width:'100%',duration:.9,ease:'power2.inOut'})
-  .to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1')
-  .set('#loader',{display:'none'})
-  .to('.hero h1 .ch',{y:0,opacity:1,duration:1.4,ease:'expo.out',stagger:.06},'-=.45')
-  .to('.hero .tate',{opacity:1,duration:1.2},'-=.9')
-  .to('.hero-foot',{opacity:1,y:0,duration:1},'-=.9');
-gsap.to('.hero h1',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+/* ===== カーソル・磁石ボタン ===== */
+if(fine&&!reduce){
+  const c=$('.cur'), r=$('.cur-r');let x=innerWidth/2,y=innerHeight/2,rx=x,ry=y;
+  addEventListener('pointermove',e=>{document.body.classList.add('moved');x=e.clientX;y=e.clientY;c.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;});
+  (function f(){rx+=(x-rx)*.16;ry+=(y-ry)*.16;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(f)})();
+  $$('a,button,.card,.mrow').forEach(el=>{el.addEventListener('pointerenter',()=>r.classList.add('big'));el.addEventListener('pointerleave',()=>r.classList.remove('big'));});
+  stage.addEventListener('pointerenter',()=>{c.style.opacity=0;r.style.opacity=0});stage.addEventListener('pointerleave',()=>{c.style.opacity=1;r.style.opacity=1});
+  $$('[data-mag]').forEach(el=>{el.addEventListener('pointermove',e=>{const b=el.getBoundingClientRect();const dx=e.clientX-b.left-b.width/2,dy=e.clientY-b.top-b.height/2;el.style.transform=`translate(${dx*.25}px,${dy*.35}px)`;});
+    el.addEventListener('pointerleave',()=>{el.style.transition='transform .6s cubic-bezier(.22,1,.36,1)';el.style.transform='';setTimeout(()=>el.style.transition='',600);});});
+}else{magnet.style.display=fine?'':'none';}
 
-/* 行ごとに浮かぶ */
-document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.line>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 80%'}}));
-gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
-gsap.from('.photo',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.photo',start:'top 80%'}});
+/* ===== ヘッダー ===== */
+const hd=$('#hd');addEventListener('scroll',()=>hd.classList.toggle('solid',scrollY>60),{passive:true});
 
-/* デザイン見本を横に流す（縦スクロールで） */
-const track=document.getElementById('track');
-const mm=gsap.matchMedia();
-mm.add('(min-width: 821px)',()=>{
-  gsap.to(track,{x:()=>-(track.scrollWidth-innerWidth),ease:'none',scrollTrigger:{trigger:'#designs',start:'top top',end:()=>'+='+(track.scrollWidth-innerWidth),pin:true,scrub:1,invalidateOnRefresh:true}});
-  gsap.utils.toArray('.tip .nail').forEach((n,i)=>gsap.from(n,{rotate:i%2?6:-6,y:60,scrollTrigger:{trigger:'#designs',start:'top center',end:'bottom top',scrub:true}}));
-});
-mm.add('(max-width: 820px)',()=>{track.style.overflowX='auto';track.style.width='100%';track.style.scrollSnapType='x mandatory';track.querySelectorAll('.tip').forEach(t=>t.style.scrollSnapAlign='start');});
-})();
+/* ===== 動き ===== */
+const loader=$('#loader');
+function showAll(){loader.classList.add('done');document.body.style.background='';
+  $$('[data-bg]').forEach(s=>s.style.background=s.dataset.bg);
+  $$('[data-theme="light"]').forEach(s=>s.style.color='var(--ink)');
+  $$('.ln>span,.hero .big .ch').forEach(e=>{e.style.transform='none';e.style.opacity=1});
+  $$('.reveal,.hero .tate span,.hero .meta,.hero .scroll').forEach(e=>{e.style.opacity=1;e.style.transform='none'});
+  $('#doorWrap').style.display='block';$$('.leaf').forEach(l=>l.style.transform=l.classList.contains('l')?'rotateY(0)':'');
+}
+if(reduce||!hasG){showAll();}
+else{
+  gsap.registerPlugin(ScrollTrigger);
+  const intro=gsap.timeline({delay:1.5});
+  intro.add(()=>loader.classList.add('done'))
+    .from('#doorWrap',{scale:.86,opacity:0,duration:1.6,ease:'expo.out'},'+=.1')
+    .to('.hero .big .ch',{y:0,opacity:1,duration:1.3,ease:'expo.out',stagger:.07},'-=1.2')
+    .to('.hero .meta',{opacity:1,duration:1},'-=1')
+    .to('.hero .tate span',{opacity:1,duration:1.2,stagger:.3},'-=.9')
+    .to('.leaf.l',{xPercent:-14,duration:1.6,ease:'power3.inOut'},'-=1.2')
+    .to('.leaf.r',{xPercent:14,duration:1.6,ease:'power3.inOut'},'<')
+    .to('.hero .scroll',{opacity:1,duration:.8},'-=.6');
+
+  /* 扉がひらいて光が画面を満たす（ピン留め） */
+  const dw=$('#doorWrap');
+  const coverScale=()=>{const r=dw.getBoundingClientRect();return Math.max(innerWidth/r.width,innerHeight/r.height)*1.35;};
+  const ht=gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'+=110%',pin:true,scrub:.6,anticipatePin:1,invalidateOnRefresh:true}});
+  ht.to('.leaf.l',{xPercent:-102,duration:.45,ease:'power2.in'},0)
+    .to('.leaf.r',{xPercent:102,duration:.45,ease:'power2.in'},0)
+    .to('.hero .big',{yPercent:30,opacity:0,duration:.4},0)
+    .to('.hero .tate,.hero .meta,.hero .scroll',{opacity:0,duration:.3},0)
+    .to(dw,{scale:coverScale,duration:.6,ease:'power2.in'},.3)
+    .to('#door',{borderRadius:0,duration:.3},.6);
+
+  /* 横スクロール */
+  const tr=$('#track');
+  const dist=()=>Math.max(0,tr.scrollWidth-innerWidth);
+  gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.range',start:'top top',end:()=>'+='+dist(),pin:'.range',scrub:.7,invalidateOnRefresh:true,anticipatePin:1,
+    onUpdate:s=>$('#rbar').style.transform=`scaleX(${s.progress})`}});
+
+  /* 背景色の切り替え */
+  $$('[data-bg]').forEach(s=>ScrollTrigger.create({trigger:s,start:'top 55%',end:'bottom 55%',
+    onToggle:self=>{if(self.isActive){document.body.style.backgroundColor=s.dataset.bg;document.body.classList.toggle('light',s.dataset.theme==='light');}}}));
+
+  /* 見出し・要素の立ち上がり */
+  $$('.split').forEach(h=>gsap.to(h.querySelectorAll('.ln>span'),{y:0,duration:1.2,ease:'expo.out',stagger:.1,scrollTrigger:{trigger:h,start:'top 85%'}}));
+  $$('.reveal').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+
+  /* 流れのレール */
+  gsap.to('#rail',{scaleY:1,ease:'none',scrollTrigger:{trigger:'#steps',start:'top 70%',end:'bottom 60%',scrub:true}});
+  /* 予約の光 */
+  gsap.fromTo('.reserve .halo',{scale:.6,opacity:0},{scale:1,opacity:1,ease:'none',scrollTrigger:{trigger:'.reserve',start:'top 90%',end:'center center',scrub:true}});
+  addEventListener('load',()=>ScrollTrigger.refresh());
+}
+addEventListener('resize',()=>{sizeDust();});
 </script>
 </body>
 </html>

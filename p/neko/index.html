@@ -1,406 +1,576 @@
 <!doctype html>
 <html lang="ja">
-<head><script>try{history.scrollRestoration='manual'}catch(e){};if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));addEventListener('pageshow',()=>scrollTo(0,0));</script>
+<head>
+<script>try{history.scrollRestoration='manual'}catch(e){};scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
-<title>neko｜ネイルサロンneko（見本）</title>
+<meta name="robots" content="noindex">
+<title>ネイルサロンneko｜新小岩の女性専用おうちサロン（見本）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* 構成：全画面のジェル質感（WebGL）→ 一文ずつ浮かぶ宣言 → 横に流れるデザイン見本（爪のチップ）→ メニュー → 声 → 写真 → 質問 → 予約 */
+/* コンセプト：「猫の家に遊びにいくみたいに。」── 女性専用の自宅サロン。ひなたの午後、気をつかわない一対一の時間 */
 :root{
-  --milk:#f7f2ed; --paper:#fffaf6; --ink:#2b2220; --sub:#7a6a64; --line:#e7dbd2;
-  --rose:#c9998a; --gold:#b8956a; --plum:#3a272c;
-  --disp:'Cormorant Garamond','Times New Roman',serif;
-  --mincho:'Shippori Mincho B1','Hiragino Mincho ProN',serif;
-  --body:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --cream:#fbf3e4; --paper:#fffaf0; --mustard:#e9b949; --honey:#f6d98c; --terra:#d9785a; --sage:#9bb39a; --char:#2e2a27; --ink:#3a322c; --sub:#857868;
+  --bg:var(--cream); --fg:var(--ink);
+  --disp:'Gloock',Georgia,serif; --jp:'Klee One','Hiragino Mincho ProN',serif;
+  --ease:cubic-bezier(.22,1,.36,1); --pop:cubic-bezier(.34,1.7,.6,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--milk);color:var(--ink);font-family:var(--body);font-size:15px;line-height:2;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--bg);color:var(--fg);font-family:var(--jp);font-weight:400;font-size:16px;line-height:2;letter-spacing:.05em;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background-color .9s var(--ease),color .9s var(--ease)}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--rose);color:#fff}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--honey)}
 .wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:inline-block;transform:translateY(110%)}
+.no-anim .ln>span{transform:none}
+.lbl{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-size:18px;color:var(--terra)}
+.lbl svg{width:22px;height:22px}
+.h2{font-weight:600;font-size:clamp(27px,3.8vw,46px);line-height:1.55;margin-top:14px}
+.ex{display:inline-block;font-size:12px;border:1.5px solid currentColor;border-radius:8px;padding:0 8px;line-height:1.7;vertical-align:middle;margin-left:10px;transform:rotate(-4deg)}
+.mark{background:linear-gradient(transparent 60%,var(--honey) 60%);background-size:0% 100%;background-repeat:no-repeat;transition:background-size 1.2s var(--ease)}
+.mark.on,.no-anim .mark{background-size:100% 100%}
 
-/* ローディング */
-#loader{position:fixed;inset:0;z-index:100;background:var(--plum);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:var(--milk)}
-#loader .l{font-family:var(--disp);font-style:italic;font-size:64px;line-height:1}
-#loader .bar{width:140px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
-#loader .bar i{display:block;height:100%;width:0;background:var(--gold)}
+/* ローディング：足あとがてくてく */
+#loader{position:fixed;inset:0;z-index:100;background:var(--cream);display:grid;place-items:center}
+#loader .steps{position:relative;width:260px;height:80px}
+#loader .steps svg{position:absolute;width:26px;height:26px;opacity:0;fill:var(--ink)}
+#loader p{position:absolute;bottom:38%;left:0;right:0;text-align:center;font-family:var(--disp);font-size:20px;color:var(--sub)}
 
-/* カーソル（マウスのときだけ） */
-.cursor{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--plum);pointer-events:none;z-index:90;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .35s var(--ease),height .35s var(--ease),background .35s}
-.cursor.big{width:64px;height:64px;background:rgba(201,153,138,.35)}
-@media (hover:none){.cursor{display:none}}
+/* 足あとカーソル */
+.paw-trail{position:fixed;width:18px;height:18px;pointer-events:none;z-index:94;fill:var(--terra);opacity:.5}
+.dot{position:fixed;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:95;opacity:0;transition:transform .08s linear,width .3s var(--pop),height .3s var(--pop),margin .3s var(--pop),opacity .3s}
+.dot.on{width:34px;height:34px;margin:-17px 0 0 -17px;background:rgba(233,185,73,.5)}
+@media (hover:none){.dot{display:none}}
 
 /* ヘッダー */
-header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,backdrop-filter .5s}
-header.solid{background:rgba(247,242,237,.82);backdrop-filter:blur(14px)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{font-family:var(--disp);font-size:24px;font-style:italic;letter-spacing:.02em}
-.brand small{font-family:var(--body);font-style:normal;font-size:10px;letter-spacing:.3em;margin-left:10px;color:var(--sub)}
-nav{display:flex;gap:28px;font-size:12px;letter-spacing:.2em}
-nav a{position:relative;padding:4px 0}
-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
-nav a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{border:1px solid var(--ink);border-radius:999px;padding:8px 18px!important}
-.nav-cta::after{display:none}
-@media(max-width:820px){nav a:not(.nav-cta){display:none}}
+header{position:fixed;inset:0 0 auto;z-index:50;transition:transform .6s var(--ease)}
+header.hide{transform:translateY(-110%)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:24px;line-height:1;background:var(--paper);color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:4px 16px 4px 5px;box-shadow:3px 3px 0 var(--ink)}
+.logo svg{width:34px;height:34px}
+.logo small{font-family:var(--jp);font-size:11px;color:var(--sub);letter-spacing:.1em}
+.nav{display:flex;align-items:center;gap:6px;background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:5px;box-shadow:3px 3px 0 var(--ink);color:var(--ink)}
+.nav a{padding:5px 14px;border-radius:999px;font-size:13px;font-weight:600;transition:background .3s}
+.nav a:hover{background:var(--honey)}
+.nav a.go{background:var(--ink);color:var(--paper)}
+@media(max-width:820px){.nav a:not(.go){display:none}}
 
 /* ヒーロー */
-.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--plum)}
-#gel{position:absolute;inset:0;width:100%;height:100%}
-.hero .grain{position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-.hero-in{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding-bottom:clamp(28px,5vh,56px)}
-.hero h1{align-self:center;font-family:var(--disp);font-weight:400;font-style:italic;font-size:clamp(84px,19vw,300px);line-height:.85;letter-spacing:-.02em;white-space:nowrap}
-.hero h1 .ch{display:inline-block;transform:translateY(110%);opacity:0}
-.hero h1 .mask{display:inline-block;overflow:hidden;padding:0 .04em .08em}
-.hero .tate{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--mincho);font-size:clamp(17px,1.7vw,22px);letter-spacing:.4em;line-height:2.2;opacity:0}
-.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;letter-spacing:.2em;opacity:0}
-.hero-foot p{max-width:24em;line-height:2.1;letter-spacing:.08em;font-size:13px}
-.scroll{display:flex;align-items:center;gap:12px}
-.scroll i{display:block;width:1px;height:56px;background:rgba(58,39,44,.25);position:relative;overflow:hidden}
-.scroll i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--plum);animation:drip 2.2s var(--ease) infinite}
-@keyframes drip{to{top:100%}}
-@media(max-width:820px){.hero .tate{top:auto;bottom:140px;transform:none}.hero-foot{flex-direction:column;align-items:flex-start}}
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;padding:100px 0 60px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(20px,4vw,60px);align-items:center}
+.hero .pre{display:inline-flex;gap:8px;flex-wrap:wrap}
+.hero .pre span{border:1.5px solid var(--ink);border-radius:999px;padding:2px 14px;font-size:13px;font-weight:600;background:var(--paper)}
+.hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(100px,15vw,230px);line-height:.9;letter-spacing:-.02em;margin:22px 0 12px;position:relative;display:inline-block}
+.hero h1 .c{display:inline-block}
+.hero h1 .ears{position:absolute;left:.02em;top:.17em;width:.5em;height:.25em}
+.hero .copy{font-size:clamp(20px,2.4vw,30px);font-weight:600;line-height:1.7}
+.hero .sub{margin-top:16px;font-size:14px;color:var(--sub)}
+.window{position:relative;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff6dc,var(--honey) 70%);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);overflow:hidden}
+.window .sunbeam{position:absolute;inset:-20%;background:repeating-conic-gradient(from 0deg at 20% 0%,rgba(255,255,255,.35) 0 6deg,transparent 6deg 18deg);animation:beam 30s linear infinite}
+@keyframes beam{to{transform:rotate(20deg)}}
+.window .frame{position:absolute;inset:0;background:linear-gradient(var(--ink),var(--ink)) 50% 0/2px 62% no-repeat,linear-gradient(var(--ink),var(--ink)) 0 32%/100% 2px no-repeat;opacity:.5}
+.window .sill{position:absolute;left:0;right:0;bottom:0;height:22%;background:#c9a77a;border-top:2px solid var(--ink)}
+#cat{position:absolute;left:50%;bottom:14%;width:68%;transform:translateX(-50%);overflow:visible}
+#cat .tail{transform-origin:150px 250px;animation:tail 3.2s ease-in-out infinite}
+@keyframes tail{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(10deg)}}
+#cat .lid{transform-origin:center;transform-box:fill-box;transform:scaleY(0);animation:blink 5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(0)}95%{transform:scaleY(1)}}
+.hero .hint{position:absolute;right:6%;bottom:8%;font-size:12px;color:var(--sub);transform:rotate(-6deg)}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.window{max-width:330px;width:84%;margin:10px auto 0}.hero{padding-top:96px}.hero .hint{display:none}}
 
-/* 流れる帯 */
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0;background:var(--paper)}
-.ticker .row{display:inline-flex;gap:48px;font-family:var(--disp);font-style:italic;font-size:28px;color:var(--sub);animation:tick 40s linear infinite}
-.ticker .row span::after{content:"✦";font-style:normal;font-size:12px;color:var(--gold);margin-left:48px;vertical-align:middle}
-@keyframes tick{to{transform:translateX(-50%)}}
+/* コンセプト */
+.about{padding-block:clamp(110px,14vw,170px)}
+.about .in{max-width:820px;margin:0 auto;text-align:center}
+.about .big{font-weight:600;font-size:clamp(26px,3.8vw,46px);line-height:1.8}
+.about p.body{margin-top:34px;font-size:16px;line-height:2.3}
+.about .sign{margin-top:30px;font-family:var(--disp);font-size:22px;color:var(--terra)}
 
-/* 宣言 */
-.state{padding-block:clamp(110px,16vw,220px)}
-.eyebrow{font-size:11px;letter-spacing:.35em;color:var(--rose);text-transform:uppercase;display:flex;align-items:center;gap:14px}
-.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
-.state h2{font-family:var(--mincho);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.7;letter-spacing:.06em;margin-top:36px}
-.line{display:block;overflow:hidden}
-.line>span{display:inline-block;transform:translateY(105%)}
-.state .lead{margin-top:44px;max-width:34em;color:var(--sub)}
-.state-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,96px);align-items:end}
-.photo{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:200px 200px 6px 6px;overflow:hidden;background:linear-gradient(160deg,#efe1d8,#d9b8aa)}
-.photo .ph{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:28px;font-size:11px;letter-spacing:.3em;color:rgba(58,39,44,.55)}
-.photo canvas{position:absolute;inset:0;width:100%;height:100%}
-@media(max-width:820px){.state-grid{grid-template-columns:1fr}.photo{max-width:420px}}
+/* 特徴：ベントー */
+.feat{padding-bottom:clamp(110px,14vw,170px)}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:46px}
+.tile{position:relative;border:2px solid var(--ink);border-radius:26px;padding:28px;background:var(--paper);box-shadow:5px 5px 0 var(--ink);overflow:hidden;transition:transform .5s var(--pop),box-shadow .5s var(--pop);color:var(--ink)}
+.tile:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.tile h3{font-weight:600;font-size:22px;line-height:1.5}
+.tile p{font-size:14px;margin-top:10px;color:#5d5248}
+.tile .ic{width:58px;height:58px;margin-bottom:14px}
+.t1{grid-column:span 3;grid-row:span 2;background:var(--honey);display:flex;flex-direction:column}
+.t1 .huge{font-family:var(--disp);font-size:clamp(100px,14vw,200px);line-height:.9;margin-top:auto;padding-top:20px;color:var(--ink)}
+.t1 .huge small{font-family:var(--jp);font-size:14px;display:block;line-height:1.6;margin-top:8px;color:#5d5248}
+.t2{grid-column:span 3;background:#f3d6c9}
+.t3{grid-column:span 2;background:#dce6d6}
+.t4{grid-column:span 1;display:grid;place-items:center;background:var(--char);color:var(--cream)}
+.t4 svg{width:60%;height:auto}
+@media(max-width:860px){.bento{grid-template-columns:1fr 1fr}.t1,.t2{grid-column:span 2}.t3{grid-column:span 1}.t4{grid-column:span 1}}
+@media(max-width:480px){.t3{grid-column:span 2}.t4{grid-column:span 2;min-height:120px}.t4 svg{width:90px}}
 
-/* 特長 */
-.feat{padding-block:0 clamp(100px,14vw,180px)}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.f{padding:44px 32px 44px 0;border-right:1px solid var(--line);min-width:0}
-.f:last-child{border-right:0}
-.f+.f{padding-left:32px}
-.f svg{width:34px;height:34px;color:var(--rose)}
-.f h3{font-family:var(--mincho);font-size:21px;font-weight:500;margin:22px 0 10px;letter-spacing:.08em}
-.f p{color:var(--sub);font-size:14px}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr}.f,.f+.f{padding:32px 0;border-right:0;border-bottom:1px solid var(--line)}}
+/* 独自：空き状況カレンダー */
+.cal{padding-block:clamp(110px,14vw,170px)}
+.cal-grid{display:grid;grid-template-columns:.8fr 1.4fr;gap:clamp(30px,5vw,70px);margin-top:10px;align-items:start}
+.cal .lead{margin-top:18px;font-size:15px}
+.legend{display:flex;gap:18px;margin-top:24px;font-size:13px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:18px;border-radius:6px;display:inline-block;border:1.5px solid currentColor}
+.board{background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--ink);padding:22px}
+.board .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.board .top b{font-family:var(--disp);font-weight:400;font-size:22px}
+.board .top button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);font-size:16px;transition:background .3s,transform .3s var(--pop)}
+.board .top button:hover{background:var(--honey);transform:scale(1.1)}
+.grid{display:grid;grid-template-columns:52px repeat(7,1fr);gap:5px;font-size:12px}
+.grid .h{text-align:center;font-weight:600;padding-bottom:4px;line-height:1.3}
+.grid .h small{display:block;font-size:10px;color:var(--sub)}
+.grid .h.sun{color:var(--terra)}
+.grid .tm{font-size:11px;color:var(--sub);display:flex;align-items:center}
+.slot{aspect-ratio:1;max-height:52px;border-radius:10px;border:1.5px dashed #d9cbb5;display:grid;place-items:center;position:relative;transition:background .3s,transform .3s var(--pop)}
+.slot.ok{border:1.5px solid var(--ink);background:#fff;cursor:pointer}
+.slot.ok:hover{transform:scale(1.08);background:var(--honey)}
+.slot.ok svg{width:58%;height:58%;fill:var(--terra)}
+.slot.no::after{content:"";width:40%;height:1.5px;background:#cdbca3;transform:rotate(-30deg)}
+.slot.sel{background:var(--ink)!important}
+.slot.sel svg{fill:var(--honey)}
+.pick{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;border-top:1.5px dashed #d9cbb5;padding-top:16px;font-size:14px}
+.pick b{font-weight:600}
+.pick a{background:var(--terra);color:#fff;border-radius:999px;padding:8px 18px;font-weight:600;font-size:13px;border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .3s var(--pop),box-shadow .3s}
+.pick a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.pick a[aria-disabled=true]{opacity:.4;pointer-events:none}
+.board .note{font-size:11px;color:var(--sub);margin-top:10px}
+@media(max-width:900px){.cal-grid{grid-template-columns:1fr}.grid{grid-template-columns:38px repeat(7,1fr);gap:3px}.board{padding:14px}.slot{border-radius:7px}}
 
-/* デザイン見本（横スクロール） */
-.designs{background:var(--plum);color:var(--milk);overflow:hidden}
-.designs .head{padding-block:clamp(90px,12vw,150px) 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.designs h2{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(52px,8vw,120px);line-height:.9}
-.designs .head p{max-width:24em;color:rgba(247,242,237,.7);font-size:14px}
-.track{display:flex;gap:clamp(18px,3vw,40px);padding-inline:clamp(20px,5vw,56px);padding-bottom:clamp(90px,12vw,150px);width:max-content}
-.tip{width:clamp(200px,22vw,280px);flex:none}
-.tip .nail{aspect-ratio:3/4.4;border-radius:48% 48% 14% 14%/38% 38% 8% 8%;position:relative;overflow:hidden;box-shadow:inset 0 -18px 30px rgba(0,0,0,.08),0 24px 50px -20px rgba(0,0,0,.6)}
-.tip .nail::after{content:"";position:absolute;left:18%;top:8%;width:18%;height:60%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,0));filter:blur(2px);opacity:.7}
-.tip h3{font-family:var(--disp);font-style:italic;font-weight:400;font-size:26px;margin-top:22px;line-height:1.2}
-.tip p{font-size:12px;letter-spacing:.15em;color:rgba(247,242,237,.65);display:flex;justify-content:space-between;margin-top:6px}
-.n1{background:linear-gradient(170deg,#ecd5c8,#d9b29f)}
-.n2{background:linear-gradient(180deg,#f3e6df 0 72%,#fff 72%)}
-.n3{background:radial-gradient(120% 60% at 50% 30%,#f6eaf0,#cfa9b8 60%,#7e5468)}
-.n3::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.75) 46%,transparent 60%);background-size:260% 100%;animation:cat 3.6s var(--ease) infinite}
-@keyframes cat{0%{background-position:120% 0}100%{background-position:-60% 0}}
-.n4{background:repeating-linear-gradient(118deg,#f4efea 0 18px,#e8ded6 18px 21px,#f4efea 21px 46px,#d9cdc4 46px 48px)}
-.n5{background:#efe2d9}
-.n5::before{content:"";position:absolute;left:50%;top:-10%;width:1.5px;height:130%;background:linear-gradient(var(--gold),#e9d3a8,var(--gold));transform:rotate(18deg)}
-.n6{background:linear-gradient(180deg,#8f3b45,#5a2029)}
-.n7{background:radial-gradient(circle at 30% 30%,#fff 0 6%,transparent 7%),radial-gradient(circle at 65% 55%,#fff 0 5%,transparent 6%),radial-gradient(circle at 40% 75%,#fff 0 4%,transparent 5%),linear-gradient(170deg,#dfe7ee,#b8c7d4)}
-.n8{background:conic-gradient(from 200deg at 50% 60%,#f2d7d9,#e3c4e6,#c9daf0,#d6eee2,#f2e3c6,#f2d7d9)}
+/* メニュー：ノート */
+.menu{padding-block:clamp(110px,14vw,170px)}
+.note-book{position:relative;margin-top:46px;background:var(--paper);border:2px solid var(--ink);border-radius:6px 26px 26px 6px;box-shadow:8px 8px 0 var(--ink);padding:40px clamp(22px,5vw,70px) 40px clamp(48px,7vw,100px);background-image:repeating-linear-gradient(transparent 0 47px,#eadfcb 47px 48px);background-position:0 26px;color:var(--ink)}
+.note-book::before{content:"";position:absolute;left:clamp(26px,4vw,56px);top:0;bottom:0;width:1.5px;background:#e9a38f}
+.note-book .holes{position:absolute;left:10px;top:30px;bottom:30px;display:flex;flex-direction:column;justify-content:space-around}
+.note-book .holes i{width:12px;height:12px;border-radius:50%;background:var(--cream);border:1.5px solid var(--ink);display:block}
+.mi{display:grid;grid-template-columns:1fr auto;gap:10px 20px;align-items:baseline;padding:4px 0;min-height:96px}
+.mi b{font-weight:600;font-size:20px;line-height:48px}
+.mi small{grid-column:1;font-size:13px;color:var(--sub);line-height:48px;margin-top:-10px}
+.mi .yen{grid-row:1;grid-column:2;font-family:var(--disp);font-size:28px;line-height:48px;white-space:nowrap}
+.mi .yen>span:last-child{font-family:var(--jp);font-size:12px;margin-left:4px}
+.memo{position:absolute;right:-12px;top:-28px;background:var(--honey);border:1.5px solid var(--ink);padding:10px 16px;font-size:13px;transform:rotate(5deg);box-shadow:3px 3px 0 var(--ink);max-width:220px;line-height:1.7}
+@media(max-width:600px){.mi{grid-template-columns:1fr;min-height:0;padding:6px 0 12px}.mi .yen{grid-row:auto;grid-column:1;font-size:24px}.mi small{margin-top:-14px}.memo{right:8px;top:-36px}}
 
-/* メニュー */
-.menu{padding-block:clamp(110px,15vw,190px)}
-.menu-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.menu h2,.voice h2,.faq h2{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,96px);line-height:.95;margin-top:18px}
-.menu .note{margin-top:28px;color:var(--sub);font-size:13px}
-.list{list-style:none;border-top:1px solid var(--ink)}
-.list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative;cursor:default}
-.list li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.list li:hover::before{transform:scaleX(1)}
-.list b{font-family:var(--mincho);font-weight:500;font-size:clamp(17px,1.8vw,21px);letter-spacing:.08em}
-.list small{display:block;font-size:12px;color:var(--sub);margin-top:2px;letter-spacing:.06em}
-.list .p{font-family:var(--disp);font-size:clamp(24px,2.6vw,32px);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
-.list .p span{font-size:13px;font-family:var(--body);margin-left:4px;color:var(--sub)}
-@media(max-width:820px){.menu-grid{grid-template-columns:1fr}}
+/* 流れ */
+.flow{padding-block:clamp(110px,14vw,170px);overflow:hidden}
+.path{position:relative;margin-top:70px}
+.path .road{position:absolute;left:0;right:0;top:46px;height:2px;background:repeating-linear-gradient(90deg,currentColor 0 10px,transparent 10px 20px);opacity:.4}
+.walker{position:absolute;top:0;left:0;width:64px;height:48px}
+.walker path{animation:bob .35s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-3px)}}
+.stp{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:80px}
+.stp div{position:relative}
+.stp .n{font-family:var(--disp);font-size:44px;line-height:1;color:var(--terra)}
+.stp h3{font-weight:600;font-size:19px;margin:10px 0 6px}
+.stp p{font-size:14px;opacity:.85}
+.stp div::before{content:"";position:absolute;top:-42px;left:6px;width:14px;height:14px;border-radius:50%;background:var(--terra);border:2px solid currentColor}
+.firsts{margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.firsts div{border:1.5px solid currentColor;border-radius:20px;padding:18px 22px;font-size:14px}
+.firsts b{display:block;font-weight:600;font-size:16px}
+@media(max-width:860px){.path .road,.walker{display:none}.stp{grid-template-columns:1fr 1fr;padding-top:10px;row-gap:40px}.stp div::before{display:none}.firsts{grid-template-columns:1fr}}
+@media(max-width:480px){.stp{grid-template-columns:1fr}}
 
-/* 声 */
-.voice{padding-block:clamp(100px,14vw,170px);background:var(--paper);border-block:1px solid var(--line)}
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);margin-top:64px}
-.quotes figure{border-top:1px solid var(--line);padding-top:30px}
-.quotes blockquote{font-family:var(--mincho);font-size:clamp(19px,2vw,25px);line-height:1.9;letter-spacing:.06em}
-.quotes blockquote::before{content:"“";display:block;font-family:var(--disp);font-size:80px;line-height:.6;color:var(--rose);height:40px}
-.quotes figcaption{margin-top:18px;font-size:12px;letter-spacing:.2em;color:var(--sub)}
-@media(max-width:820px){.quotes{grid-template-columns:1fr}}
+/* 声：付箋 */
+.voice{padding-block:clamp(110px,14vw,170px)}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:56px}
+.sticky{position:relative;padding:36px 26px 24px;color:var(--ink);box-shadow:0 18px 30px -18px rgba(0,0,0,.45);transition:transform .6s var(--pop)}
+.sticky::before{content:"";position:absolute;top:-12px;left:50%;width:90px;height:24px;margin-left:-45px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);transform:rotate(-3deg)}
+.sticky:nth-child(1){background:#fde59a;transform:rotate(-2deg)}
+.sticky:nth-child(2){background:#f7cdbf;transform:rotate(1.5deg) translateY(24px)}
+.sticky:nth-child(3){background:#d6e5cf;transform:rotate(-1deg)}
+.sticky:hover{transform:rotate(0) scale(1.04)}
+.sticky p{font-size:15.5px;line-height:2}
+.sticky small{display:block;text-align:right;margin-top:14px;font-size:12px;color:#6d6153}
+@media(max-width:860px){.notes{grid-template-columns:1fr}.sticky:nth-child(2){transform:rotate(1.5deg)}}
 
-/* 質問 */
-.faq{padding-block:clamp(110px,15vw,190px)}
-.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.qa{border-bottom:1px solid var(--line)}
-.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--mincho);font-size:clamp(16px,1.6vw,19px);letter-spacing:.06em}
-.qa button:focus-visible{outline:1px solid var(--rose);outline-offset:4px}
-.qa .pm{position:relative;width:14px;height:14px;flex:none;margin-top:8px}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--ink);transition:transform .5s var(--ease)}
-.qa .pm::after{transform:rotate(90deg)}
-.qa.open .pm::after{transform:rotate(0)}
-.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
-.qa.open .ans{grid-template-rows:1fr}
-.qa .ans>div{overflow:hidden}
-.qa .ans p{padding-bottom:26px;color:var(--sub);font-size:14px}
-@media(max-width:820px){.faq-grid{grid-template-columns:1fr}}
+/* FAQ */
+.faq{padding-block:clamp(100px,12vw,160px)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.4fr;gap:clamp(30px,6vw,80px)}
+.qa details{border-bottom:2px dotted currentColor}
+.qa summary{list-style:none;cursor:pointer;padding:22px 50px 22px 46px;position:relative;font-weight:600;font-size:17px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{content:"Q";position:absolute;left:0;top:18px;font-family:var(--disp);font-size:26px;color:var(--terra);line-height:1.2}
+.qa summary .ear{position:absolute;right:6px;top:50%;width:30px;height:24px;margin-top:-12px;transition:transform .5s var(--pop)}
+.qa details[open] summary .ear{transform:rotate(180deg) scale(.9)}
+.qa .a p{padding:0 0 22px 46px;font-size:15px}
+@media(max-width:860px){.faq-grid{grid-template-columns:1fr}}
+
+/* アクセス */
+.access{padding-block:clamp(100px,12vw,160px)}
+.acc-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.map{border:2px solid var(--ink);border-radius:26px;overflow:hidden;box-shadow:7px 7px 0 var(--ink);background:var(--paper)}
+.map svg{display:block;width:100%;height:auto}
+dl{margin-top:28px}
+dl div{display:grid;grid-template-columns:96px 1fr;gap:8px;padding:14px 0;border-bottom:2px dotted #cdbca3;font-size:15px}
+dt{font-family:var(--disp);color:var(--terra)}
+@media(max-width:860px){.acc-grid{grid-template-columns:1fr}}
 
 /* 予約 */
-.reserve{position:relative;background:var(--plum);color:var(--milk);padding-block:clamp(120px,16vw,210px);overflow:hidden;text-align:center}
-.reserve h2{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(56px,11vw,170px);line-height:.9}
-.reserve p{margin:30px auto 0;max-width:30em;color:rgba(247,242,237,.75)}
-.mag{display:inline-flex;align-items:center;justify-content:center;width:184px;height:184px;border-radius:50%;background:var(--rose);color:#fff;margin-top:56px;font-size:13px;letter-spacing:.25em;transition:background .4s;will-change:transform}
-.mag:hover{background:var(--gold)}
-.info{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:12px 48px;margin-top:64px;font-size:13px;color:rgba(247,242,237,.75)}
-.info dt{font-size:10px;letter-spacing:.3em;color:var(--gold)}
-@media(max-width:820px){.info{grid-template-columns:1fr}}
+.reserve{position:relative;padding-block:clamp(120px,15vw,200px);overflow:hidden;text-align:center}
+.reserve .big{font-family:var(--disp);font-size:clamp(56px,10vw,150px);line-height:1}
+.reserve .lead{margin:24px auto 0;max-width:32em;font-size:16px}
+.btns{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:44px}
+.mbtn{position:relative;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:210px;padding:18px 30px;border:2px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);font-weight:600;font-size:16px;box-shadow:5px 5px 0 var(--ink);transition:box-shadow .3s}
+.mbtn small{font-size:11px;color:var(--terra)}
+.mbtn.main{background:var(--char);color:var(--cream)}
+.mbtn.main small{color:var(--honey)}
+.mbtn:active{box-shadow:1px 1px 0 var(--ink)}
+.reserve .peek{position:absolute;bottom:-4px;width:150px;height:auto}
+.reserve .peek.l{left:4%}
+.reserve .peek.r{right:5%;transform:scaleX(-1)}
+.reserve .hours{margin-top:32px;font-size:14px;opacity:.8}
+@media(max-width:600px){.reserve .peek{width:96px}}
 
-/* ノクターン紹介・フッター */
-.partner{padding-block:56px}
-.nc{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:4px;padding:22px 26px;background:var(--paper);transition:border-color .4s}
-.nc:hover{border-color:var(--gold)}
-.nc .m{font-family:var(--disp);font-size:12px;letter-spacing:.3em;color:var(--gold)}
-.nc b{display:block;font-family:var(--mincho);font-weight:500;font-size:17px}
-.nc small{color:var(--sub);font-size:12px}
-.nc .go{margin-left:auto;font-size:12px;letter-spacing:.2em}
-footer{padding-block:28px 64px;font-size:11px;letter-spacing:.15em;color:var(--sub);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;background:rgba(43,34,32,.82);color:#fff;font:600 10px/1 var(--body);letter-spacing:.25em;padding:9px 14px;border-radius:20px}
+/* パートナー・フッター */
+.partner{padding-block:52px 10px}
+.nc{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;border:1.5px dashed currentColor;border-radius:18px;padding:16px 22px;font-size:13px;line-height:1.8;opacity:.8;transition:opacity .3s}
+.nc:hover{opacity:1}
+.nc .p{font-size:11px}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:30px 90px;font-size:12px;opacity:.75}
+.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:96;background:var(--ink);color:var(--cream);font:600 11px/1 var(--jp);letter-spacing:.25em;padding:9px 14px;border-radius:999px;border:1.5px solid var(--cream)}
 
 @media (prefers-reduced-motion:reduce){
-  .hero h1 .ch,.line>span{transform:none!important;opacity:1!important}
-  .hero .tate,.hero-foot{opacity:1!important}
-  .ticker .row,.n3::before,.scroll i::after{animation:none}
-  #loader{display:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ln>span{transform:none!important}
+  #loader,.paw-trail{display:none}
+  .mark{background-size:100% 100%}
 }
-.hero h1{font-size:min(19vw,calc(150vw/5),300px)!important;white-space:nowrap}</style>
+</style>
 </head>
 <body>
-<div id="loader"><div class="l">L</div><div class="bar"><i></i></div></div>
-<div class="cursor"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="paw" viewBox="0 0 32 32"><ellipse cx="16" cy="21" rx="7.5" ry="6.5"/><ellipse cx="7" cy="13" rx="3" ry="3.8"/><ellipse cx="12.5" cy="7.5" rx="3" ry="3.8"/><ellipse cx="19.5" cy="7.5" rx="3" ry="3.8"/><ellipse cx="25" cy="13" rx="3" ry="3.8"/></symbol>
+  <symbol id="ears" viewBox="0 0 60 30"><path d="M4 28 L10 2 L24 22 Z M36 22 L50 2 L56 28 Z" fill="#3a322c"/><path d="M9 22 L11 9 L18 19 Z M42 19 L49 9 L51 22 Z" fill="#e9a38f"/></symbol>
+</defs></svg>
 
-<header id="hd"><div class="wrap">
-  <a class="brand" href="#top">neko<small>NAIL SALON</small></a>
-  <nav><a href="#about">ABOUT</a><a href="#designs">DESIGN</a><a href="#menu">MENU</a><a href="#faq">FAQ</a><a class="nav-cta" href="#reserve">RESERVE</a></nav>
-</div></header>
+<div id="loader" aria-hidden="true"><div class="steps"></div><p>おじゃまします…</p></div>
+<div class="dot" aria-hidden="true"></div>
 
-<main id="top">
-<section class="hero">
-  <canvas id="gel" aria-hidden="true"></canvas>
-  <div class="grain"></div>
-  <div class="wrap hero-in">
-    <h1 aria-label="neko"><span class="mask">neko</span></h1>
-    <p class="tate">指先から、毎日を少し特別に。</p>
-    <div class="hero-foot">
-      <p>新小岩のプライベートネイルサロン。<br>ひとりのお客さまに、ひとりのネイリスト。<br>1日4名さま限定・完全予約制。</p>
-      <div class="scroll"><i></i>SCROLL</div>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="22" r="15" fill="#e9b949" stroke="#3a322c" stroke-width="2"/><path d="M7 14 L9 2 L17 9 M33 14 L31 2 L23 9" fill="#e9b949" stroke="#3a322c" stroke-width="2" stroke-linejoin="round"/><circle cx="15" cy="21" r="1.8" fill="#3a322c"/><circle cx="25" cy="21" r="1.8" fill="#3a322c"/><path d="M18 26 Q20 28 22 26" stroke="#3a322c" stroke-width="1.6" fill="none"/></svg>neko<small>新小岩</small></a>
+    <nav class="nav"><a href="#about">コンセプト</a><a href="#sig">空き状況</a><a href="#menu">メニュー</a><a href="#access">アクセス</a><a class="go" href="#reserve">予約</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" data-bg="#fbf3e4" data-fg="#3a322c">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="pre fade"><span>女性専用</span><span>自宅サロン</span><span>新小岩</span></p>
+      <h1 aria-label="neko"><span class="c">n</span><span class="c">e</span><span class="c">k</span><span class="c">o</span></h1>
+      <p class="copy fade">猫の家に、<br>遊びにいくみたいに。</p>
+      <p class="sub fade">ネイルサロンneko ── 一対一の、気をつかわないネイル時間（見本）</p>
+    </div>
+    <div class="window fade" aria-hidden="true">
+      <div class="sunbeam"></div><div class="frame"></div><div class="sill"></div>
+      <svg id="cat" viewBox="0 0 300 300">
+        <path class="tail" d="M150 250 C 230 260, 270 220, 250 170 C 240 145, 220 150, 228 168" fill="none" stroke="#3a322c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M80 270 C 70 200, 90 150, 150 150 C 210 150, 230 200, 220 270 Z" fill="#3a322c"/>
+        <path d="M90 120 L 96 54 L 132 92 Z M 210 120 L 204 54 L 168 92 Z" fill="#3a322c"/>
+        <path d="M102 98 L 104 72 L 122 92 Z M 198 98 L 196 72 L 178 92 Z" fill="#e9a38f"/>
+        <ellipse cx="150" cy="120" rx="64" ry="54" fill="#3a322c"/>
+        <g id="eyes">
+          <ellipse cx="126" cy="116" rx="13" ry="14" fill="#f6d98c"/><ellipse cx="174" cy="116" rx="13" ry="14" fill="#f6d98c"/>
+          <ellipse class="pupil" cx="126" cy="116" rx="4" ry="10" fill="#2e2a27"/><ellipse class="pupil" cx="174" cy="116" rx="4" ry="10" fill="#2e2a27"/>
+          <ellipse class="lid" cx="126" cy="116" rx="14" ry="15" fill="#3a322c"/><ellipse class="lid" cx="174" cy="116" rx="14" ry="15" fill="#3a322c"/>
+        </g>
+        <path d="M146 136 L154 136 L150 141 Z" fill="#e9a38f"/>
+        <path d="M150 141 Q 144 148 138 145 M150 141 Q 156 148 162 145" stroke="#5c524a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M100 136 L 70 132 M100 142 L 72 146 M200 136 L 230 132 M200 142 L 228 146" stroke="#5c524a" stroke-width="1.6" stroke-linecap="round"/>
+        <g fill="#3a322c"><ellipse cx="118" cy="272" rx="20" ry="10"/><ellipse cx="182" cy="272" rx="20" ry="10"/></g>
+        <g fill="#e9b949"><circle cx="112" cy="268" r="3"/><circle cx="118" cy="266" r="3"/><circle cx="124" cy="268" r="3"/></g>
+      </svg>
+    </div>
+  </div>
+  <p class="hint fade">← 目が、あなたを追いかけます</p>
+</section>
+
+<section class="about" id="about" data-bg="#fbf3e4" data-fg="#3a322c">
+  <div class="wrap"><div class="in">
+    <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Concept</p>
+    <h2 class="big split" style="margin-top:14px"><span class="ln"><span>サロンに行く、というより</span></span><span class="ln"><span><span class="mark">「おうちにおじゃまする」</span>感覚で。</span></span></h2>
+    <p class="body rv">ネイルサロンnekoは、新小岩にある女性専用の自宅サロンです。<br>お客さまはいつもおひとりだけ。まわりを気にせず、おしゃべりしても、ぼんやりしても大丈夫。<br>猫がひなたで丸くなるみたいに、ほっとできる時間と、毎日見るのがうれしくなる指先をおつくりします。</p>
+    <p class="sign rv">— make yourself at home.</p>
+  </div></div>
+</section>
+
+<section class="feat" id="feat" data-bg="#fbf3e4" data-fg="#3a322c">
+  <div class="wrap">
+    <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Why neko</p>
+    <h2 class="h2 split"><span class="ln"><span>nekoが「気楽」な理由。</span></span></h2>
+    <div class="bento">
+      <article class="tile t1 rv"><h3>いつも、おひとりさまだけ。</h3><p>自宅の一室を使ったプライベートサロン。ほかのお客さまと顔を合わせることはありません。</p><p class="huge">1:1<small>あなたと、ネイリストだけ。</small></p></article>
+      <article class="tile t2 rv"><svg class="ic" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="#fff" stroke="#3a322c" stroke-width="2"/><path d="M30 14 C 22 14 18 20 18 26 C 18 34 30 46 30 46 C 30 46 42 34 42 26 C 42 20 38 14 30 14 Z" fill="#d9785a"/></svg><h3>女性専用だから、安心。</h3><p>すっぴんでも、部屋着に近い格好でも。気をつかわずにお越しください。</p></article>
+      <article class="tile t3 rv"><h3>空き状況は<br>ブログでお知らせ</h3><p>こまめに更新している空き情報から、ご都合のよい日をえらべます。</p></article>
+      <article class="tile t4 rv" aria-label="ねこの足あと"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#paw" fill="#e9b949"/></svg></article>
     </div>
   </div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="row">
-  <span>Private Nail Salon</span><span>One-to-one</span><span>Fill-in Care</span><span>4 Guests a Day</span><span>Tsukishima, Tokyo</span>
-  <span>Private Nail Salon</span><span>One-to-one</span><span>Fill-in Care</span><span>4 Guests a Day</span><span>Tsukishima, Tokyo</span>
-</div></div>
-
-<section class="state" id="about"><div class="wrap state-grid">
-  <div>
-    <p class="eyebrow">About</p>
-    <h2 class="split"><span class="line"><span>にぎやかなサロンが</span></span><span class="line"><span>少し苦手な方のための、</span></span><span class="line"><span>静かな指先の時間。</span></span></h2>
-    <p class="lead reveal">完全個室で、施術はすべてオーナーネイリストがひとりで担当します。爪を削りすぎないフィルイン施術で、自爪を育てながら、長くきれいが続くネイルを。おしゃべりも、ひと休みも、どうぞご自由に。</p>
-  </div>
-  <div class="photo reveal"><canvas id="ph1" aria-hidden="true"></canvas><span class="ph">PHOTO — 店内</span></div>
-</div></section>
-
-<section class="feat"><div class="wrap feat-grid">
-  <div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="4" y="5" width="16" height="14" rx="1"/><path d="M12 5v14"/></svg><h3>完全個室</h3><p>ほかのお客さまと顔を合わせることはありません。周りを気にせず、自分の時間を。</p></div>
-  <div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M8 21V10a4 4 0 0 1 8 0v11"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0V13h-5z"/></svg><h3>フィルイン施術</h3><p>ジェルを全部落とさず、ベースを残して付け替え。自爪への負担をおさえます。</p></div>
-  <div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg><h3>デザインの持ち込み可</h3><p>好きな写真を見せてください。手の形や肌の色に合わせて、似合う形に整えます。</p></div>
-</div></section>
-
-<section class="designs" id="designs">
-  <div class="wrap head">
-    <h2>Designs</h2>
-    <p>定額デザインの一例です。季節ごとに入れ替えています。気になるものがあれば、ご予約のときにお伝えください。</p>
-  </div>
-  <div class="track" id="track">
-    <div class="tip"><div class="nail n1"></div><h3>Nude Beige</h3><p><span>ワンカラー</span><span>¥6,000</span></p></div>
-    <div class="tip"><div class="nail n2"></div><h3>Soft French</h3><p><span>シンプル</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n3"></div><h3>Cat Eye Mauve</h3><p><span>マグネット</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n4"></div><h3>Linen Stripe</h3><p><span>シンプル</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n5"></div><h3>Gold Line</h3><p><span>シンプル</span><span>¥7,500</span></p></div>
-    <div class="tip"><div class="nail n6"></div><h3>Bordeaux</h3><p><span>ワンカラー</span><span>¥6,000</span></p></div>
-    <div class="tip"><div class="nail n7"></div><h3>Pearl Dot</h3><p><span>こだわり</span><span>¥9,000</span></p></div>
-    <div class="tip"><div class="nail n8"></div><h3>Aurora</h3><p><span>こだわり</span><span>¥9,000</span></p></div>
+<section class="cal" id="sig" data-bg="#f6d98c" data-fg="#3a322c">
+  <div class="wrap cal-grid">
+    <div>
+      <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Calendar</p>
+      <h2 class="h2 split" style="font-size:clamp(26px,3vw,38px)"><span class="ln"><span>肉球のついた枠が、</span></span><span class="ln"><span>空いている時間。</span></span></h2>
+      <p class="lead rv">ホームページができたら、空き状況をこんなふうに一目で見られるようにできます。気になる枠を押すと、その日時でお問い合わせの準備ができます。</p>
+      <div class="legend rv"><span><i style="background:#fff;border-color:#3a322c"></i>空きあり</span><span><i style="border-style:dashed;border-color:#b9a688"></i>ご予約済み</span><span><i style="background:#3a322c;border-color:#3a322c"></i>えらんだ枠</span></div>
+    </div>
+    <div class="board rv">
+      <div class="top"><button id="prev" aria-label="前の週">←</button><b id="wk">Week</b><button id="next" aria-label="次の週">→</button></div>
+      <div class="grid" id="grid" role="grid" aria-label="空き状況（例）"></div>
+      <div class="pick"><span>えらんだ日時：<b id="picked">まだえらばれていません</b></span><a href="#" id="mailgo" aria-disabled="true">この日時でメールする</a></div>
+      <p class="note">※ 表示は見本のための例です。実際の空き状況は、ブログ・公式LINEでご確認ください。</p>
+    </div>
   </div>
 </section>
 
-<section class="menu" id="menu"><div class="wrap menu-grid">
-  <div><p class="eyebrow">Menu</p><h2>Price<br>List</h2><p class="note">表示はすべて税込です。オフは他店ジェルも承ります（+1,000円）。</p></div>
-  <ul class="list">
-    <li class="reveal"><div><b>ワンカラー</b><small>ハンド・ケア込み</small></div><div class="p">6,000<span>円</span></div></li>
-    <li class="reveal"><div><b>シンプルアート（定額）</b><small>フレンチ・ライン・マグネット</small></div><div class="p">7,500<span>円</span></div></li>
-    <li class="reveal"><div><b>こだわりアート（定額）</b><small>持ち込みデザイン・パーツ</small></div><div class="p">9,000<span>円</span></div></li>
-    <li class="reveal"><div><b>フットワンカラー</b><small>角質ケアは+1,500円</small></div><div class="p">7,000<span>円</span></div></li>
-    <li class="reveal"><div><b>オフのみ</b><small>ケア・保湿仕上げ</small></div><div class="p">2,500<span>円</span></div></li>
-  </ul>
-</div></section>
-
-<section class="voice"><div class="wrap">
-  <p class="eyebrow">Voice</p><h2>Our Guests</h2>
-  <div class="quotes">
-    <figure class="reveal"><blockquote>落ち着いた空間で、毎月のご褒美の時間になっています。仕事の話をしなくていいのも嬉しい。</blockquote><figcaption>30代・会社員</figcaption></figure>
-    <figure class="reveal"><blockquote>持ちがよくて、3週間たってもきれいなまま。自爪も前より強くなりました。</blockquote><figcaption>40代・主婦</figcaption></figure>
-  </div>
-</div></section>
-
-<section class="faq" id="faq"><div class="wrap faq-grid">
-  <div><p class="eyebrow">FAQ</p><h2>Q &amp; A</h2></div>
-  <div>
-    <div class="qa"><button aria-expanded="false">当日の予約はできますか？<span class="pm"></span></button><div class="ans"><div><p>空きがあれば承ります。LINEからお気軽にお問い合わせください。</p></div></div></div>
-    <div class="qa"><button aria-expanded="false">子ども連れでも大丈夫ですか？<span class="pm"></span></button><div class="ans"><div><p>事前にご相談いただければ対応いたします。個室なので、周りを気にせず過ごせます。</p></div></div></div>
-    <div class="qa"><button aria-expanded="false">他店のジェルのオフもできますか？<span class="pm"></span></button><div class="ans"><div><p>はい。オフ代は+1,000円です。爪の状態を見て、フィルインにするか全部落とすかをご提案します。</p></div></div></div>
-    <div class="qa"><button aria-expanded="false">どのくらいの頻度で通えばいいですか？<span class="pm"></span></button><div class="ans"><div><p>3〜4週間に一度が目安です。次回のご予約はお帰りのときに承ります。</p></div></div></div>
-  </div>
-</div></section>
-
-<section class="reserve" id="reserve">
+<section class="menu" id="menu" data-bg="#fbf3e4" data-fg="#3a322c">
   <div class="wrap">
-    <h2>Reserve</h2>
-    <p>ご予約はLINEで承っています。空き状況をお送りしますので、ご希望の日時をお知らせください。</p>
-    <a class="mag" href="#reserve" data-mag>LINE で予約</a>
-    <dl class="info">
-      <div><dt>HOURS</dt><dd>10:00 – 20:00（不定休）</dd></div>
-      <div><dt>ACCESS</dt><dd>〇〇線 新小岩駅 徒歩2分</dd></div>
-      <div><dt>ADDRESS</dt><dd>東京都中央区〇〇 1-2-3</dd></div>
-    </dl>
+    <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Menu</p>
+    <h2 class="h2 split"><span class="ln"><span>メニューと料金<span class="ex">例</span></span></span></h2>
+    <div class="note-book rv">
+      <div class="holes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="memo">料金はすべて見本の例です（税込）。ケアはどのメニューにも含みます。</p>
+      <div class="mi"><b>ワンカラー</b><p class="yen"><span class="mark">4,950</span><span>円（例）</span></p><small>はじめての方に。手もとに合う色をいっしょに</small></div>
+      <div class="mi"><b>やりたい放題 定額アート</b><p class="yen"><span class="mark">7,700</span><span>円（例）</span></p><small>サンプルから、好きなデザインを好きなだけ</small></div>
+      <div class="mi"><b>持ち込みデザイン</b><p class="yen"><span class="mark">8,800</span><span>円〜（例）</span></p><small>画像をメール・LINEで送ってください</small></div>
+      <div class="mi"><b>フット ワンカラー</b><p class="yen"><span class="mark">6,050</span><span>円（例）</span></p><small>女性専用なので、フットも気軽に</small></div>
+      <div class="mi"><b>ケア／オフのみ</b><p class="yen"><span class="mark">2,750</span><span>円〜（例）</span></p><small>他店オフは＋1,100円（例）</small></div>
+    </div>
   </div>
 </section>
 
-<section class="partner"><div class="wrap">
-  <a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><div><span class="m">NOCTURNE CONCIERGE</span><b>当店のお客さまへ：夜だけの家事代行</b><small>18:00〜翌3:00。作り置き・洗濯・片付けを、帰ってからの時間に。</small></div><span class="go">VIEW →</span></a>
+<section class="flow" id="flow" data-bg="#2e2a27" data-fg="#fbf3e4">
+  <div class="wrap">
+    <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>First visit</p>
+    <h2 class="h2 split"><span class="ln"><span>はじめての方へ</span></span></h2>
+    <div class="path">
+      <div class="road"></div>
+      <svg class="walker" viewBox="0 0 64 48" aria-hidden="true"><path d="M8 34 C 8 22 18 18 30 18 L 44 18 C 46 10 50 6 52 4 L 54 12 L 58 4 C 62 10 62 18 58 24 C 56 30 52 32 50 34 Z" fill="#e9b949"/><path d="M14 34 L12 46 M22 34 L22 46 M42 34 L42 46 M50 34 L52 46" stroke="#e9b949" stroke-width="4" stroke-linecap="round"/><path d="M8 26 C 2 22 2 12 8 8" stroke="#e9b949" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="54" cy="16" r="1.6" fill="#2e2a27"/></svg>
+      <div class="stp">
+        <div class="rv"><p class="n">01</p><h3>メールで相談</h3><p>希望の日時と、気になるデザインを送ってください。公式LINEからでも大丈夫です。</p></div>
+        <div class="rv"><p class="n">02</p><h3>日時の決定</h3><p>空き状況をお返事します。ホットペッパーからの予約もできます。</p></div>
+        <div class="rv"><p class="n">03</p><h3>場所のご案内</h3><p>自宅サロンのため、詳しい場所はご予約が決まってからお伝えします。</p></div>
+        <div class="rv"><p class="n">04</p><h3>施術・おしゃべり</h3><p>ゆっくり、くつろぎながら。仕上げに、長持ちのコツもお伝えします。</p></div>
+      </div>
+    </div>
+    <div class="firsts">
+      <div class="rv"><b>所要時間</b>ワンカラーで約90分が目安です（例）。</div>
+      <div class="rv"><b>女性専用</b>男性のご予約はお受けしていません。</div>
+      <div class="rv"><b>遅れそうなとき</b>メールかLINEでひと言お知らせください。</div>
+    </div>
+  </div>
+</section>
+
+<section class="voice" id="voice" data-bg="#fbf3e4" data-fg="#3a322c">
+  <div class="wrap">
+    <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Voice</p>
+    <h2 class="h2 split"><span class="ln"><span>お客さまの声<span class="ex">例</span></span></span></h2>
+    <div class="notes">
+      <div class="sticky"><p>友だちの家に遊びにきたみたいで、ずっとリラックスしていました。気づいたら爪がかわいくなってた。</p><small>── 30代・会社員（例）</small></div>
+      <div class="sticky"><p>女性専用で一対一なので、はじめてのフットネイルも恥ずかしくなかったです。</p><small>── 40代・主婦（例）</small></div>
+      <div class="sticky"><p>空き状況がこまめにわかるので、予定が立てやすい。定額アートの種類も多くて迷います。</p><small>── 20代・学生（例）</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" data-bg="#fbf3e4" data-fg="#3a322c">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Q&amp;A</p>
+      <h2 class="h2 split"><span class="ln"><span>よくある質問</span></span></h2>
+    </div>
+    <div class="qa">
+      <details><summary>どんな服装で行けばいいですか？<svg class="ear" viewBox="0 0 60 30" aria-hidden="true"><use href="#ears"/></svg></summary><div class="a"><p>楽な服装で大丈夫です。フットの方は、ひざまでまくれるパンツかスカートがおすすめです。</p></div></details>
+      <details><summary>子ども連れでも大丈夫ですか？<svg class="ear" viewBox="0 0 60 30" aria-hidden="true"><use href="#ears"/></svg></summary><div class="a"><p>ご予約時にご相談ください。一対一のサロンなので、できるだけ対応を考えます。</p></div></details>
+      <details><summary>他店のジェルのオフはできますか？<svg class="ear" viewBox="0 0 60 30" aria-hidden="true"><use href="#ears"/></svg></summary><div class="a"><p>できます。他店オフは＋1,100円（例）です。</p></div></details>
+      <details><summary>連絡はどの方法がいいですか？<svg class="ear" viewBox="0 0 60 30" aria-hidden="true"><use href="#ears"/></svg></summary><div class="a"><p>メールがいちばん確実です。公式LINE・ホットペッパーからも受け付けています。</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access" data-bg="#dce6d6" data-fg="#3a322c">
+  <div class="wrap acc-grid">
+    <div class="map rv" aria-label="新小岩駅まわりの描いた地図">
+      <svg viewBox="0 0 520 380" font-family="Klee One, serif">
+        <rect width="520" height="380" fill="#fffaf0"/>
+        <g opacity=".5" stroke="#eadfcb" stroke-width="1">
+          <path d="M0 60 H520 M0 120 H520 M0 240 H520 M0 300 H520 M80 0 V380 M180 0 V380 M340 0 V380 M440 0 V380"/>
+        </g>
+        <path d="M0 182 H520" stroke="#3a322c" stroke-width="10"/>
+        <path d="M0 182 H520" stroke="#fffaf0" stroke-width="4" stroke-dasharray="16 14"/>
+        <text x="16" y="168" font-size="13" fill="#857868">JR総武線</text>
+        <rect x="222" y="164" width="76" height="36" rx="10" fill="#e9b949" stroke="#3a322c" stroke-width="2"/>
+        <text x="232" y="188" font-size="15" font-weight="600" fill="#3a322c">新小岩駅</text>
+        <g class="mp" fill="#d9785a">
+          <use href="#paw" x="300" y="210" width="18" height="18" transform="rotate(20 309 219)"/>
+          <use href="#paw" x="322" y="236" width="18" height="18" transform="rotate(30 331 245)"/>
+          <use href="#paw" x="338" y="264" width="18" height="18" transform="rotate(20 347 273)"/>
+          <use href="#paw" x="360" y="288" width="18" height="18" transform="rotate(35 369 297)"/>
+        </g>
+        <circle cx="398" cy="314" r="26" fill="#e9b949" opacity=".35"/>
+        <use href="#ears" x="380" y="282" width="36" height="18"/>
+        <circle cx="398" cy="314" r="16" fill="#3a322c"/>
+        <text x="280" y="356" font-size="13" fill="#3a322c">neko（自宅サロン・駅から徒歩圏）</text>
+        <text x="40" y="70" font-size="12" fill="#857868">↑ 北口のほう</text>
+        <text x="40" y="300" font-size="12" fill="#857868">↓ 南口のほう</text>
+      </svg>
+    </div>
+    <div>
+      <p class="lbl"><svg aria-hidden="true"><use href="#paw" fill="#d9785a"/></svg>Access</p>
+      <h2 class="h2 split"><span class="ln"><span>新小岩駅から</span></span></h2>
+      <dl class="rv">
+        <div><dt>Station</dt><dd>JR総武線「新小岩駅」から徒歩圏内</dd></div>
+        <div><dt>Place</dt><dd>自宅サロンのため、詳しい場所はご予約時にお伝えします。</dd></div>
+        <div><dt>Hours</dt><dd>10:00 – 18:00（例）／ 空き状況はブログで</dd></div>
+        <div><dt>For</dt><dd>女性専用・完全予約制</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="reserve" id="reserve" data-bg="#d9785a" data-fg="#2e2a27">
+  <svg class="peek l" viewBox="0 0 150 110" aria-hidden="true"><path d="M10 110 C 10 50 40 30 75 30 C 110 30 140 50 140 110 Z" fill="#2e2a27"/><path d="M30 60 L 34 6 L 62 36 Z M120 60 L 116 6 L 88 36 Z" fill="#2e2a27"/><ellipse cx="56" cy="70" rx="9" ry="10" fill="#f6d98c"/><ellipse cx="94" cy="70" rx="9" ry="10" fill="#f6d98c"/><ellipse class="pp" cx="56" cy="70" rx="3" ry="7" fill="#2e2a27"/><ellipse class="pp" cx="94" cy="70" rx="3" ry="7" fill="#2e2a27"/></svg>
+  <svg class="peek r" viewBox="0 0 150 110" aria-hidden="true"><path d="M10 110 C 10 50 40 30 75 30 C 110 30 140 50 140 110 Z" fill="#fbf3e4"/><path d="M30 60 L 34 6 L 62 36 Z M120 60 L 116 6 L 88 36 Z" fill="#fbf3e4"/><ellipse cx="56" cy="72" rx="9" ry="3" fill="#2e2a27"/><ellipse cx="94" cy="72" rx="9" ry="3" fill="#2e2a27"/></svg>
+  <div class="wrap">
+    <p class="big split"><span class="ln"><span>Come on in.</span></span></p>
+    <p class="lead rv">ご予約・ご相談は、メールがいちばん確実です。<br>「はじめてです」のひと言だけでも、お気軽にどうぞ。</p>
+    <div class="btns">
+      <a class="mbtn main" href="#" data-mag><small>おすすめ</small>メールで相談</a>
+      <a class="mbtn" href="#" data-mag>公式LINE</a>
+      <a class="mbtn" href="#" data-mag>ホットペッパーで予約</a>
+    </div>
+    <p class="hours rv">新小岩駅から徒歩圏 ／ 女性専用・完全予約制</p>
+  </div>
+</section>
+
+<section class="partner" data-bg="#d9785a" data-fg="#2e2a27"><div class="wrap">
+  <a class="nc" href="#"><span>Partner: <b>Nocturne Concierge（夜だけの家事代行）</b><br>くたくたの夜に。作り置き・洗濯・片付けを、18時からお手伝いします。</span><span class="p">※2.5万円プランの掲載例</span></a>
 </div></section>
 </main>
-<footer class="wrap"><span>© Nail Salon neko</span><span>※見本です。写真・文章・料金はお店の内容に差し替えてお作りします。</span></footer>
+<footer class="wrap"><span>© ネイルサロンneko（見本）</span><span>この見本は提案用に作成したもので、内容は仮のものです</span></footer>
 <div class="sample">SAMPLE</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(() => {
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hasG = typeof gsap !== 'undefined';
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasG=typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined';
+const fine=matchMedia('(hover:hover)').matches;
+const PAW='<svg viewBox="0 0 32 32"><use href="#paw"/></svg>';
 
-/* ジェルの質感：パール・ローズ・ベージュが溶け合うシェーダー */
-function gel(canvas, opts){
-  const gl = canvas.getContext('webgl', {premultipliedAlpha:false});
-  if(!gl) { canvas.style.background = 'linear-gradient(160deg,#f4e4dc,#e2c3b6,#f6ece6)'; return null; }
-  const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  const fs = `precision mediump float;uniform vec2 r;uniform float t;uniform vec2 m;
-  float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-  float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+1.),f.x),f.y);}
-  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.02;a*=.5;}return v;}
-  void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.6;
-    float tt=t*${opts.speed};
-    vec2 q=vec2(fbm(p+tt*.6),fbm(p+vec2(5.2,1.3)-tt*.4));
-    vec2 w=vec2(fbm(p+3.*q+vec2(1.7,9.2)+m*.6),fbm(p+3.*q+vec2(8.3,2.8)));
-    float f=fbm(p+3.5*w);
-    vec3 c1=vec3(.976,.945,.925),c2=vec3(.90,.76,.72),c3=vec3(.83,.66,.62),c4=vec3(.98,.90,.86);
-    vec3 col=mix(c1,c2,smoothstep(.2,.8,f));col=mix(col,c3,smoothstep(.55,.95,length(w)*.9));
-    col=mix(col,c4,smoothstep(.6,1.,q.x));
-    float sheen=pow(smoothstep(.45,.75,f+.25*sin(uv.x*6.+tt*2.)),3.)*.28;col+=sheen;
-    gl_FragColor=vec4(col,1.);}`;
-  const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;};
-  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
-  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  const loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  const ur=gl.getUniformLocation(pr,'r'),ut=gl.getUniformLocation(pr,'t'),um=gl.getUniformLocation(pr,'m');
-  let mx=0,my=0,tx=0,ty=0;
-  if(opts.follow) addEventListener('pointermove',e=>{tx=e.clientX/innerWidth;ty=e.clientY/innerHeight;});
-  const size=()=>{const d=Math.min(devicePixelRatio,1.5);canvas.width=canvas.clientWidth*d*.6;canvas.height=canvas.clientHeight*d*.6;gl.viewport(0,0,canvas.width,canvas.height);};
-  size();addEventListener('resize',size);
-  let start=performance.now(),vis=true;
-  new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(canvas);
-  const draw=now=>{mx+=(tx-mx)*.04;my+=(ty-my)*.04;
-    gl.uniform2f(ur,canvas.width,canvas.height);gl.uniform1f(ut,reduce?8.:(now-start)/1000);gl.uniform2f(um,mx,my);
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);};
-  const loop=now=>{if(vis)draw(now);if(!reduce)requestAnimationFrame(loop);};
-  requestAnimationFrame(loop);
-  return true;
+/* ---- 空き状況カレンダー（例） ---- */
+const grid=document.getElementById('grid'),wk=document.getElementById('wk'),picked=document.getElementById('picked'),mailgo=document.getElementById('mailgo');
+const times=['10:00','13:00','15:30'];const W=['月','火','水','木','金','土','日'];
+let offset=0,sel=null;
+const base=new Date();base.setHours(0,0,0,0);base.setDate(base.getDate()+1);const JW=['日','月','火','水','木','金','土'];
+function rnd(n){const x=Math.sin(n*99.13)*43758.5453;return x-Math.floor(x);}
+function render(anim){
+  const start=new Date(base);start.setDate(start.getDate()+offset*7);
+  const end=new Date(start);end.setDate(end.getDate()+6);
+  wk.textContent=`${start.getMonth()+1}/${start.getDate()} – ${end.getMonth()+1}/${end.getDate()}`;
+  let h='<div></div>';
+  for(let d=0;d<7;d++){const dt=new Date(start);dt.setDate(dt.getDate()+d);h+=`<div class="h${dt.getDay()===0?' sun':''}">${JW[dt.getDay()]}<small>${dt.getMonth()+1}/${dt.getDate()}</small></div>`;}
+  times.forEach((t,ti)=>{h+=`<div class="tm">${t}</div>`;for(let d=0;d<7;d++){const dt=new Date(start);dt.setDate(dt.getDate()+d);const key=`${dt.getMonth()+1}/${dt.getDate()}（${JW[dt.getDay()]}）${t}`;
+    const past=false;const closed=dt.getDay()===3;const ok=!past&&!closed&&rnd(offset*31+d*7+ti*3+1)>.45;
+    h+=`<button class="slot ${ok?'ok':'no'}${sel===key?' sel':''}" ${ok?`data-k="${key}" aria-label="${key} 空きあり"`:`disabled aria-label="${key} 予約済み"`}>${ok?PAW:''}</button>`;}});
+  grid.innerHTML=h;
+  grid.querySelectorAll('.slot.ok').forEach(b=>b.addEventListener('click',()=>{
+    sel=b.dataset.k;grid.querySelectorAll('.slot').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
+    picked.textContent=sel;mailgo.setAttribute('aria-disabled','false');
+    if(hasG&&!reduce){gsap.fromTo(b,{scale:.6},{scale:1,duration:.6,ease:'elastic.out(1.2,.4)'});gsap.fromTo(picked,{y:8,opacity:0},{y:0,opacity:1,duration:.4});}
+  }));
+  if(anim&&hasG&&!reduce)gsap.from(grid.querySelectorAll('.slot.ok svg'),{scale:0,rotate:-40,duration:.5,ease:'back.out(3)',stagger:{each:.025,from:'random'}});
 }
-gel(document.getElementById('gel'),{speed:'.05',follow:true});
-gel(document.getElementById('ph1'),{speed:'.03',follow:false});
+render(false);
+document.getElementById('prev').addEventListener('click',()=>{if(offset>0){offset--;render(true);}});
+document.getElementById('next').addEventListener('click',()=>{if(offset<3){offset++;render(true);}});
 
-/* 見出しを1文字ずつに */
-const h1=document.querySelector('.hero h1 .mask');
-h1.innerHTML=[...h1.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
-
-/* ヘッダーの背景 */
-const hd=document.getElementById('hd');
-const onScroll=()=>hd.classList.toggle('solid',scrollY>innerHeight*.6);
-addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-/* よくある質問 */
-document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>{
-  const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);
-}));
-
-/* カーソル */
-const cur=document.querySelector('.cursor');
-if(matchMedia('(hover:hover)').matches){
-  let cx=0,cy=0,x=0,y=0;
-  addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;});
-  document.querySelectorAll('a,button,.tip').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
-  (function f(){x+=(cx-x)*.18;y+=(cy-y)*.18;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();
+/* ---- 猫の目が追いかける ---- */
+const pupils=[...document.querySelectorAll('#cat .pupil')],peeks=[...document.querySelectorAll('.reserve .pp')];
+function look(e){
+  const cat=document.getElementById('cat').getBoundingClientRect();
+  const cx=cat.left+cat.width/2,cy=cat.top+cat.height*.38;const dx=e.clientX-cx,dy=e.clientY-cy;const d=Math.hypot(dx,dy)||1;
+  const m=Math.min(6,d/40);pupils.forEach(p=>p.setAttribute('transform',`translate(${dx/d*m} ${dy/d*m})`));
+  peeks.forEach(p=>{const r=p.ownerSVGElement.getBoundingClientRect();const ax=e.clientX-(r.left+r.width/2),ay=e.clientY-(r.top+r.height*.6),ad=Math.hypot(ax,ay)||1;p.setAttribute('transform',`translate(${ax/ad*4} ${ay/ad*3})`);});
 }
+if(!reduce)addEventListener('pointermove',look);
 
-/* 磁石のボタン */
-document.querySelectorAll('[data-mag]').forEach(m=>{
-  m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
-  m.addEventListener('pointerleave',()=>{m.style.transition='transform .8s cubic-bezier(.22,1,.36,1),background .4s';m.style.transform='';setTimeout(()=>m.style.transition='',800);});
-});
+/* ---- 足あとカーソル ---- */
+const dot=document.querySelector('.dot');
+if(fine&&!reduce){
+  let lx=0,ly=0,side=1,pool=[];
+  addEventListener('pointermove',e=>{dot.style.opacity=1;dot.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
+    const d=Math.hypot(e.clientX-lx,e.clientY-ly);if(d<70)return;
+    const ang=Math.atan2(e.clientY-ly,e.clientX-lx)*180/Math.PI+90;lx=e.clientX;ly=e.clientY;side*=-1;
+    const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','paw-trail');s.setAttribute('viewBox','0 0 32 32');s.innerHTML='<use href="#paw"/>';
+    const ox=Math.cos((ang)*Math.PI/180)*8*side,oy=Math.sin((ang)*Math.PI/180)*8*side;
+    s.style.left=(e.clientX-9+ox)+'px';s.style.top=(e.clientY-9+oy)+'px';s.style.transform=`rotate(${ang}deg)`;document.body.appendChild(s);pool.push(s);
+    if(hasG)gsap.to(s,{opacity:0,scale:.6,duration:1.4,delay:.3,ease:'power2.in',onComplete:()=>{s.remove();pool=pool.filter(x=>x!==s);}});else setTimeout(()=>s.remove(),1200);
+    if(pool.length>14){pool.shift().remove();}
+  });
+  document.querySelectorAll('a,button,.tile,.sticky').forEach(el=>{el.addEventListener('pointerenter',()=>dot.classList.add('on'));el.addEventListener('pointerleave',()=>dot.classList.remove('on'));});
+  if(hasG)document.querySelectorAll('[data-mag]').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,rotate:(e.clientX-r.left-r.width/2)*.02,duration:.4,ease:'power3.out'});});
+    b.addEventListener('pointerleave',()=>gsap.to(b,{x:0,y:0,rotate:0,duration:.8,ease:'elastic.out(1,.35)'}));});
+}else dot.remove();
 
+/* ---- FAQ ---- */
+document.querySelectorAll('.qa details').forEach(d=>{const s=d.querySelector('summary'),a=d.querySelector('.a');
+  s.addEventListener('click',e=>{if(!hasG||reduce)return;e.preventDefault();
+    if(d.open){gsap.to(a,{height:0,duration:.4,ease:'power3.inOut',onComplete:()=>{d.open=false;a.style.height='';}});}
+    else{d.open=true;gsap.fromTo(a,{height:0},{height:a.scrollHeight,duration:.5,ease:'power3.out',onComplete:()=>a.style.height=''});}});});
+
+/* ---- アニメーション ---- */
 const loader=document.getElementById('loader');
-if(reduce||!hasG){loader.remove();document.querySelectorAll('.hero .tate,.hero-foot').forEach(e=>e.style.opacity=1);document.querySelectorAll('.ch,.line>span').forEach(e=>{e.style.transform='none';e.style.opacity=1;});return;}
-
+if(reduce||!hasG){loader.remove();document.documentElement.classList.add('no-anim');return;}
 gsap.registerPlugin(ScrollTrigger);
-/* はじまりの演出 */
-const tl=gsap.timeline();
-tl.to('#loader .bar i',{width:'100%',duration:.9,ease:'power2.inOut'})
-  .to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1')
-  .set('#loader',{display:'none'})
-  .to('.hero h1 .ch',{y:0,opacity:1,duration:1.4,ease:'expo.out',stagger:.06},'-=.45')
-  .to('.hero .tate',{opacity:1,duration:1.2},'-=.9')
-  .to('.hero-foot',{opacity:1,y:0,duration:1},'-=.9');
-gsap.to('.hero h1',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
-/* 行ごとに浮かぶ */
-document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.line>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 80%'}}));
-gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
-gsap.from('.photo',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.photo',start:'top 80%'}});
+// ローディング：足あと
+const st=loader.querySelector('.steps');
+for(let i=0;i<6;i++){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 32 32');s.innerHTML='<use href="#paw"/>';s.style.left=(i*44)+'px';s.style.top=(i%2?44:10)+'px';s.style.transform='rotate(90deg)';st.appendChild(s);}
+gsap.set('.hero h1 .c',{yPercent:100,opacity:0});gsap.set('.fade',{opacity:0,y:24});gsap.set('.window',{scale:.7,rotate:-8});
+gsap.timeline()
+ .to(st.children,{opacity:1,duration:.15,stagger:.16})
+ .to(st.children,{opacity:0,duration:.3,stagger:.08},'-=.5')
+ .to('#loader p',{opacity:0,duration:.3},'<')
+ .to(loader,{yPercent:-100,duration:.8,ease:'expo.inOut',onComplete:()=>loader.remove()})
+ .to('.hero h1 .c',{yPercent:0,opacity:1,duration:1,ease:'back.out(2)',stagger:.08},'-=.35')
+  .to('.fade',{opacity:1,y:0,duration:.9,ease:'expo.out',stagger:.08},'-=.8')
+ .to('.window',{scale:1,rotate:0,duration:1.2,ease:'elastic.out(1,.6)'},'<');
+// 耳がときどきぴくっ
 
-/* デザイン見本を横に流す（縦スクロールで） */
-const track=document.getElementById('track');
+
+gsap.to('.window',{y:-60,rotate:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.ln>span'),{y:0,yPercent:0,duration:1.1,ease:'expo.out',stagger:.1,scrollTrigger:{trigger:s,start:'top 86%'}}));
+gsap.utils.toArray('.rv').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
+document.querySelectorAll('.mark').forEach(m=>ScrollTrigger.create({trigger:m,start:'top 82%',onEnter:()=>m.classList.add('on')}));
+ScrollTrigger.batch('.tile',{start:'top 88%',onEnter:b=>gsap.fromTo(b,{rotate:()=>gsap.utils.random(-4,4),scale:.9},{rotate:0,scale:1,duration:.9,ease:'back.out(1.8)',stagger:.08})});
+ScrollTrigger.create({trigger:'.board',start:'top 75%',once:true,onEnter:()=>gsap.from('#grid .slot.ok svg',{scale:0,rotate:-40,duration:.5,ease:'back.out(3)',stagger:{each:.03,from:'random'}})});
+
+// 流れ：猫が歩く
 const mm=gsap.matchMedia();
-mm.add('(min-width: 821px)',()=>{
-  gsap.to(track,{x:()=>-(track.scrollWidth-innerWidth),ease:'none',scrollTrigger:{trigger:'#designs',start:'top top',end:()=>'+='+(track.scrollWidth-innerWidth),pin:true,scrub:1,invalidateOnRefresh:true}});
-  gsap.utils.toArray('.tip .nail').forEach((n,i)=>gsap.from(n,{rotate:i%2?6:-6,y:60,scrollTrigger:{trigger:'#designs',start:'top center',end:'bottom top',scrub:true}}));
+mm.add('(min-width: 861px)',()=>{
+  gsap.fromTo('.walker',{x:0},{x:()=>document.querySelector('.path').clientWidth-64,ease:'none',scrollTrigger:{trigger:'.path',start:'top 80%',end:'bottom 45%',scrub:.6,invalidateOnRefresh:true}});
 });
-mm.add('(max-width: 820px)',()=>{track.style.overflowX='auto';track.style.width='100%';track.style.scrollSnapType='x mandatory';track.querySelectorAll('.tip').forEach(t=>t.style.scrollSnapAlign='start');});
+
+// 付箋
+gsap.utils.toArray('.sticky').forEach((s,i)=>gsap.from(s,{y:80,rotate:i%2?12:-12,opacity:0,duration:1.1,ease:'back.out(1.5)',scrollTrigger:{trigger:'.notes',start:'top 80%'},delay:i*.1}));
+
+// 地図の足あと
+gsap.from('.map .mp use',{opacity:0,scale:.3,transformOrigin:'50% 50%',duration:.4,stagger:.25,ease:'back.out(3)',scrollTrigger:{trigger:'.map',start:'top 70%'}});
+
+// 予約：猫がのぞく
+gsap.from('.reserve .peek',{yPercent:100,duration:1,ease:'back.out(1.6)',stagger:.2,scrollTrigger:{trigger:'.reserve',start:'top 60%'}});
+
+// ヘッダー：下にスクロールで隠れる
+const hd=document.querySelector('header');
+ScrollTrigger.create({start:0,end:'max',onUpdate:s=>hd.classList.toggle('hide',s.direction>0&&s.scroll()>innerHeight*.8)});
+
+document.querySelectorAll('[data-bg]').forEach(s=>ScrollTrigger.create({trigger:s,start:'top 55%',end:'bottom 55%',onToggle:self=>{if(self.isActive){document.body.style.backgroundColor=s.dataset.bg;document.body.style.color=s.dataset.fg;}}}));
+addEventListener('load',()=>ScrollTrigger.refresh());
 })();
 </script>
 </body>

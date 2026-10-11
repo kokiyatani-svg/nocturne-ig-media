@@ -1,206 +1,581 @@
 <!doctype html>
-<html lang="ja"><head><script>try{history.scrollRestoration='manual'}catch(e){};if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));addEventListener('pageshow',()=>scrollTo(0,0));</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow"><title>AjuCure｜アジュキュア（見本）</title>
+<html lang="ja">
+<head>
+<script>try{history.scrollRestoration='manual'}catch(e){};scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>AjuCure｜西新宿 女性専用のプライベート鍼灸（見本）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700&family=Marcellus&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* AjuCure：今日を整えて、未来のからだに積み立てる。灸のぬくもりと小豆色、アーチの窓 */
 :root{
-  --bg:#eef3f2; --paper:#f7faf9; --ink:#1d2a2a; --sub:#5d6e6c; --line:#d5e1df;
-  --acc:#2f7d7a; --acc2:#9fd0c8; --dark:#14302e; --onDark:#eaf4f2; --heroFg:#14302e;
-  --disp:'Manrope','Helvetica Neue',sans-serif; --jp:'Zen Kaku Gothic New','Hiragino Sans',sans-serif; --body:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --cream:#f7f0e8; --cream2:#efe3d6; --azuki:#7d3236; --azuki2:#5b2226; --rose:#e7c3b8; --ember:#e48a5a;
+  --sage:#8f9a83; --ink:#2b2220; --mut:#8b7d75; --line:#e2d4c6;
+  --bg:var(--cream); --fg:var(--ink);
+  --min:'Shippori Mincho B1','Hiragino Mincho ProN',serif;
+  --lat:'Marcellus','Times New Roman',serif;
+  --sans:'Noto Sans JP','Hiragino Sans',sans-serif;
+  --ease:cubic-bezier(.25,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:2;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;font-size:15px;line-height:2;letter-spacing:.06em;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background-color 1s var(--ease),color 1s var(--ease)}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--acc);color:#fff}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
-#loader{position:fixed;inset:0;z-index:100;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:var(--onDark)}
-#loader .l{font-family:var(--disp);font-size:56px;line-height:1;}
-#loader .bar{width:140px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
-#loader .bar i{display:block;height:100%;width:0;background:var(--acc2)}
-.cursor{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--acc);pointer-events:none;z-index:90;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .35s}
-.cursor.big{width:60px;height:60px;opacity:.35}
-@media (hover:none){.cursor{display:none}}
-header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,color .5s;color:var(--heroFg)}
-header.solid{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);color:var(--ink)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{font-family:var(--disp);font-size:22px;letter-spacing:.02em;}
-.brand small{font-family:var(--body);font-style:normal;font-weight:400;font-size:10px;letter-spacing:.3em;margin-left:10px;opacity:.7}
-nav{display:flex;gap:28px;font-size:12px;letter-spacing:.2em;align-items:center}
-nav a{position:relative;padding:4px 0}
-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
-nav a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{border:1px solid currentColor;border-radius:999px;padding:8px 18px!important}
-.nav-cta::after{display:none}
-@media(max-width:820px){nav a:not(.nav-cta){display:none}}
-.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--heroFg);background:#eef3f2}
-#hero{position:absolute;inset:0;width:100%;height:100%}
-.hero-in{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding-bottom:clamp(28px,5vh,56px);pointer-events:none}
-.hero-in a,.hero-in button{pointer-events:auto}
-.hero h1{align-self:center;font-family:var(--disp);font-weight:800;font-size:clamp(64px,13vw,200px);line-height:.9;letter-spacing:-.04em;}
-.hero h1 .ch{display:inline-block;transform:translateY(110%);opacity:0;white-space:pre}
-.hero h1 .mask{display:inline-block;overflow:hidden;padding:0 .04em .1em}
-.hero .tate{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);font-size:clamp(17px,1.7vw,22px);letter-spacing:.4em;line-height:2.2;opacity:0}
-.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;letter-spacing:.2em;opacity:0}
-.hero-foot p{max-width:26em;line-height:2.1;letter-spacing:.08em;font-size:13px}
-.scroll{display:flex;align-items:center;gap:12px}
-.scroll i{display:block;width:1px;height:56px;background:currentColor;opacity:.3;position:relative;overflow:hidden}
-@media(max-width:820px){.hero .tate{top:auto;bottom:150px;transform:none}.hero-foot{flex-direction:column;align-items:flex-start}}
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0;background:var(--paper)}
-.ticker .row{display:inline-flex;gap:48px;font-family:var(--disp);font-size:26px;color:var(--sub);animation:tick 40s linear infinite;}
-.ticker .row span::after{content:"+";font-style:normal;font-size:12px;color:var(--acc);margin-left:48px;vertical-align:middle}
-@keyframes tick{to{transform:translateX(-50%)}}
-.state{padding-block:clamp(110px,16vw,220px)}
-.eyebrow{font-size:11px;letter-spacing:.35em;color:var(--acc);text-transform:uppercase;display:flex;align-items:center;gap:14px}
-.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
-.state h2{font-family:var(--jp);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.7;letter-spacing:.06em;margin-top:36px}
-.line{display:block;overflow:hidden}
-.line>span{display:inline-block;transform:translateY(105%)}
-.state .lead{margin-top:44px;max-width:34em;color:var(--sub)}
-.state-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,96px);align-items:end}
-.photo{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:18px;overflow:hidden;background:var(--paper)}
-.photo canvas{position:absolute;inset:0;width:100%;height:100%}
-.photo .ph{position:absolute;inset:auto 0 0 0;text-align:center;padding:24px;font-size:11px;letter-spacing:.3em;color:var(--onDark);mix-blend-mode:difference;opacity:.7}
-@media(max-width:820px){.state-grid{grid-template-columns:1fr}.photo{max-width:420px}}
-.feat{padding-block:0 clamp(100px,14vw,180px)}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.f{padding:44px 32px 44px 0;border-right:1px solid var(--line);min-width:0}
-.f:last-child{border-right:0}
-.f+.f{padding-left:32px}
-.f svg{width:34px;height:34px;color:var(--acc)}
-.f h3{font-family:var(--jp);font-size:21px;font-weight:500;margin:22px 0 10px;letter-spacing:.08em}
-.f p{color:var(--sub);font-size:14px}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr}.f,.f+.f{padding:32px 0;border-right:0;border-bottom:1px solid var(--line)}}
-.sig{background:var(--dark);color:var(--onDark);overflow:hidden;position:relative}
-.sig .head{padding-block:clamp(90px,12vw,150px) 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.sig h2{font-family:var(--disp);font-weight:800;font-size:clamp(48px,8vw,116px);line-height:.95;}
-.sig .head p{max-width:26em;opacity:.72;font-size:14px}
-.sig .body{padding-bottom:clamp(90px,12vw,150px)}
-.menu{padding-block:clamp(110px,15vw,190px)}
-.menu-grid,.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.menu h2,.voice h2,.faq h2{font-family:var(--disp);font-weight:800;font-size:clamp(46px,7vw,92px);line-height:.95;margin-top:18px;}
-.menu .note{margin-top:28px;color:var(--sub);font-size:13px}
-.list{list-style:none;border-top:1px solid var(--ink)}
-.list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative}
-.list li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.list li:hover::before{transform:scaleX(1)}
-.list b{font-family:var(--jp);font-weight:500;font-size:clamp(17px,1.8vw,21px);letter-spacing:.06em}
-.list .p{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;font-style:normal}
-.voice{padding-block:clamp(100px,14vw,170px);background:var(--paper);border-block:1px solid var(--line)}
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);margin-top:64px}
-.quotes figure{border-top:1px solid var(--line);padding-top:30px}
-.quotes blockquote{font-family:var(--jp);font-size:clamp(19px,2vw,24px);line-height:1.9;letter-spacing:.06em}
-.quotes blockquote::before{content:"“";display:block;font-family:Georgia,serif;font-size:80px;line-height:.6;color:var(--acc);height:40px}
-.quotes figcaption{margin-top:18px;font-size:12px;letter-spacing:.2em;color:var(--sub)}
-@media(max-width:820px){.quotes,.menu-grid,.faq-grid{grid-template-columns:1fr}}
-.faq{padding-block:clamp(110px,15vw,190px)}
+button{font:inherit;color:inherit}
+::selection{background:var(--azuki);color:var(--cream)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,60px)}
+.lat{font-family:var(--lat);letter-spacing:.12em}
+
+/* ローダー：灸がともる */
+#ld{position:fixed;inset:0;z-index:100;background:var(--azuki2);display:grid;place-items:center;color:var(--cream)}
+#ld .moxa{position:relative;width:70px;height:120px}
+#ld .cone{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:46px;height:52px;background:#c9b49a;clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:4px}
+#ld .fire{position:absolute;left:50%;bottom:48px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--ember);box-shadow:0 0 18px 6px rgba(228,138,90,.6);transform:scale(0)}
+#ld .smoke{position:absolute;left:50%;bottom:58px;width:2px;height:60px;margin-left:-1px;background:linear-gradient(transparent,rgba(247,240,232,.5));transform-origin:bottom;transform:scaleY(0);filter:blur(1px)}
+#ld p{position:absolute;bottom:20%;left:0;right:0;text-align:center;font-family:var(--lat);font-size:15px;letter-spacing:.4em;opacity:.8}
+
+/* カーソル：ぬくもりの光 */
+.glow{position:fixed;left:0;top:0;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(228,138,90,.16),rgba(228,138,90,0) 65%);transform:translate(-50%,-50%);mix-blend-mode:multiply}
+.dot{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--azuki);pointer-events:none;z-index:96;transform:translate(-50%,-50%);transition:width .5s var(--ease),height .5s var(--ease),opacity .4s}
+.dot.on{width:44px;height:44px;opacity:.18}
+@media(hover:none){.glow,.dot{display:none}}
+
+/* ヘッダー */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:background .5s,box-shadow .5s}
+header.solid{color:var(--ink);background:rgba(247,240,232,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+header .wrap{height:74px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--lat);font-size:24px;letter-spacing:.1em;color:var(--azuki);display:flex;align-items:center;gap:12px}
+.logo small{font-family:var(--min);font-size:11px;letter-spacing:.24em;color:var(--mut)}
+nav{display:flex;gap:30px;align-items:center;font-family:var(--min);font-size:13px;letter-spacing:.18em}
+nav a:not(.cta){background:linear-gradient(var(--azuki),var(--azuki)) left bottom/0 1px no-repeat;transition:background-size .5s var(--ease);padding-bottom:2px}
+nav a:not(.cta):hover{background-size:100% 1px}
+nav .cta{background:var(--azuki);color:var(--cream);padding:9px 22px;border-radius:999px;transition:background .4s}
+nav .cta:hover{background:var(--azuki2)}
+@media(max-width:860px){nav a:not(.cta){display:none}.logo small{display:none}}
+
+/* ヒーロー：アーチの窓が、ひらいていく */
+.hero{position:relative;height:200svh}
+.hero .stick{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden}
+.arch{position:absolute;left:50%;top:54%;width:min(38vw,440px);height:min(64vh,600px);transform:translate(-50%,-50%);border-radius:999px 999px 0 0;overflow:hidden;background:var(--azuki2)}
+#smoke{position:absolute;inset:0;width:100%;height:100%;display:block}
+.h-copy{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) min(38vw,440px) minmax(0,1fr);align-items:center;pointer-events:none;padding-inline:clamp(20px,5vw,60px)}
+.h-l{justify-self:end;padding-right:clamp(20px,4vw,60px);text-align:right}
+.h-r{grid-column:3;justify-self:start;padding-left:clamp(20px,4vw,60px);writing-mode:vertical-rl;font-family:var(--min);font-size:clamp(15px,1.2vw,17px);letter-spacing:.42em;line-height:2.4;color:var(--mut)}
+.h-l .lat{font-size:12px;color:var(--azuki);letter-spacing:.3em}
+.h-l h1{font-family:var(--min);font-weight:500;font-size:clamp(26px,2.9vw,44px);white-space:nowrap;line-height:1.6;letter-spacing:.14em;margin-top:18px}
+.ln{display:block;overflow:hidden}
+.ln>span{display:inline-block;transform:translateY(105%)}
+.h-l .sub{margin-top:20px;font-size:13px;color:var(--mut);opacity:0}
+.h-r span{opacity:0;display:inline-block}
+.arch-cap{position:absolute;left:50%;bottom:calc(46% - min(32vh,300px) - 52px);transform:translateX(-50%);font-family:var(--lat);font-size:11px;letter-spacing:.4em;color:var(--mut);white-space:nowrap}
+.arch .inner-copy{position:absolute;inset:auto 0 12% 0;text-align:center;color:var(--cream);font-family:var(--min);font-size:clamp(18px,2vw,26px);letter-spacing:.2em;line-height:1.9;opacity:0}
+.arch .inner-copy small{display:block;font-family:var(--lat);font-size:12px;letter-spacing:.4em;opacity:.7}
+@media(max-width:860px){
+  .arch{width:72vw;height:52svh;top:58%}
+  .h-copy{grid-template-columns:1fr;align-items:start;padding-top:96px}
+  .h-l{justify-self:start;text-align:left;padding:0}
+  .h-l h1{font-size:clamp(25px,7vw,34px);margin-top:8px}
+  .h-l .sub{display:none}
+  .h-r{display:none;grid-column:auto}
+  .arch-cap{bottom:18px}
+}
+
+/* 共通 */
+.kick{font-family:var(--lat);font-size:13px;letter-spacing:.32em;color:var(--azuki);display:flex;gap:14px;align-items:center}
+.kick::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 4px rgba(228,138,90,.18)}
+.ttl{font-family:var(--min);font-weight:500;font-size:clamp(26px,3.3vw,44px);line-height:1.65;letter-spacing:.12em;margin-top:18px}
+section{position:relative}
+
+/* コンセプト：積み立て */
+.concept{padding-block:clamp(110px,14vw,200px)}
+.cg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center}
+.stack{position:relative;aspect-ratio:1/1.05;max-width:460px;width:100%;justify-self:center}
+.stack svg{width:100%;height:100%;overflow:visible}
+.stack .lbl{position:absolute;left:0;right:0;bottom:-36px;text-align:center;font-size:12px;color:var(--mut);letter-spacing:.14em}
+.concept p.body{margin-top:26px;color:#5a4d48;font-size:15px}
+.concept .big-q{font-family:var(--min);font-size:clamp(18px,1.6vw,21px);letter-spacing:.12em;line-height:2.1;margin-top:34px;padding-left:22px;border-left:1px solid var(--azuki);color:var(--azuki2)}
+@media(max-width:860px){.cg{grid-template-columns:1fr}.stack{max-width:340px}}
+
+/* 施術（アーチのカード） */
+.works{padding-bottom:clamp(110px,14vw,190px)}
+.wg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,26px);margin-top:56px}
+.wc{position:relative;padding:0 0 10px;cursor:default}
+.wc .win{position:relative;aspect-ratio:3/4;border-radius:999px 999px 6px 6px;background:var(--cream2);overflow:hidden;isolation:isolate}
+.wc .win::before{content:"";position:absolute;inset:0;background:var(--azuki);transform:translateY(101%);border-radius:999px 999px 0 0;transition:transform .9s var(--ease);z-index:-1}
+.wc:hover .win::before{transform:none}
+.wc svg{position:absolute;inset:16% 16% 12%;width:68%;height:72%;stroke:var(--azuki);fill:none;stroke-width:1.2;transition:stroke .6s}
+.wc:hover svg{stroke:var(--cream)}
+.wc .no{position:absolute;left:0;right:0;top:9%;text-align:center;font-family:var(--lat);font-size:11px;letter-spacing:.3em;color:var(--mut);transition:color .6s}
+.wc:hover .no{color:var(--rose)}
+.wc h3{font-family:var(--min);font-weight:500;font-size:19px;letter-spacing:.14em;margin-top:20px}
+.wc p{font-size:13px;color:var(--mut);margin-top:6px;line-height:1.9}
+@media(max-width:960px){.wg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* 体験：ライフステージの暦 */
+.stage{padding-block:clamp(110px,14vw,190px);color:var(--cream);background:var(--azuki2)}
+.stage .kick{color:var(--rose)}
+.stage .lead{color:rgba(247,240,232,.7);max-width:36em;margin-top:20px;font-size:14px}
+.sg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px);align-items:center;margin-top:56px}
+.dial{position:relative;width:100%;max-width:480px;aspect-ratio:1/1;justify-self:center}
+.dial svg{width:100%;height:100%;overflow:visible}
+.dial .seg{cursor:pointer}
+.dial .seg path{fill:rgba(247,240,232,.05);stroke:rgba(247,240,232,.25);stroke-width:1;transition:fill .5s}
+.dial .seg:hover path{fill:rgba(231,195,184,.16)}
+.dial .seg.on path{fill:rgba(228,138,90,.32);stroke:var(--rose)}
+.dial .seg text{fill:var(--cream);font-family:var(--min);font-size:13px;letter-spacing:.12em;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
+.dial .seg:focus{outline:none}
+.dial .seg:focus-visible path{stroke:var(--ember);stroke-width:2}
+.dial .hub{position:absolute;inset:31%;border-radius:50%;background:var(--azuki2);display:grid;place-items:center;text-align:center;box-shadow:0 0 0 1px rgba(247,240,232,.2),0 0 60px rgba(228,138,90,.25) inset}
+.dial .hub b{font-family:var(--min);font-weight:500;font-size:clamp(17px,2vw,22px);letter-spacing:.14em;display:block}
+.dial .hub small{display:block;font-family:var(--lat);font-size:10px;letter-spacing:.3em;color:var(--rose)}
+.dial .needle{transform-origin:200px 200px;transition:transform 1s var(--ease)}
+.card{background:var(--cream);color:var(--ink);border-radius:220px 220px 10px 10px;padding:clamp(60px,6vw,80px) clamp(26px,3vw,44px) clamp(30px,3vw,40px);position:relative;min-height:440px}
+.card .tag{position:absolute;top:26px;left:50%;transform:translateX(-50%);font-family:var(--lat);font-size:11px;letter-spacing:.3em;color:var(--azuki);white-space:nowrap}
+.card h3{font-family:var(--min);font-weight:500;font-size:clamp(20px,2vw,25px);letter-spacing:.12em;text-align:center}
+.card .desc{font-size:14px;color:#5a4d48;margin-top:18px}
+.card ul{list-style:none;margin-top:20px;border-top:1px solid var(--line)}
+.card li{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.card li span:last-child{font-family:var(--lat);color:var(--azuki);white-space:nowrap}
+.card .care{margin-top:16px;font-size:12px;color:var(--mut)}
+.card .swap{transition:opacity .35s,transform .5s var(--ease)}
+.card.out .swap{opacity:0;transform:translateY(10px)}
+@media(max-width:860px){.sg{grid-template-columns:1fr}.dial{max-width:360px}.card{min-height:0}}
+
+/* メニュー：タブ */
+.menu{padding-block:clamp(110px,14vw,190px)}
+.mh{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+.mh .note{font-size:12px;color:var(--mut);max-width:24em}
+.tabs{display:flex;gap:8px;margin-top:44px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:9px 22px;font-family:var(--min);font-size:14px;letter-spacing:.14em;cursor:pointer;transition:background .4s,color .4s,border-color .4s}
+.tabs button[aria-selected=true]{background:var(--azuki);color:var(--cream);border-color:var(--azuki)}
+.tabs button:hover{border-color:var(--azuki)}
+.panels{margin-top:30px;position:relative}
+.panel{display:none}
+.panel.on{display:block}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;padding:26px 6px;border-bottom:1px solid var(--line);align-items:center;transition:background .5s,padding .5s var(--ease)}
+.it:first-child{border-top:1px solid var(--line)}
+.it:hover{background:rgba(255,255,255,.55);padding-inline:20px}
+.it b{font-family:var(--min);font-weight:500;font-size:clamp(17px,1.7vw,20px);letter-spacing:.1em}
+.it small{grid-column:1;font-size:13px;color:var(--mut)}
+.it .pr{grid-row:1/3;grid-column:2;font-family:var(--lat);font-size:clamp(22px,2.3vw,28px);color:var(--azuki);white-space:nowrap}
+.it .pr i{font-style:normal;font-family:var(--sans);font-size:11px;color:var(--mut);margin-left:4px}
+
+/* 流れ */
+.flow{padding-bottom:clamp(110px,14vw,190px)}
+.fg{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,7vw,110px)}
+.fg .side{position:sticky;top:120px;align-self:start}
+.fg .side p{margin-top:20px;font-size:14px;color:var(--mut)}
+.steps{counter-reset:s}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:30px 0;border-bottom:1px solid var(--line)}
+.step:first-child{border-top:1px solid var(--line)}
+.step .c{width:54px;height:54px;border-radius:50%;border:1px solid var(--azuki);display:grid;place-items:center;font-family:var(--lat);color:var(--azuki);font-size:17px;position:relative;transition:background .5s,color .5s}
+.step.lit .c{background:var(--azuki);color:var(--cream)}
+.step h3{font-family:var(--min);font-weight:500;font-size:19px;letter-spacing:.12em}
+.step p{font-size:14px;color:var(--mut);margin-top:6px}
+@media(max-width:860px){.fg{grid-template-columns:1fr}.fg .side{position:static}}
+
+/* 声（例）：流れるカード */
+.voice{padding-block:clamp(100px,12vw,160px);background:var(--cream2);overflow:hidden}
+.vrow{display:flex;gap:22px;margin-top:50px;width:max-content;animation:vflow 60s linear infinite}
+.vrow:hover{animation-play-state:paused}
+@keyframes vflow{to{transform:translateX(-50%)}}
+.vc{width:min(78vw,380px);flex:none;background:var(--cream);border-radius:200px 200px 8px 8px;padding:64px 34px 34px;text-align:center;position:relative}
+.vc .ex{position:absolute;top:24px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;color:var(--cream);background:var(--azuki);border-radius:999px;padding:1px 12px}
+.vc blockquote{font-family:var(--min);font-size:16px;line-height:2.1;letter-spacing:.08em}
+.vc figcaption{margin-top:16px;font-size:12px;color:var(--mut)}
+
+/* 質問 */
+.faq{padding-block:clamp(110px,14vw,190px)}
+.fq{max-width:860px;margin:50px auto 0}
 .qa{border-bottom:1px solid var(--line)}
-.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--jp);font-size:clamp(16px,1.6vw,19px);letter-spacing:.06em}
-.qa button:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
-.qa .pm{position:relative;width:14px;height:14px;flex:none;margin-top:8px}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--ink);transition:transform .5s var(--ease)}
-.qa .pm::after{transform:rotate(90deg)}
-.qa.open .pm::after{transform:rotate(0)}
-.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
-.qa.open .ans{grid-template-rows:1fr}
-.qa .ans>div{overflow:hidden}
-.qa .ans p{padding-bottom:26px;color:var(--sub);font-size:14px}
-.reserve{position:relative;background:var(--dark);color:var(--onDark);padding-block:clamp(120px,16vw,210px);overflow:hidden;text-align:center}
-.reserve h2{font-family:var(--disp);font-weight:800;font-size:clamp(52px,10vw,160px);line-height:.95;}
-.reserve p{margin:30px auto 0;max-width:30em;opacity:.78}
-.mag{display:inline-flex;align-items:center;justify-content:center;width:184px;height:184px;border-radius:50%;background:var(--acc);color:#fff;margin-top:56px;font-size:13px;letter-spacing:.2em;transition:background .4s;will-change:transform;text-align:center;line-height:1.6}
-.mag:hover{background:var(--acc2)}
-.info{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:12px 48px;margin-top:64px;font-size:13px;opacity:.85}
-.info dt{font-size:10px;letter-spacing:.3em;color:var(--acc2)}
-@media(max-width:820px){.info{grid-template-columns:1fr}}
-.partner{padding-block:56px}
-.nc{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:4px;padding:22px 26px;background:var(--paper);transition:border-color .4s}
-.nc:hover{border-color:var(--acc)}
-.nc .m{font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:.3em;color:#b8956a}
-.nc b{display:block;font-family:var(--jp);font-weight:500;font-size:17px}
-.nc small{color:var(--sub);font-size:12px}
-.nc .go{margin-left:auto;font-size:12px;letter-spacing:.2em}
-footer{padding-block:28px 64px;font-size:11px;letter-spacing:.15em;color:var(--sub);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;background:rgba(20,20,20,.8);color:#fff;font:600 10px/1 sans-serif;letter-spacing:.25em;padding:9px 14px;border-radius:20px}
-@media (prefers-reduced-motion:reduce){.hero h1 .ch,.line>span{transform:none!important;opacity:1!important}.hero .tate,.hero-foot{opacity:1!important}.ticker .row{animation:none}#loader{display:none}}
-.bmap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:center}.bodyfig{width:100%;max-width:300px;height:auto;justify-self:center}.sil{fill:rgba(234,244,242,.08);stroke:rgba(234,244,242,.4);stroke-width:1}
-.zones circle{fill:rgba(159,208,200,.25);stroke:#9fd0c8;stroke-width:1;cursor:pointer;transition:fill .3s,r .3s;animation:pulse 2.4s ease-in-out infinite}.zones circle:hover,.zones circle.on{fill:#9fd0c8}@keyframes pulse{50%{stroke-opacity:.3}}
-.zinfo{border-top:1px solid rgba(234,244,242,.2);padding-top:28px;min-height:260px}.zinfo .zl{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.3em;color:var(--acc2)}.zinfo h3{font-size:clamp(22px,2.6vw,32px);font-weight:700;margin:10px 0 16px}.zinfo p{opacity:.78}.zinfo dl{display:grid;grid-template-columns:5em 1fr;gap:10px 18px;margin-top:18px;font-size:14px}.zinfo dt{color:var(--acc2)}
-@media(max-width:820px){.bmap{grid-template-columns:1fr}}.hero h1{font-size:min(19vw,calc(150vw/7),300px)!important;white-space:nowrap}</style></head><body>
-<div id="loader"><div class="l">A</div><div class="bar"><i></i></div></div><div class="cursor"></div>
-<header id="hd"><div class="wrap"><a class="brand" href="#top">AjuCure<small>BODY CARE</small></a>
-<nav><a href="#about">ABOUT</a><a href="#sig">BODY MAP</a><a href="#menu">MENU</a><a href="#faq">FAQ</a><a class="nav-cta" href="#reserve">BOOK</a></nav></div></header>
+.qa:first-child{border-top:1px solid var(--line)}
+.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;gap:18px;align-items:center;padding:24px 4px;cursor:pointer;font-family:var(--min);font-size:clamp(16px,1.5vw,18px);letter-spacing:.08em;line-height:1.7}
+.qa button:focus-visible{outline:1px solid var(--azuki);outline-offset:3px}
+.qa .q{flex:none;width:34px;height:34px;border-radius:50%;background:var(--cream2);display:grid;place-items:center;font-family:var(--lat);font-size:14px;color:var(--azuki);transition:background .4s,color .4s}
+.qa.open .q{background:var(--azuki);color:var(--cream)}
+.qa .ar{margin-left:auto;flex:none;width:10px;height:10px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);transition:transform .5s var(--ease)}
+.qa.open .ar{transform:rotate(-135deg)}
+.qa .an{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.qa.open .an{grid-template-rows:1fr}
+.qa .an>div{overflow:hidden}
+.qa .an p{padding:0 10px 26px 56px;font-size:14px;color:#5a4d48}
+
+/* アクセス */
+.access{padding-bottom:clamp(110px,14vw,190px)}
+.ag{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px);align-items:center;margin-top:50px}
+.mapw{border-radius:999px 999px 10px 10px;overflow:hidden;aspect-ratio:1/1;background:#fbf7f1;border:1px solid var(--line)}
+.mapw svg{width:100%;height:100%;display:block}
+.info{display:grid;gap:0}
+.info div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px}
+.info div:first-child{border-top:1px solid var(--line)}
+.info dt{font-family:var(--lat);letter-spacing:.2em;color:var(--azuki);font-size:12px;padding-top:3px}
+@media(max-width:860px){.ag{grid-template-columns:1fr}.mapw{max-width:420px;width:100%;justify-self:center}}
+
+/* 予約 */
+.reserve{padding-block:clamp(120px,15vw,210px);color:var(--cream);background:var(--azuki2);text-align:center;overflow:hidden}
+.reserve .kick{justify-content:center;color:var(--rose)}
+.reserve h2{font-family:var(--min);font-weight:500;font-size:clamp(28px,4vw,54px);letter-spacing:.16em;line-height:1.7;margin-top:22px}
+.reserve .lead{margin:22px auto 0;max-width:30em;font-size:14px;color:rgba(247,240,232,.72)}
+.rb{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:54px;align-items:center}
+.mag{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:66px;padding:0 40px;border-radius:999px;background:var(--cream);color:var(--azuki2);font-family:var(--min);font-size:16px;letter-spacing:.16em;font-weight:500;will-change:transform;overflow:hidden;isolation:isolate}
+.mag::before{content:"";position:absolute;inset:0;background:var(--ember);transform:scale(0);border-radius:50%;transition:transform .6s var(--ease);z-index:-1}
+.mag:hover::before{transform:scale(1.6)}
+.mag:hover{color:var(--cream)}
+.mag.alt{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px rgba(247,240,232,.45)}
+.mag span{transition:transform .4s}
+.reserve .small{margin-top:30px;font-size:12px;color:rgba(247,240,232,.55)}
+.reserve .ember{position:absolute;left:50%;top:-180px;width:520px;height:520px;margin-left:-260px;border-radius:50%;background:radial-gradient(circle,rgba(228,138,90,.28),rgba(228,138,90,0) 60%);pointer-events:none}
+
+/* パートナー・フッター */
+.partner{padding-block:50px 0;background:var(--azuki2);color:var(--cream)}
+.nc{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;border-radius:14px;border:1px solid rgba(247,240,232,.2);padding:20px 26px;font-size:12px;color:rgba(247,240,232,.65);transition:background .4s}
+.nc:hover{background:rgba(247,240,232,.05)}
+.nc b{font-family:var(--min);color:var(--cream);font-size:14px;font-weight:500;letter-spacing:.08em}
+.nc .tag{border:1px solid rgba(247,240,232,.3);border-radius:999px;padding:2px 12px;font-size:10px;letter-spacing:.14em}
+.nc .go{margin-left:auto;font-family:var(--lat);letter-spacing:.2em}
+footer{padding-block:20px 80px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11px;color:rgba(247,240,232,.55);letter-spacing:.08em}
+.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;background:var(--azuki);color:var(--cream);font:500 10px/1 var(--sans);letter-spacing:.3em;padding:9px 13px;border-radius:999px;box-shadow:0 0 0 1px rgba(247,240,232,.4)}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  #ld{display:none}
+  .ln>span{transform:none!important}
+  .h-l .sub,.h-r span,.arch .inner-copy{opacity:1!important}
+  .vrow{flex-wrap:wrap;width:auto}
+}
+</style>
+</head>
+<body>
+<div id="ld" aria-hidden="true"><div class="moxa"><div class="smoke"></div><div class="fire"></div><div class="cone"></div></div><p>AjuCure</p></div>
+<div class="glow" aria-hidden="true"></div><div class="dot" aria-hidden="true"></div>
+
+<header id="hd"><div class="wrap">
+  <a class="logo" href="#top">AjuCure<small>プライベート鍼灸</small></a>
+  <nav><a href="#about">想い</a><a href="#sig">からだの暦</a><a href="#menu">メニュー</a><a href="#faq">よくある質問</a><a class="cta" href="#reserve">ご予約</a></nav>
+</div></header>
+
 <main id="top">
-<section class="hero"><canvas id="hero" aria-hidden="true"></canvas>
-<div class="wrap hero-in"><h1 aria-label="AjuCure"><span class="mask">AjuCure</span></h1><p class="tate">その不調、くり返さない体へ。</p>
-<div class="hero-foot"><p>肩こり・腰痛・姿勢の悩みに。<br>ボキボキしないやさしい整体で、<br>くり返さない体へ整えます。</p><div class="scroll"><i></i>SCROLL</div></div></div></section>
-<div class="ticker" aria-hidden="true"><div class="row"><span>Body Care AjuCure</span><span>Gentle Technique</span><span>Posture</span><span>Self Care Advice</span><span>Since 2015</span><span>Body Care AjuCure</span><span>Gentle Technique</span><span>Posture</span><span>Self Care Advice</span><span>Since 2015</span></div></div>
-<section class="state" id="about"><div class="wrap state-grid"><div><p class="eyebrow">About</p><h2 class="split"><span class="line"><span>痛いところだけを</span></span><span class="line"><span>見るのではなく、</span></span><span class="line"><span>体ぜんぶのつながりを見ます。</span></span></h2><p class="lead reveal">痛いところだけでなく、体全体のバランスを見て施術します。おうちでできるセルフケアもお伝えし、くり返さない体づくりをお手伝いします。</p></div>
-<div class="photo reveal"><canvas id="ph1" aria-hidden="true"></canvas><span class="ph">PHOTO — 施術室</span></div></div></section>
-<section class="feat"><div class="wrap feat-grid"><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><h3>ボキボキしない</h3><p>やさしい手技で、初めての方も安心。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 9.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-5.2-3L5 13.5a1.5 1.5 0 0 1 2.4-1.8L9 13.5"/></svg><h3>丁寧な検査</h3><p>姿勢と動きを見て、原因を探します。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><h3>セルフケア指導</h3><p>通院の合間も、自分で整えられるように。</p></div></div></section>
-<section class="sig" id="sig"><div class="wrap head"><h2>Body Map</h2><p>気になる場所を押してください。よくある原因と、当院での施術の考え方をご説明します。</p></div><div class="body"><div class="wrap bmap"><svg viewBox="0 0 200 420" class="bodyfig" aria-label="体の図">
-<path class="sil" d="M100 20c14 0 24 11 24 25s-10 27-24 27-24-13-24-27 10-25 24-25zM70 84h60c16 0 26 10 28 26l10 90c1 9-12 11-14 2l-12-74v84l8 150c1 12-17 13-18 1l-12-128-12 128c-1 12-19 11-18-1l8-150v-84l-12 74c-2 9-15 7-14-2l10-90c2-16 12-26 28-26z"/>
-<g class="zones"><circle data-z="neck" cx="100" cy="80" r="13"/><circle data-z="shoulder" cx="66" cy="96" r="13"/><circle data-z="shoulder" cx="134" cy="96" r="13"/><circle data-z="back" cx="100" cy="135" r="15"/><circle data-z="waist" cx="100" cy="190" r="15"/><circle data-z="pelvis" cx="100" cy="228" r="15"/><circle data-z="knee" cx="84" cy="320" r="12"/><circle data-z="knee" cx="116" cy="320" r="12"/></g></svg>
-<div class="zinfo" id="zinfo" aria-live="polite"><p class="zl">SELECT</p><h3>体の気になる場所を押してください</h3><p>首・肩・背中・腰・骨盤・ひざから選べます。</p></div></div></div></section>
-<section class="menu" id="menu"><div class="wrap menu-grid"><div><p class="eyebrow">Menu</p><h2>Price<br>List</h2><p class="note">表示はすべて税込です。</p></div><ul class="list"><li class="reveal"><div><b>初回（カウンセリング・検査込み）</b></div><div class="p">6,600円</div></li><li class="reveal"><div><b>整体 40分</b></div><div class="p">5,500円</div></li><li class="reveal"><div><b>整体 60分</b></div><div class="p">7,700円</div></li><li class="reveal"><div><b>骨盤調整</b></div><div class="p">5,500円</div></li><li class="reveal"><div><b>回数券（5回）</b></div><div class="p">25,000円</div></li></ul></div></section>
-<section class="voice"><div class="wrap"><p class="eyebrow">Voice</p><h2>Our Guests</h2><div class="quotes"><figure class="reveal"><blockquote>デスクワークの肩こりが軽くなりました。</blockquote><figcaption>40代・会社員</figcaption></figure><figure class="reveal"><blockquote>歩くのが楽になって、散歩が楽しみに。</blockquote><figcaption>60代・主婦</figcaption></figure></div></div></section>
-<section class="faq" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow">FAQ</p><h2>Q &amp; A</h2></div><div><div class="qa"><button aria-expanded="false">保険は使えますか？<span class="pm"></span></button><div class="ans"><div><p>自費の施術のみです。</p></div></div></div><div class="qa"><button aria-expanded="false">どんな服装で行けばいいですか？<span class="pm"></span></button><div class="ans"><div><p>動きやすい服装でお越しください。着替えもあります。</p></div></div></div><div class="qa"><button aria-expanded="false">どれくらい通えばいいですか？<span class="pm"></span></button><div class="ans"><div><p>状態によりますが、最初は週1回をおすすめしています。</p></div></div></div></div></div></section>
-<section class="reserve" id="reserve"><div class="wrap"><h2>Book Now</h2><p>初回はカウンセリングと検査を含めて約70分です。ご予約はWEBかお電話で承ります。</p><a class="mag" href="#reserve" data-mag>初回を<br>予約する</a>
-<dl class="info"><div><dt>HOURS</dt><dd>9:00〜20:00（日曜定休）</dd></div><div><dt>ACCESS</dt><dd>〇〇駅 徒歩3分</dd></div><div><dt>ADDRESS</dt><dd>東京都〇〇区〇〇 1-2-3</dd></div></dl></div></section>
-<section class="partner"><div class="wrap"><a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><div><span class="m">NOCTURNE CONCIERGE</span><b>当店のお客さまへ：夜だけの家事代行</b><small>18:00〜翌3:00。作り置き・洗濯・片付けを、帰ってからの時間に。</small></div><span class="go">VIEW →</span></a></div></section>
-</main><footer class="wrap"><span>© アジュキュア</span><span>※見本です。写真・文章・料金はお店の内容に差し替えてお作りします。</span></footer><div class="sample">SAMPLE</div>
-<script>window.__photo=['#d7e6e3','#9fd0c8','#f2f7f6','#5aa39d'];
-window.__heroFx=function(cv){const x=cv.getContext('2d');let w,h,d=Math.min(devicePixelRatio,2);const sz=()=>{w=cv.clientWidth;h=cv.clientHeight;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);};sz();addEventListener('resize',sz);
-let s=0,ts=0;addEventListener('scroll',()=>{ts=Math.min(1,scrollY/(innerHeight*.6));},{passive:true});const N=24;const start=performance.now();
-const f=t=>{const intro=Math.min(1,(t-start-1800)/2600);s+=(Math.max(ts,Math.max(0,intro))-s)*.05;x.clearRect(0,0,w,h);const cx=w*.72,top=h*.12,bot=h*.88;
-for(let k=0;k<3;k++){x.strokeStyle=`rgba(47,125,122,${.12-k*.03})`;x.beginPath();x.arc(cx,(top+bot)/2,(bot-top)*(.36+k*.09),0,Math.PI*2);x.stroke();}
-x.strokeStyle='rgba(20,48,46,.5)';x.lineWidth=1.2;x.beginPath();const pts=[];for(let i=0;i<N;i++){const v=i/(N-1);const curve=Math.sin(v*Math.PI*1.4)*w*.06*(1-s)+Math.sin(t/900+v*4)*2*(1-s);const px=cx+curve,py=top+v*(bot-top);pts.push([px,py]);i?x.lineTo(px,py):x.moveTo(px,py);}x.stroke();
-pts.forEach(([px,py],i)=>{const r=4+3*Math.sin(Math.PI*i/(N-1));x.fillStyle=i%6===0?'#2f7d7a':'#14302e';x.beginPath();x.ellipse(px,py,r*1.8,r,0,0,Math.PI*2);x.fill();});
-x.fillStyle='rgba(47,125,122,.85)';x.font='600 11px Manrope,sans-serif';x.fillText(s>.9?'ALIGNED':'ALIGNING…',cx+w*.08,bot);if(!window.__reduce)requestAnimationFrame(f);};requestAnimationFrame(f);};
-window.__sigFx=function(){const Z={neck:['NECK','首のこり・頭痛','長時間のスマホやデスクワークで、頭が前に出た姿勢が続くことが主な原因です。','首だけでなく、胸と背中の硬さをゆるめて頭の位置を戻します。'],shoulder:['SHOULDER','肩こり','巻き肩で肩甲骨が外に開き、肩まわりの筋肉が引っ張られ続けています。','肩甲骨の動きを取り戻し、腕の付け根から整えます。'],back:['BACK','背中のはり','呼吸が浅くなると、背中の筋肉が固まりやすくなります。','肋骨まわりをゆるめ、深く息が吸える状態にします。'],waist:['LOWER BACK','腰痛','腰そのものより、股関節やお尻の硬さが腰に負担をかけていることが多いです。','股関節とお尻をゆるめ、腰にかかる負担を分散させます。'],pelvis:['PELVIS','骨盤のゆがみ','足を組む・片足に体重をかけるなどの癖で、左右の高さがずれていきます。','左右の筋肉のバランスを整え、立ち方・座り方もお伝えします。'],knee:['KNEE','ひざの痛み','ひざは、股関節と足首の動きの悪さをかばって痛むことがあります。','股関節と足首から整え、ひざへの負担を減らします。']};
-const box=document.getElementById('zinfo');document.querySelectorAll('.zones circle').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.zones circle').forEach(o=>o.classList.toggle('on',o.dataset.z===c.dataset.z));const z=Z[c.dataset.z];box.innerHTML=`<p class="zl">${z[0]}</p><h3>${z[1]}</h3><dl><dt>よくある原因</dt><dd>${z[2]}</dd><dt>施術の考え方</dt><dd>${z[3]}</dd></dl>`;}));};</script>
+<section class="hero" data-bg="#f7f0e8" data-fg="#2b2220">
+  <div class="stick">
+    <div class="arch" id="arch"><canvas id="smoke" aria-hidden="true"></canvas><p class="inner-copy" id="inner"><small>WARM &amp; PRIVATE</small>ひとりのための、<br>ぬくもりの時間。</p></div>
+    <div class="h-copy">
+      <div class="h-l">
+        <p class="lat">ACUPUNCTURE &amp; MOXIBUSTION</p>
+        <h1 aria-label="今日を整えて、未来のからだに積み立てる。"><span class="ln"><span>今日を整えて、</span></span><span class="ln"><span>未来のからだに</span></span><span class="ln"><span>積み立てる。</span></span></h1>
+        <p class="sub">西新宿の、女性専用・完全予約制のプライベート鍼灸</p>
+      </div>
+      <div class="h-r"><span>美容と、からだと、女性のライフステージに。</span></div>
+    </div>
+    <p class="arch-cap">SCROLL — 窓がひらきます</p>
+  </div>
+</section>
+
+<section class="concept" id="about" data-bg="#f7f0e8" data-fg="#2b2220"><div class="wrap cg">
+  <div class="stack" id="stack">
+    <svg viewBox="0 0 400 420" aria-hidden="true">
+      <path d="M40 410 V170 A160 160 0 0 1 360 170 V410" fill="none" stroke="#e2d4c6"/>
+      <g id="layers"></g>
+      <text x="200" y="120" text-anchor="middle" font-family="Marcellus" font-size="13" letter-spacing="4" fill="#7d3236" id="mon">MONTH 01</text>
+    </svg>
+    <p class="lbl">ひと月ごとのケアが、少しずつ重なっていくイメージ</p>
+  </div>
+  <div>
+    <p class="kick">CONCEPT</p>
+    <h2 class="ttl split"><span class="ln"><span>いまの不調を整えながら、</span></span><span class="ln"><span>先のからだを育てていく。</span></span></h2>
+    <p class="body rv">AjuCureは、東洋医学をもとにした鍼とお灸で、美容と健康の両方からからだを整えるプライベートサロンです。施術者がひとりで、おひとりずつに向き合います。</p>
+    <p class="big-q rv">その日の不調を和らげることと、<br>これからの健康を「積み立てる」こと。<br>どちらも、同じくらい大切に。</p>
+  </div>
+</div></section>
+
+<section class="works" data-bg="#f7f0e8" data-fg="#2b2220"><div class="wrap">
+  <p class="kick">TREATMENTS</p>
+  <h2 class="ttl split"><span class="ln"><span>鍼が、はじめての方にも。</span></span></h2>
+  <div class="wg">
+    <div class="wc rv"><div class="win"><span class="no">01 / BEAUTY</span><svg viewBox="0 0 100 120"><path d="M50 18 C28 18 22 42 24 60 C26 86 40 104 50 104 C60 104 74 86 76 60 C78 42 72 18 50 18Z"/><path d="M40 52 l-14 -10M62 50 l14 -12M44 76 l-16 4M58 76 l16 4M50 36 v-16"/><circle cx="50" cy="20" r="1.6"/></svg></div><h3>美容鍼</h3><p>お顔に細い鍼を。ハリや表情のこわばりが気になる方へ。</p></div>
+    <div class="wc rv"><div class="win"><span class="no">02 / MOXA</span><svg viewBox="0 0 100 120"><path d="M38 96 L50 66 L62 96 Z"/><path d="M50 62 C44 52 56 46 50 36 C44 26 56 20 50 12"/><path d="M22 100 H78"/></svg></div><h3>巡温美灸</h3><p>鍼を使わない、お灸だけのメニュー。鍼が苦手な方にも。</p></div>
+    <div class="wc rv"><div class="win"><span class="no">03 / CUPPING</span><svg viewBox="0 0 100 120"><circle cx="38" cy="58" r="16"/><circle cx="64" cy="76" r="13"/><circle cx="62" cy="40" r="10"/><path d="M18 100 Q50 88 82 100"/></svg></div><h3>鍼灸＋吸玉</h3><p>肩や背中の重さに。鍼灸とカッピングを組み合わせて。</p></div>
+    <div class="wc rv"><div class="win"><span class="no">04 / LIFE STAGE</span><svg viewBox="0 0 100 120"><circle cx="50" cy="60" r="34"/><path d="M50 26 A34 34 0 0 1 84 60"/><circle cx="50" cy="60" r="4"/><path d="M50 60 L72 44"/></svg></div><h3>女性のライフステージ</h3><p>妊活、産前産後、ゆらぎの時期。その時々のからだに。</p></div>
+  </div>
+</div></section>
+
+<section class="stage" id="sig" data-bg="#5b2226" data-fg="#f7f0e8"><div class="wrap">
+  <p class="kick">LIFE STAGE CALENDAR</p>
+  <h2 class="ttl split"><span class="ln"><span>いまの私に、合うケアは。</span></span></h2>
+  <p class="lead rv">円のなかから、いまのご自分に近いものを選んでください。その時期によく選ばれるメニューの例をご案内します。（見本のため内容は仮のものです。体調に不安がある方は医療機関にもご相談ください）</p>
+  <div class="sg">
+    <div class="dial rv" id="dial">
+      <svg viewBox="0 0 400 400" id="dialSvg" role="group" aria-label="ライフステージを選ぶ"></svg>
+      <div class="hub"><div><small id="hubEn">SKIN</small><b id="hubJp">肌・美容</b></div></div>
+    </div>
+    <div class="card" id="card">
+      <span class="tag swap" id="cTag">FOR YOU</span>
+      <div class="swap"><h3 id="cTtl"></h3><p class="desc" id="cDesc"></p><ul id="cList"></ul><p class="care" id="cCare"></p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="menu" id="menu" data-bg="#f7f0e8" data-fg="#2b2220"><div class="wrap">
+  <div class="mh"><div><p class="kick">MENU</p><h2 class="ttl split"><span class="ln"><span>メニューと料金（例）</span></span></h2></div><p class="note">※料金・時間はすべて見本用の例です。実際のメニューに合わせて作り直します。</p></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-t="0">美容</button>
+    <button role="tab" aria-selected="false" data-t="1">からだの不調</button>
+    <button role="tab" aria-selected="false" data-t="2">肌のお悩み</button>
+    <button role="tab" aria-selected="false" data-t="3">ライフステージ</button>
+  </div>
+  <div class="panels">
+    <div class="panel on" role="tabpanel">
+      <div class="it"><b>美容鍼</b><small>お顔と、首・肩まわりも合わせて／約70分</small><span class="pr">9,900<i>円・例</i></span></div>
+      <div class="it"><b>幹細胞美容鍼</b><small>美容鍼に専用の美容液ケアを組み合わせて／約80分</small><span class="pr">14,300<i>円・例</i></span></div>
+      <div class="it"><b>巡温美灸（お灸のみ）</b><small>鍼を使わないメニュー。冷えが気になる方にも／約60分</small><span class="pr">7,700<i>円・例</i></span></div>
+    </div>
+    <div class="panel" role="tabpanel">
+      <div class="it"><b>鍼灸（全身）</b><small>肩こり・腰の重さ・疲れが抜けにくいときに／約60分</small><span class="pr">8,800<i>円・例</i></span></div>
+      <div class="it"><b>鍼灸＋吸玉</b><small>背中の張りが気になる方へ／約75分</small><span class="pr">9,900<i>円・例</i></span></div>
+    </div>
+    <div class="panel" role="tabpanel">
+      <div class="it"><b>大人の肌のお悩みケア</b><small>カウンセリングを丁寧に。経過を見ながら続けるメニュー／約60分</small><span class="pr">8,800<i>円・例</i></span></div>
+    </div>
+    <div class="panel" role="tabpanel">
+      <div class="it"><b>妊活サポート鍼灸</b><small>からだを温め、整える時間に／約60分</small><span class="pr">8,800<i>円・例</i></span></div>
+      <div class="it"><b>産前・産後ケア</b><small>時期に合わせて、無理のない姿勢で／約60分</small><span class="pr">8,800<i>円・例</i></span></div>
+      <div class="it"><b>ゆらぎ期のケア</b><small>年齢による変化と向き合う方へ／約60分</small><span class="pr">8,800<i>円・例</i></span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="flow" data-bg="#f7f0e8" data-fg="#2b2220"><div class="wrap fg">
+  <div class="side"><p class="kick">FIRST VISIT</p><h2 class="ttl split"><span class="ln"><span>はじめての方へ</span></span></h2><p>完全予約制です。施術者がひとりで対応しているため、お電話ではなくLINE・インスタDM・フォームからお問い合わせください（例）。</p></div>
+  <div class="steps">
+    <div class="step rv"><span class="c">1</span><div><h3>ご予約</h3><p>LINE・インスタDM・フォームから、ご希望の日時とお悩みをお送りください。</p></div></div>
+    <div class="step rv"><span class="c">2</span><div><h3>カウンセリング</h3><p>体調や生活のリズム、気になっていることをゆっくりうかがいます。</p></div></div>
+    <div class="step rv"><span class="c">3</span><div><h3>施術</h3><p>その日の状態に合わせて、鍼・お灸・吸玉を組み合わせます。鍼が不安な方はお灸だけでも。</p></div></div>
+    <div class="step rv"><span class="c">4</span><div><h3>おうちでのこと</h3><p>次回までのすごし方や、セルフケアのヒントをお伝えします。</p></div></div>
+  </div>
+</div></section>
+
+<section class="voice" data-bg="#f7f0e8" data-fg="#2b2220">
+  <div class="wrap"><p class="kick">VOICE</p><h2 class="ttl split"><span class="ln"><span>お客さまの声（例）</span></span></h2></div>
+  <div class="vrow" id="vrow">
+    <figure class="vc"><span class="ex">例</span><blockquote>鍼ははじめてでしたが、説明が丁寧で安心できました。</blockquote><figcaption>例・30代</figcaption></figure>
+    <figure class="vc"><span class="ex">例</span><blockquote>お灸だけのメニューがあるのがうれしい。じんわり温かくて眠くなりました。</blockquote><figcaption>例・40代</figcaption></figure>
+    <figure class="vc"><span class="ex">例</span><blockquote>ほかのお客さんと会わないので、肌の悩みも気兼ねなく相談できます。</blockquote><figcaption>例・30代</figcaption></figure>
+    <figure class="vc"><span class="ex">例</span><blockquote>産後のからだのことも、時期に合わせて考えてもらえました。</blockquote><figcaption>例・30代</figcaption></figure>
+  </div>
+</section>
+
+<section class="faq" id="faq" data-bg="#f7f0e8" data-fg="#2b2220"><div class="wrap">
+  <p class="kick" style="justify-content:center">Q &amp; A</p>
+  <h2 class="ttl split" style="text-align:center"><span class="ln"><span>よくある質問</span></span></h2>
+  <div class="fq">
+    <div class="qa"><button aria-expanded="false"><span class="q">Q</span>鍼は痛くありませんか？<span class="ar"></span></button><div class="an"><div><p>髪の毛ほどの細い鍼を使います。感じ方には個人差があるため、様子をうかがいながら進めます。鍼が不安な方は、お灸だけのメニューもあります。</p></div></div></div>
+    <div class="qa"><button aria-expanded="false"><span class="q">Q</span>男性も利用できますか？<span class="ar"></span></button><div class="an"><div><p>申し訳ありません、女性専用のサロンです。</p></div></div></div>
+    <div class="qa"><button aria-expanded="false"><span class="q">Q</span>妊娠中でも受けられますか？<span class="ar"></span></button><div class="an"><div><p>時期や体調によってご案内が変わります。ご予約の前にご相談ください。かかりつけの医師にもご確認いただくと安心です。</p></div></div></div>
+    <div class="qa"><button aria-expanded="false"><span class="q">Q</span>電話で予約できますか？<span class="ar"></span></button><div class="an"><div><p>施術中は電話に出られないため、LINE・インスタDM・フォームからお願いしています（例）。</p></div></div></div>
+  </div>
+</div></section>
+
+<section class="access" id="access" data-bg="#f7f0e8" data-fg="#2b2220"><div class="wrap">
+  <p class="kick">ACCESS</p>
+  <h2 class="ttl split"><span class="ln"><span>西新宿で、静かに。</span></span></h2>
+  <div class="ag">
+    <div class="mapw rv">
+      <svg viewBox="0 0 400 400" aria-label="西新宿駅周辺の簡単な地図（イメージ）">
+        <rect width="400" height="400" fill="#fbf7f1"/>
+        <g fill="#efe3d6"><rect x="40" y="150" width="70" height="60" rx="6"/><rect x="130" y="150" width="60" height="90" rx="6"/><rect x="230" y="120" width="80" height="60" rx="6"/><rect x="240" y="250" width="70" height="80" rx="6"/><rect x="40" y="250" width="110" height="60" rx="6"/></g>
+        <path d="M0 225 H400" stroke="#e2d4c6" stroke-width="18"/>
+        <path d="M205 100 V400" stroke="#e2d4c6" stroke-width="14"/>
+        <text x="14" y="219" font-size="11" fill="#8b7d75" font-family="Noto Sans JP">青梅街道</text>
+        <circle cx="205" cy="225" r="10" fill="#7d3236"/>
+        <text x="222" y="214" font-size="13" fill="#2b2220" font-family="Shippori Mincho B1" font-weight="700">西新宿駅</text>
+        <path d="M205 225 C 200 270, 230 290, 270 300" stroke="#e48a5a" stroke-width="2" stroke-dasharray="3 5" fill="none"/>
+        <circle cx="274" cy="302" r="6" fill="#e48a5a"/>
+        <circle cx="274" cy="302" r="6" fill="none" stroke="#e48a5a"><animate attributeName="r" values="6;22" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="2.6s" repeatCount="indefinite"/></circle>
+        <text x="288" y="350" font-size="15" fill="#7d3236" font-family="Marcellus">AjuCure</text>
+        <text x="288" y="366" font-size="9" fill="#8b7d75" font-family="Noto Sans JP">（場所はイメージ）</text>
+      </svg>
+    </div>
+    <dl class="info rv">
+      <div><dt>STATION</dt><dd>東京メトロ丸ノ内線 西新宿駅から徒歩圏内</dd></div>
+      <div><dt>STYLE</dt><dd>女性専用・完全予約制（おひとりずつ）</dd></div>
+      <div><dt>HOURS</dt><dd>10:30〜20:00受付・不定休（例）</dd></div>
+      <div><dt>NOTE</dt><dd>詳しい場所は、ご予約確定後にご案内します（見本）。</dd></div>
+    </dl>
+  </div>
+</div></section>
+
+<section class="reserve" id="reserve" data-bg="#5b2226" data-fg="#f7f0e8"><div class="ember" id="ember"></div><div class="wrap">
+  <p class="kick">RESERVATION</p>
+  <h2 class="split"><span class="ln"><span>ぬくもりの時間を、</span></span><span class="ln"><span>予約する。</span></span></h2>
+  <p class="lead">ご予約・ご相談は、LINE・インスタグラムのDM・お問い合わせフォームから承っています（例）。</p>
+  <div class="rb">
+    <a class="mag" href="#" data-mag><span>LINEで予約する</span></a>
+    <a class="mag alt" href="#" data-mag><span>Instagram DMで相談</span></a>
+    <a class="mag alt" href="#" data-mag><span>フォームから問い合わせ</span></a>
+  </div>
+  <p class="small">※医療機関ではありません。治療中の方は主治医にもご相談ください。</p>
+</div></section>
+
+<section class="partner" data-bg="#5b2226" data-fg="#f7f0e8"><div class="wrap">
+  <a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><span class="tag">2.5万円プランの例</span><div><b>Partner: Nocturne Concierge（夜だけの家事代行）</b><br>からだを温めた日の夜は、家事をまかせて早めに休む。そんな提携サービスの紹介枠です。</div><span class="go">VIEW →</span></a>
+<footer><span>© AjuCure</span><span>この見本は提案用に作成したもので、内容は仮のものです</span></footer>
+</div></section>
+</main>
+<div class="sample">SAMPLE</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(() => {
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hasG = typeof gsap !== 'undefined';
-window.__reduce = reduce;
-/* 写真の枠：お店の色でゆっくり揺らぐ（本番はお店の写真に差し替え） */
-function photoFx(cv,cols){const x=cv.getContext('2d');let w,h;const sz=()=>{w=cv.width=cv.clientWidth;h=cv.height=cv.clientHeight;};sz();addEventListener('resize',sz);
-  const blobs=cols.map((c,i)=>({c,x:Math.random(),y:Math.random(),r:.45+Math.random()*.3,s:.0002+Math.random()*.0003,p:Math.random()*6}));
-  let vis=true;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(cv);
-  const f=t=>{if(vis){x.fillStyle=cols[0];x.fillRect(0,0,w,h);x.globalCompositeOperation='lighter';
-    blobs.forEach((b,i)=>{const bx=(b.x+.25*Math.sin(t*b.s*3+b.p))*w,by=(b.y+.25*Math.cos(t*b.s*2+b.p))*h;const g=x.createRadialGradient(bx,by,0,bx,by,b.r*Math.max(w,h));g.addColorStop(0,b.c);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.globalAlpha=.55;x.fillRect(0,0,w,h);});
-    x.globalCompositeOperation='source-over';x.globalAlpha=1;}
-    if(!reduce)requestAnimationFrame(f);};requestAnimationFrame(f);}
-window.__photoFx=photoFx;
-const h1=document.querySelector('.hero h1 .mask');
-h1.innerHTML=[...h1.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
-const hd=document.getElementById('hd');const onScroll=()=>hd.classList.toggle('solid',scrollY>innerHeight*.6);addEventListener('scroll',onScroll,{passive:true});onScroll();
-document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}));
-const cur=document.querySelector('.cursor');
-if(matchMedia('(hover:hover)').matches){let cx=0,cy=0,x=0,y=0;addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;});
-  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
-  (function f(){x+=(cx-x)*.18;y+=(cy-y)*.18;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();}
-document.querySelectorAll('[data-mag]').forEach(m=>{m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
-  m.addEventListener('pointerleave',()=>{m.style.transition='transform .8s cubic-bezier(.22,1,.36,1),background .4s';m.style.transform='';setTimeout(()=>m.style.transition='',800);});});
-try{ window.__heroFx && window.__heroFx(document.getElementById('hero')); }catch(e){}
-try{ window.__photo && photoFx(document.getElementById('ph1'), window.__photo); }catch(e){}
-try{ window.__sigFx && window.__sigFx(); }catch(e){}
-const loader=document.getElementById('loader');
-if(reduce||!hasG){loader.remove();document.querySelectorAll('.hero .tate,.hero-foot').forEach(e=>e.style.opacity=1);document.querySelectorAll('.ch,.line>span').forEach(e=>{e.style.transform='none';e.style.opacity=1;});return;}
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasG=typeof gsap!=='undefined';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* ---------- アーチの中：灸の煙とぬくもり（canvas） ---------- */
+(function smoke(){
+  const c=$('#smoke'),x=c.getContext('2d');let W,H,parts=[];const m={x:.5,y:.7,tx:.5,ty:.7};
+  const size=()=>{const d=Math.min(devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);};
+  size();new ResizeObserver(size).observe(c);
+  $('#arch').addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();m.tx=(e.clientX-r.left)/r.width;m.ty=(e.clientY-r.top)/r.height;});
+  const spr=document.createElement('canvas');spr.width=spr.height=64;{const sx=spr.getContext('2d'),sg=sx.createRadialGradient(32,32,0,32,32,32);sg.addColorStop(0,'rgba(247,236,226,1)');sg.addColorStop(.5,'rgba(247,236,226,.35)');sg.addColorStop(1,'rgba(247,236,226,0)');sx.fillStyle=sg;sx.fillRect(0,0,64,64);}
+  const spawn=()=>({x:W*.5+(Math.random()-.5)*8,y:H*.78,vx:(Math.random()-.5)*.2,vy:-.5-Math.random()*.5,r:6+Math.random()*10,life:0,max:260+Math.random()*180,s:Math.random()*6.28});
+  let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
+  const t0=performance.now();
+  function draw(now){
+    const t=(now-t0)/1000;m.x+=(m.tx-m.x)*.04;m.y+=(m.ty-m.y)*.04;
+    const g=x.createRadialGradient(W*.5,H*.8,0,W*.5,H*.8,Math.max(W,H)*.9);
+    g.addColorStop(0,'#a0473c');g.addColorStop(.35,'#6e2a2e');g.addColorStop(1,'#3d1517');
+    x.fillStyle=g;x.fillRect(0,0,W,H);
+    // ぬくもりの灯
+    const fl=.85+Math.sin(t*3)*.05+Math.sin(t*7.3)*.03;
+    const e=x.createRadialGradient(W*.5,H*.79,0,W*.5,H*.79,W*.32*fl);
+    e.addColorStop(0,'rgba(255,190,140,.95)');e.addColorStop(.12,'rgba(228,138,90,.6)');e.addColorStop(1,'rgba(228,138,90,0)');
+    x.fillStyle=e;x.fillRect(0,0,W,H);
+    // 灸の台
+    x.fillStyle='rgba(201,180,154,.9)';x.beginPath();x.moveTo(W*.5,H*.775);x.lineTo(W*.5+18,H*.86);x.lineTo(W*.5-18,H*.86);x.closePath();x.fill();
+    x.fillStyle='rgba(247,240,232,.18)';x.fillRect(W*.2,H*.86,W*.6,1);
+    if(!reduce&&parts.length<110&&Math.random()<.45)parts.push(spawn());
+    x.globalCompositeOperation='lighter';
+    for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.life++;
+      const k=p.life/p.max;
+      p.vx+=Math.sin(p.y*.02+t+p.s)*.02+(m.x-.5)*.006;p.vy*=.998;
+      p.x+=p.vx;p.y+=p.vy;p.r+=.12;
+      x.globalAlpha=Math.sin(Math.PI*k)*.085;
+      const rr=p.r*2.2;x.drawImage(spr,p.x-rr,p.y-rr,rr*2,rr*2);
+      if(p.life>p.max||p.y<-40)parts.splice(i,1);}
+    x.globalAlpha=1;x.globalCompositeOperation='source-over';
+  }
+  if(reduce){for(let i=0;i<120;i++){const p=spawn();p.life=Math.random()*200;p.y-=p.life*.8;p.r+=p.life*.12;parts.push(p);}draw(performance.now());return;}
+  const loop=now=>{if(vis)draw(now);requestAnimationFrame(loop);};requestAnimationFrame(loop);
+})();
+
+/* ---------- 積み立ての層 ---------- */
+const layers=$('#layers');const N=12;let lh='';
+for(let i=0;i<N;i++){const y=400-i*19,w=280-i*6;const col=['#e7c3b8','#d9a497','#b8695f','#7d3236'][i%4];
+  lh+=`<rect class="ly" x="${200-w/2}" y="${y-14}" width="${w}" height="14" rx="7" fill="${col}" opacity="${.55+i*.035}"/>`;}
+layers.innerHTML=lh;
+
+/* ---------- ライフステージ・ダイアル ---------- */
+const ST=[
+ {en:'SKIN',jp:'肌・美容',t:'ハリや表情が気になる時期に',d:'お顔の美容鍼に、首や肩のケアを合わせて。内側と外側の両方から整えていきます。',l:[['美容鍼','9,900円・例'],['幹細胞美容鍼','14,300円・例']],c:'※当日のお肌の状態によって内容を調整します。'},
+ {en:'MONTHLY',jp:'毎月のゆらぎ',t:'月のリズムに振り回されがちなとき',d:'冷えや重さが出やすい時期は、お灸でじんわり温める時間を。鍼が苦手な方にも。',l:[['巡温美灸（お灸のみ）','7,700円・例'],['鍼灸（全身）','8,800円・例']],c:'※気になる症状が強い場合は医療機関にもご相談ください。'},
+ {en:'FERTILITY',jp:'妊活',t:'からだを整えて、その日に備える',d:'生活のリズムや体調をうかがいながら、温めて整えるケアを続けていきます。',l:[['妊活サポート鍼灸','8,800円・例']],c:'※通院中の方は、主治医の方針を優先してください。'},
+ {en:'PREGNANCY',jp:'産前',t:'おなかが大きくなっていく時期に',d:'楽な姿勢で受けていただけるよう、時期に合わせて施術の内容と体勢を調整します。',l:[['産前ケア','8,800円・例']],c:'※ご予約前に、時期と体調をお知らせください。'},
+ {en:'POSTPARTUM',jp:'産後',t:'抱っこと寝不足が続く日々に',d:'肩・背中・腰の重さに。限られた時間でも、ほっとできるメニューを一緒に考えます。',l:[['産後ケア','8,800円・例'],['鍼灸＋吸玉','9,900円・例']],c:'※産後の時期によってご案内が変わります。'},
+ {en:'TRANSITION',jp:'ゆらぎ期',t:'年齢による変化と向き合うとき',d:'眠り、ほてり、気分の波。ひとつずつお話をうかがいながら、無理なく続けられるケアを。',l:[['ゆらぎ期のケア','8,800円・例'],['巡温美灸（お灸のみ）','7,700円・例']],c:'※体調によっては医療機関の受診もおすすめしています。'}
+];
+const ds=$('#dialSvg'),NS='http://www.w3.org/2000/svg';
+const R1=190,R0=128,n=ST.length,gapA=.025;
+const pt=(a,r)=>[200+Math.cos(a)*r,200+Math.sin(a)*r];
+ST.forEach((s,i)=>{
+  const a0=-Math.PI/2+i*2*Math.PI/n+gapA,a1=-Math.PI/2+(i+1)*2*Math.PI/n-gapA,am=(a0+a1)/2;
+  const [x0,y0]=pt(a0,R1),[x1,y1]=pt(a1,R1),[x2,y2]=pt(a1,R0),[x3,y3]=pt(a0,R0),[tx,ty]=pt(am,(R0+R1)/2);
+  const g=document.createElementNS(NS,'g');g.setAttribute('class','seg');g.setAttribute('tabindex','0');g.setAttribute('role','button');g.setAttribute('aria-label',s.jp);
+  g.innerHTML=`<path d="M${x0} ${y0} A${R1} ${R1} 0 0 1 ${x1} ${y1} L${x2} ${y2} A${R0} ${R0} 0 0 0 ${x3} ${y3} Z"/><text x="${tx}" y="${ty}">${s.jp}</text>`;
+  g.addEventListener('click',()=>pick(i));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(i);}});
+  ds.appendChild(g);
+});
+const nd=document.createElementNS(NS,'g');nd.setAttribute('class','needle');
+nd.innerHTML='<circle cx="200" cy="4" r="5" fill="#e48a5a"/><circle cx="200" cy="4" r="11" fill="none" stroke="#e48a5a" opacity=".5"/>';
+ds.appendChild(nd);
+let cur=-1;
+function pick(i){
+  if(i===cur)return;cur=i;const s=ST[i];
+  $$('.seg').forEach((g,k)=>g.classList.toggle('on',k===i));
+  nd.style.transform=`rotate(${(i+.5)*360/n}deg)`;
+  const card=$('#card');card.classList.add('out');
+  setTimeout(()=>{
+    $('#hubEn').textContent=s.en;$('#hubJp').textContent=s.jp;$('#cTag').textContent='FOR '+s.en;
+    $('#cTtl').textContent=s.t;$('#cDesc').textContent=s.d;$('#cList').innerHTML=s.l.map(([a,b])=>`<li><span>${a}</span><span>${b}</span></li>`).join('');$('#cCare').textContent=s.c;
+    card.classList.remove('out');
+  },reduce?0:300);
+}
+pick(0);
+
+/* ---------- タブ・質問・ヘッダー ---------- */
+$$('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  $$('.tabs button').forEach(o=>o.setAttribute('aria-selected',o===b));
+  $$('.panel').forEach((p,k)=>p.classList.toggle('on',k==b.dataset.t));
+  if(hasG&&!reduce)gsap.from($$('.panel.on .it'),{y:16,opacity:0,duration:.7,stagger:.07,ease:'expo.out'});
+}));
+$$('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}));
+const hd=$('#hd');addEventListener('scroll',()=>hd.classList.toggle('solid',scrollY>innerHeight*1.2),{passive:true});
+// 声のカードを複製してループ
+const vr=$('#vrow');vr.innerHTML+=vr.innerHTML;
+
+/* ---------- カーソル・磁石 ---------- */
+if(matchMedia('(hover:hover)').matches&&!reduce){
+  const gl=$('.glow'),dt=$('.dot');let mx=-300,my=-300,gx=-300,gy=-300,dx=-300,dy=-300;
+  addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;});
+  $$('a,button,.seg,.wc,.it').forEach(el=>{el.addEventListener('pointerenter',()=>dt.classList.add('on'));el.addEventListener('pointerleave',()=>dt.classList.remove('on'));});
+  (function f(){gx+=(mx-gx)*.08;gy+=(my-gy)*.08;dx+=(mx-dx)*.3;dy+=(my-dy)*.3;gl.style.transform=`translate(${gx}px,${gy}px) translate(-50%,-50%)`;dt.style.transform=`translate(${dx}px,${dy}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();
+  $$('[data-mag]').forEach(m=>{const sp=m.querySelector('span');
+    m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect(),ax=e.clientX-r.left-r.width/2,ay=e.clientY-r.top-r.height/2;m.style.transform=`translate(${ax*.25}px,${ay*.35}px)`;sp.style.transform=`translate(${ax*.08}px,${ay*.1}px)`;});
+    m.addEventListener('pointerleave',()=>{m.style.transition='transform .9s cubic-bezier(.25,1,.3,1)';m.style.transform='';sp.style.transform='';setTimeout(()=>m.style.transition='',900);});
+  });
+}
+
+const showAll=()=>{$$('.ln>span').forEach(e=>e.style.transform='none');$$('.h-l .sub,.h-r span,.arch .inner-copy').forEach(e=>e.style.opacity=1);};
+if(reduce||!hasG){$('#ld').remove();showAll();return;}
 gsap.registerPlugin(ScrollTrigger);
-const tl=gsap.timeline();
-tl.to('#loader .bar i',{width:'100%',duration:.9,ease:'power2.inOut'}).to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1').set('#loader',{display:'none'})
-  .to('.hero h1 .ch',{y:0,opacity:1,duration:1.3,ease:'expo.out',stagger:.045},'-=.45').to('.hero .tate',{opacity:1,duration:1.2},'-=.9').to('.hero-foot',{opacity:1,duration:1},'-=.9');
-gsap.to('.hero h1',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.line>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 80%'}}));
-gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
-gsap.from('.photo',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.photo',start:'top 80%'}});
-try{ window.__sigGsap && window.__sigGsap(gsap); }catch(e){}
+
+/* ---------- ローダー ---------- */
+gsap.timeline()
+  .to('#ld .fire',{scale:1,duration:.6,ease:'back.out(3)'},.2)
+  .to('#ld .smoke',{scaleY:1,duration:1,ease:'power2.out'},.5)
+  .to('#ld .moxa,#ld p',{opacity:0,duration:.4},1.5)
+  .to('#ld',{clipPath:'circle(0% at 50% 56%)',duration:1.1,ease:'expo.inOut'},1.6)
+  .set('#ld',{display:'none'})
+  .from('#arch',{scaleY:.2,transformOrigin:'50% 100%',duration:1.4,ease:'expo.out'},2.1)
+  .to('.h-l h1 .ln>span',{y:0,duration:1.3,ease:'expo.out',stagger:.12},2.3)
+  .to('.h-l .sub,.h-r span',{opacity:1,duration:1.2},2.8);
+gsap.set('#ld',{clipPath:'circle(75% at 50% 56%)'});
+
+/* ---------- アーチの窓がひらく（マスク展開） ---------- */
+gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:.7}})
+  .to('.h-copy',{opacity:0,y:-40,duration:.35},0)
+  .to('.arch-cap',{opacity:0,duration:.2},0)
+  .to('#arch',{width:'100vw',height:'100svh',top:'50%',borderRadius:'0px 0px 0px 0px',duration:1,ease:'power2.inOut'},0)
+  .to('#inner',{opacity:1,duration:.3},.6);
+
+/* ---------- 見出し・出現 ---------- */
+$$('.split').forEach(s=>gsap.to(s.querySelectorAll('.ln>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 86%'}}));
+$$('.rv').forEach(el=>gsap.from(el,{y:36,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
+
+/* 積み立て：スクロールで層が重なる */
+gsap.set('.ly',{scaleX:0,transformOrigin:'50% 50%',transformBox:'fill-box'});
+gsap.to('.ly',{scaleX:1,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:'#stack',start:'top 80%',end:'bottom 40%',scrub:.6,onUpdate:s=>{$('#mon').textContent='MONTH '+String(Math.max(1,Math.round(s.progress*12))).padStart(2,'0');}}});
+
+/* 流れ：通過したステップを灯す */
+$$('.step').forEach(s=>ScrollTrigger.create({trigger:s,start:'top 60%',onEnter:()=>s.classList.add('lit'),onLeaveBack:()=>s.classList.remove('lit')}));
+
+/* 予約：灯りがゆっくり上がる */
+gsap.fromTo('#ember',{y:120,scale:.7},{y:0,scale:1.2,ease:'none',scrollTrigger:{trigger:'#reserve',start:'top bottom',end:'bottom top',scrub:true}});
+
+/* 背景色の切り替え */
+$$('[data-bg]').forEach(s=>ScrollTrigger.create({trigger:s,start:'top 50%',end:'bottom 50%',onToggle:e=>{if(e.isActive){document.body.style.setProperty('--bg',s.dataset.bg);document.body.style.setProperty('--fg',s.dataset.fg);}}}));
 })();
 </script>
-</body></html>
+</body>
+</html>

@@ -1,205 +1,603 @@
 <!doctype html>
-<html lang="ja"><head><script>try{history.scrollRestoration='manual'}catch(e){};if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));addEventListener('pageshow',()=>scrollTo(0,0));</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow"><title>Atom.｜アトム（見本）</title>
+<html lang="ja">
+<head>
+<script>try{history.scrollRestoration='manual'}catch(e){};scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>men's hair salon Atom.｜恵比寿 1席1客のメンズサロン（見本）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Zen+Maru+Gothic:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Sans+JP:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* Atom.：ひと席だけの静けさ。黒の中に一点だけ灯る信号色。髪の毛の場を「切る」体験で語る */
 :root{
-  --bg:#f1f2ec; --paper:#f8f9f4; --ink:#22261f; --sub:#666b5f; --line:#dfe2d5;
-  --acc:#5f7f50; --acc2:#c5b98f; --dark:#1f2a22; --onDark:#eef1e6; --heroFg:#1f2a22;
-  --disp:'Fraunces','Georgia',serif; --jp:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif; --body:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --ink:#0b0b0c; --ink2:#141416; --ink3:#1d1d20; --bone:#ecebe6; --bone2:#dedcd4;
+  --mut:#8a8a8f; --sig:#ff5a1f; --line:rgba(236,235,230,.14);
+  --bg:var(--ink); --fg:var(--bone);
+  --en:'Space Grotesk',system-ui,sans-serif;
+  --jp:'IBM Plex Sans JP','Hiragino Sans',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:2;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font-family:var(--jp);font-weight:300;font-size:15px;line-height:1.95;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background-color .8s var(--ease),color .8s var(--ease)}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--acc);color:#fff}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
-#loader{position:fixed;inset:0;z-index:100;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:var(--onDark)}
-#loader .l{font-family:var(--disp);font-size:56px;line-height:1;font-style:italic;}
-#loader .bar{width:140px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
-#loader .bar i{display:block;height:100%;width:0;background:var(--acc2)}
-.cursor{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--acc);pointer-events:none;z-index:90;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .35s}
-.cursor.big{width:60px;height:60px;opacity:.35}
-@media (hover:none){.cursor{display:none}}
-header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,color .5s;color:var(--heroFg)}
-header.solid{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);color:var(--ink)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{font-family:var(--disp);font-size:22px;letter-spacing:.02em;font-style:italic;}
-.brand small{font-family:var(--body);font-style:normal;font-weight:400;font-size:10px;letter-spacing:.3em;margin-left:10px;opacity:.7}
-nav{display:flex;gap:28px;font-size:12px;letter-spacing:.2em;align-items:center}
-nav a{position:relative;padding:4px 0}
-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
-nav a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{border:1px solid currentColor;border-radius:999px;padding:8px 18px!important}
-.nav-cta::after{display:none}
-@media(max-width:820px){nav a:not(.nav-cta){display:none}}
-.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--heroFg);background:#e9ecdf}
-#hero{position:absolute;inset:0;width:100%;height:100%}
-.hero-in{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding-bottom:clamp(28px,5vh,56px);pointer-events:none}
-.hero-in a,.hero-in button{pointer-events:auto}
-.hero h1{align-self:center;font-family:var(--disp);font-weight:300;font-size:clamp(70px,14vw,220px);line-height:.9;letter-spacing:-.03em;font-style:italic;}
-.hero h1 .ch{display:inline-block;transform:translateY(110%);opacity:0;white-space:pre}
-.hero h1 .mask{display:inline-block;overflow:hidden;padding:0 .04em .1em}
-.hero .tate{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);font-size:clamp(17px,1.7vw,22px);letter-spacing:.4em;line-height:2.2;opacity:0}
-.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;letter-spacing:.2em;opacity:0}
-.hero-foot p{max-width:26em;line-height:2.1;letter-spacing:.08em;font-size:13px}
-.scroll{display:flex;align-items:center;gap:12px}
-.scroll i{display:block;width:1px;height:56px;background:currentColor;opacity:.3;position:relative;overflow:hidden}
-@media(max-width:820px){.hero .tate{top:auto;bottom:150px;transform:none}.hero-foot{flex-direction:column;align-items:flex-start}}
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0;background:var(--paper)}
-.ticker .row{display:inline-flex;gap:48px;font-family:var(--disp);font-size:26px;color:var(--sub);animation:tick 40s linear infinite;font-style:italic;}
-.ticker .row span::after{content:"✻";font-style:normal;font-size:12px;color:var(--acc);margin-left:48px;vertical-align:middle}
-@keyframes tick{to{transform:translateX(-50%)}}
-.state{padding-block:clamp(110px,16vw,220px)}
-.eyebrow{font-size:11px;letter-spacing:.35em;color:var(--acc);text-transform:uppercase;display:flex;align-items:center;gap:14px}
-.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
-.state h2{font-family:var(--jp);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.7;letter-spacing:.06em;margin-top:36px}
-.line{display:block;overflow:hidden}
-.line>span{display:inline-block;transform:translateY(105%)}
-.state .lead{margin-top:44px;max-width:34em;color:var(--sub)}
-.state-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,96px);align-items:end}
-.photo{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:14px;overflow:hidden;background:var(--paper)}
-.photo canvas{position:absolute;inset:0;width:100%;height:100%}
-.photo .ph{position:absolute;inset:auto 0 0 0;text-align:center;padding:24px;font-size:11px;letter-spacing:.3em;color:var(--onDark);mix-blend-mode:difference;opacity:.7}
-@media(max-width:820px){.state-grid{grid-template-columns:1fr}.photo{max-width:420px}}
-.feat{padding-block:0 clamp(100px,14vw,180px)}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.f{padding:44px 32px 44px 0;border-right:1px solid var(--line);min-width:0}
-.f:last-child{border-right:0}
-.f+.f{padding-left:32px}
-.f svg{width:34px;height:34px;color:var(--acc)}
-.f h3{font-family:var(--jp);font-size:21px;font-weight:500;margin:22px 0 10px;letter-spacing:.08em}
-.f p{color:var(--sub);font-size:14px}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr}.f,.f+.f{padding:32px 0;border-right:0;border-bottom:1px solid var(--line)}}
-.sig{background:var(--dark);color:var(--onDark);overflow:hidden;position:relative}
-.sig .head{padding-block:clamp(90px,12vw,150px) 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.sig h2{font-family:var(--disp);font-weight:300;font-size:clamp(48px,8vw,116px);line-height:.95;font-style:italic;}
-.sig .head p{max-width:26em;opacity:.72;font-size:14px}
-.sig .body{padding-bottom:clamp(90px,12vw,150px)}
-.menu{padding-block:clamp(110px,15vw,190px)}
-.menu-grid,.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.menu h2,.voice h2,.faq h2{font-family:var(--disp);font-weight:300;font-size:clamp(46px,7vw,92px);line-height:.95;margin-top:18px;font-style:italic;}
-.menu .note{margin-top:28px;color:var(--sub);font-size:13px}
-.list{list-style:none;border-top:1px solid var(--ink)}
-.list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative}
-.list li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.list li:hover::before{transform:scaleX(1)}
-.list b{font-family:var(--jp);font-weight:500;font-size:clamp(17px,1.8vw,21px);letter-spacing:.06em}
-.list .p{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;font-style:normal}
-.voice{padding-block:clamp(100px,14vw,170px);background:var(--paper);border-block:1px solid var(--line)}
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);margin-top:64px}
-.quotes figure{border-top:1px solid var(--line);padding-top:30px}
-.quotes blockquote{font-family:var(--jp);font-size:clamp(19px,2vw,24px);line-height:1.9;letter-spacing:.06em}
-.quotes blockquote::before{content:"“";display:block;font-family:Georgia,serif;font-size:80px;line-height:.6;color:var(--acc);height:40px}
-.quotes figcaption{margin-top:18px;font-size:12px;letter-spacing:.2em;color:var(--sub)}
-@media(max-width:820px){.quotes,.menu-grid,.faq-grid{grid-template-columns:1fr}}
-.faq{padding-block:clamp(110px,15vw,190px)}
-.qa{border-bottom:1px solid var(--line)}
-.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--jp);font-size:clamp(16px,1.6vw,19px);letter-spacing:.06em}
-.qa button:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
-.qa .pm{position:relative;width:14px;height:14px;flex:none;margin-top:8px}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--ink);transition:transform .5s var(--ease)}
+button,input{font:inherit;color:inherit}
+::selection{background:var(--sig);color:#000}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:clamp(18px,4.4vw,64px)}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.sig{color:var(--sig)}
+
+/* ローダー：00:00 → 60:00 を刻み、一本の線で切る */
+#ld{position:fixed;inset:0;z-index:100;pointer-events:none}
+#ld .h{position:absolute;left:0;right:0;height:50.5%;background:var(--ink)}
+#ld .h.t{top:0}#ld .h.b{bottom:0}
+#ld .cnt{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--en);font-weight:300;font-size:clamp(44px,9vw,120px);letter-spacing:-.02em;color:var(--bone);font-variant-numeric:tabular-nums;z-index:2}
+#ld .cut{position:absolute;left:0;top:50%;height:1px;width:100%;background:var(--sig);transform:scaleX(0);transform-origin:left;z-index:3}
+#ld .cap{position:absolute;left:0;right:0;bottom:12%;text-align:center;color:var(--mut);z-index:2}
+
+/* カーソル：照準 */
+.cx{position:fixed;left:0;top:0;width:34px;height:34px;pointer-events:none;z-index:95;transform:translate(-50%,-50%);transition:width .45s var(--ease),height .45s var(--ease)}
+.cx::before,.cx::after{content:"";position:absolute;background:var(--sig)}
+.cx::before{left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%) scaleY(.4)}
+.cx::after{top:50%;left:0;right:0;height:1px;transform:translateY(-50%) scaleX(.4)}
+.cx i{position:absolute;inset:0;border:1px solid rgba(255,90,31,.0);border-radius:50%;transition:border-color .4s,transform .45s var(--ease);transform:scale(.4)}
+.cx.on i{border-color:var(--sig);transform:scale(1.4)}
+@media(hover:none){.cx{display:none}}
+
+/* ヘッダー */
+header{position:fixed;inset:0 0 auto;z-index:50;mix-blend-mode:difference;color:#ecebe6}
+header .wrap{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:var(--en);font-weight:700;font-size:24px;letter-spacing:-.03em;display:flex;align-items:baseline;gap:10px}
+.logo span{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.18em;opacity:.7}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;position:relative;overflow:hidden;display:inline-block;height:1.6em;line-height:1.6em}
+nav a span{display:block;transition:transform .5s var(--ease)}
+nav a span+span{position:absolute;left:0;top:100%}
+nav a:hover span{transform:translateY(-100%)}
+nav .dm{border:1px solid currentColor;border-radius:999px;padding:0 16px;height:34px;line-height:32px}
+nav .dm span+span{top:100%;left:16px}
+@media(max-width:820px){nav a:not(.dm){display:none}.logo span{display:none}}
+
+/* ヒーロー：髪の場 */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:var(--ink)}
+#hair{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .shade{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 22% 70%,rgba(11,11,12,.86),rgba(11,11,12,0) 70%),linear-gradient(0deg,rgba(11,11,12,.9),rgba(11,11,12,0) 38%);pointer-events:none}
+.hero-in{position:absolute;left:0;right:0;bottom:clamp(90px,13vh,130px)}
+.hero h1{font-family:var(--en);font-weight:500;font-size:clamp(58px,12.2vw,196px);line-height:.86;letter-spacing:-.055em}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .ln>span{display:inline-block;transform:translateY(110%)}
+.hero h1 .dot{color:var(--sig)}
+.hero .jp{display:flex;gap:clamp(20px,5vw,80px);align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-top:clamp(22px,3.5vh,40px)}
+.hero .jp p{font-size:clamp(17px,1.7vw,22px);font-weight:400;letter-spacing:.14em;line-height:1.8;opacity:0}
+.hero .jp small{display:block;font-size:13px;color:var(--mut);letter-spacing:.08em;font-weight:300;margin-top:6px}
+.hero .meta{display:flex;gap:28px;color:var(--mut);opacity:0;flex-wrap:wrap}
+.hero .meta b{display:block;color:var(--bone);font-family:var(--en);font-weight:400;font-size:20px;letter-spacing:-.01em;text-transform:none}
+.trim{position:absolute;left:clamp(18px,4.4vw,64px);right:clamp(18px,4.4vw,64px);bottom:28px;display:flex;justify-content:space-between;color:var(--mut);opacity:0}
+.trim .bar{flex:1;margin:0 18px;height:1px;background:var(--line);position:relative;align-self:center}
+.trim .bar i{position:absolute;inset:0;background:var(--sig);transform:scaleX(0);transform-origin:left}
+@media(max-width:700px){.hero .meta{gap:18px}.hero .meta b{font-size:16px}.hero-in{bottom:84px}}
+
+/* 帯 */
+.band{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0}
+.band .tr{display:inline-flex;gap:46px;font-family:var(--en);font-weight:300;font-size:clamp(28px,4vw,56px);letter-spacing:-.03em;animation:mq 38s linear infinite}
+.band .tr i{font-style:normal;color:var(--sig)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* コンセプト */
+.concept{padding-block:clamp(110px,15vw,210px)}
+.cgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,6vw,100px);align-items:start}
+.one{position:sticky;top:110px;font-family:var(--en);font-weight:300;font-size:clamp(180px,26vw,380px);line-height:.8;letter-spacing:-.08em;color:transparent;-webkit-text-stroke:1px rgba(236,235,230,.35);user-select:none}
+.one span{color:var(--sig);-webkit-text-stroke:0;font-size:.18em;letter-spacing:0;vertical-align:top;margin-left:.1em}
+.ck{color:var(--mut);margin-bottom:28px;display:flex;gap:14px;align-items:center}
+.ck::before{content:"";width:28px;height:1px;background:var(--sig)}
+.say{font-size:clamp(22px,2.6vw,36px);font-weight:400;line-height:1.75;letter-spacing:.06em}
+.say .w{opacity:.16}
+.cnote{margin-top:44px;color:var(--mut);max-width:34em;font-size:14px}
+@media(max-width:820px){.cgrid{grid-template-columns:1fr}.one{position:relative;top:0;font-size:46vw}}
+
+/* 特徴 */
+.feat{padding-bottom:clamp(100px,13vw,180px)}
+.fh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:46px}
+.ttl{font-family:var(--en);font-weight:500;font-size:clamp(38px,6vw,88px);line-height:.95;letter-spacing:-.045em}
+.ttl .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ttl .ln>span{display:inline-block;transform:translateY(110%)}
+.jt{display:block;font-family:var(--jp);font-weight:400;font-size:clamp(14px,1.2vw,16px);letter-spacing:.16em;margin-top:14px;color:var(--mut)}
+.fr{position:relative;display:grid;grid-template-columns:90px minmax(0,1.1fr) minmax(0,1fr) 60px;gap:clamp(16px,3vw,48px);align-items:center;padding:38px 0;border-top:1px solid var(--line);isolation:isolate;overflow:hidden}
+.fr:last-child{border-bottom:1px solid var(--line)}
+.fr::before{content:"";position:absolute;inset:0;background:var(--ink3);transform:scaleY(0);transform-origin:top;transition:transform .7s var(--ease);z-index:-1}
+.fr:hover::before{transform:none}
+.fr .n{font-family:var(--mono);color:var(--sig);font-size:12px;padding-left:4px}
+.fr h3{font-weight:600;font-size:clamp(20px,2.3vw,30px);letter-spacing:.08em;line-height:1.5;transition:transform .6s var(--ease)}
+.fr:hover h3{transform:translateX(12px)}
+.fr p{color:var(--mut);font-size:14px}
+.fr svg{width:52px;height:52px;stroke:var(--bone);fill:none;stroke-width:1;justify-self:end;transition:transform .8s var(--ease)}
+.fr:hover svg{transform:rotate(90deg);stroke:var(--sig)}
+@media(max-width:820px){.fr{grid-template-columns:44px 1fr;row-gap:8px}.fr p{grid-column:2}.fr svg{display:none}}
+
+/* 体験：仕上がりを、ことばにする */
+.sim{padding-block:clamp(100px,13vw,180px);background:var(--ink2);border-top:1px solid var(--line)}
+.sgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,100px);margin-top:56px;align-items:center}
+.stage{position:relative;aspect-ratio:1/1;border:1px solid var(--line);background:
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/40px 40px,
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/40px 40px;background-color:var(--ink)}
+.stage svg{position:absolute;inset:0;width:100%;height:100%}
+.stage .tag{position:absolute;left:14px;top:12px;color:var(--mut)}
+.stage .tag2{position:absolute;right:14px;bottom:12px;color:var(--sig)}
+.ctl{display:grid;gap:30px}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.ctl label b{font-weight:600;letter-spacing:.12em;font-size:15px}
+.ctl output{font-family:var(--en);font-size:28px;letter-spacing:-.02em;color:var(--sig)}
+.ctl output small{font-size:13px;color:var(--mut);margin-left:3px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:rgba(236,235,230,.3)}
+input[type=range]::-moz-range-track{height:1px;background:rgba(236,235,230,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--bone);margin-top:-9px;border:4px solid var(--ink2);box-shadow:0 0 0 1px var(--bone);transition:transform .3s var(--ease)}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--bone);border:4px solid var(--ink2)}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.3)}
+input[type=range]:focus-visible{outline:1px dashed var(--sig);outline-offset:4px}
+.ticks{display:flex;justify-content:space-between;color:var(--mut);font-family:var(--mono);font-size:10px;margin-top:2px}
+.seg{display:flex;border:1px solid rgba(236,235,230,.3);border-radius:999px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;border-radius:999px;padding:9px 6px;font-size:13px;letter-spacing:.1em;cursor:pointer;transition:background .4s var(--ease),color .4s}
+.seg button[aria-pressed=true]{background:var(--bone);color:var(--ink)}
+.order{border:1px solid var(--line);padding:20px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.9;letter-spacing:.02em;color:#c8c7c1;white-space:pre-wrap;position:relative}
+.order::before{content:"DM TEXT / 例";position:absolute;top:-9px;left:16px;background:var(--ink2);padding:0 8px;color:var(--sig);font-size:10px;letter-spacing:.16em}
+.copy{justify-self:start;display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;border-bottom:1px solid var(--sig);padding-bottom:5px;background:none;border-top:0;border-left:0;border-right:0;cursor:pointer}
+@media(max-width:860px){.sgrid{grid-template-columns:1fr}}
+
+/* 流れ：60分の横スクロール */
+.flow{position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.flow-in{display:flex;height:100svh;min-height:600px;align-items:center}
+.flow-head{flex:none;width:clamp(320px,34vw,520px);padding-left:clamp(18px,4.4vw,64px);padding-right:40px;position:relative;z-index:2;align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:var(--ink)}
+.flow-head::after{content:"";position:absolute;top:0;bottom:0;right:-80px;width:80px;background:linear-gradient(90deg,var(--ink),rgba(11,11,12,0));pointer-events:none}
+.clock{width:140px;height:140px;margin-top:40px}
+.clock circle{fill:none;stroke-width:1.2}
+.clock .bg{stroke:var(--line)}
+.clock .fg{stroke:var(--sig);stroke-dasharray:377;stroke-dashoffset:377;transform:rotate(-90deg);transform-origin:center}
+.clock text{fill:var(--bone);font-family:var(--en);font-size:30px;text-anchor:middle;letter-spacing:-.02em}
+.track{display:flex;gap:24px;padding-right:clamp(18px,4.4vw,64px)}
+.pn{flex:none;width:clamp(280px,26vw,380px);height:min(62vh,480px);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;background:var(--ink)}
+.pn .t{font-family:var(--en);font-weight:300;font-size:64px;letter-spacing:-.05em;line-height:1}
+.pn .t small{font-size:16px;color:var(--mut);letter-spacing:0;margin-left:6px}
+.pn h3{font-weight:600;font-size:21px;letter-spacing:.1em;margin-bottom:10px}
+.pn p{font-size:14px;color:var(--mut)}
+.pn .ic{position:absolute;right:-30px;top:-30px;width:170px;height:170px;stroke:rgba(236,235,230,.12);fill:none;stroke-width:1}
+.pn:hover{border-color:rgba(255,90,31,.6)}
+@media(max-width:860px){
+  .flow-in{display:block;height:auto;min-height:0;padding-block:100px}
+  .flow-head{width:auto;padding-right:clamp(18px,4.4vw,64px);display:block}
+  .flow-head::after{display:none}
+  .clock{display:none}
+  .track{flex-direction:column;padding-inline:clamp(18px,4.4vw,64px);margin-top:44px;gap:14px}
+  .pn{width:auto;height:auto;min-height:220px;gap:30px}
+}
+
+/* メニュー（明るい面） */
+.menu{padding-block:clamp(110px,14vw,190px)}
+.menu .ttl .jt,.menu .note{color:#6c6b66}
+.menu .note{font-size:13px;max-width:24em}
+.mlist{margin-top:56px}
+.mi{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:28px 0;border-top:1px solid rgba(11,11,12,.16);position:relative;cursor:default}
+.mi:last-child{border-bottom:1px solid rgba(11,11,12,.16)}
+.mi .nm{font-weight:600;font-size:clamp(19px,2.2vw,28px);letter-spacing:.08em;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.mi .nm .mono{color:#6c6b66;font-weight:400}
+.mi .ds{grid-column:1;font-size:13px;color:#6c6b66;margin-top:-10px}
+.mi .pr{font-family:var(--en);font-size:clamp(28px,3.4vw,46px);letter-spacing:-.04em;line-height:1;grid-row:1/3;grid-column:2;align-self:center;white-space:nowrap}
+.mi .pr small{font-family:var(--mono);font-size:10px;letter-spacing:.12em;margin-left:6px;color:#6c6b66}
+.mi::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--sig);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.mi:hover::after{transform:none}
+.mi:hover .pr{color:var(--sig)}
+.mi .pr{transition:color .4s}
+
+/* 声（例） */
+.voice{padding-bottom:clamp(110px,14vw,190px)}
+.vg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:50px}
+.vc{background:var(--ink);color:var(--bone);padding:34px 30px 30px;position:relative;transition:transform .6s var(--ease)}
+.vc:hover{transform:translateY(-8px) rotate(-.6deg)}
+.vc .q{font-family:var(--en);font-size:70px;line-height:.6;color:var(--sig);display:block;height:30px}
+.vc blockquote{font-size:15px;line-height:2;letter-spacing:.06em;font-weight:400}
+.vc figcaption{margin-top:22px;color:var(--mut)}
+.vc .ex{position:absolute;right:16px;top:16px;color:var(--sig)}
+@media(max-width:860px){.vg{grid-template-columns:1fr}}
+
+/* 質問 */
+.faq{padding-block:clamp(110px,14vw,180px)}
+.fgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,6vw,100px)}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:44px 1fr 22px;gap:10px;align-items:start;padding:26px 0;cursor:pointer;font-weight:400;font-size:clamp(15px,1.4vw,18px);letter-spacing:.06em;line-height:1.7}
+.qa button:focus-visible{outline:1px dashed var(--sig);outline-offset:4px}
+.qa .k{font-family:var(--mono);font-size:11px;color:var(--sig);padding-top:5px}
+.qa .pm{position:relative;width:14px;height:14px;margin-top:7px}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:currentColor;transition:transform .5s var(--ease)}
 .qa .pm::after{transform:rotate(90deg)}
 .qa.open .pm::after{transform:rotate(0)}
-.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
-.qa.open .ans{grid-template-rows:1fr}
-.qa .ans>div{overflow:hidden}
-.qa .ans p{padding-bottom:26px;color:var(--sub);font-size:14px}
-.reserve{position:relative;background:var(--dark);color:var(--onDark);padding-block:clamp(120px,16vw,210px);overflow:hidden;text-align:center}
-.reserve h2{font-family:var(--disp);font-weight:300;font-size:clamp(52px,10vw,160px);line-height:.95;font-style:italic;}
-.reserve p{margin:30px auto 0;max-width:30em;opacity:.78}
-.mag{display:inline-flex;align-items:center;justify-content:center;width:184px;height:184px;border-radius:50%;background:var(--acc);color:#fff;margin-top:56px;font-size:13px;letter-spacing:.2em;transition:background .4s;will-change:transform;text-align:center;line-height:1.6}
-.mag:hover{background:var(--acc2)}
-.info{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:12px 48px;margin-top:64px;font-size:13px;opacity:.85}
-.info dt{font-size:10px;letter-spacing:.3em;color:var(--acc2)}
-@media(max-width:820px){.info{grid-template-columns:1fr}}
-.partner{padding-block:56px}
-.nc{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:4px;padding:22px 26px;background:var(--paper);transition:border-color .4s}
-.nc:hover{border-color:var(--acc)}
-.nc .m{font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:.3em;color:#b8956a}
-.nc b{display:block;font-family:var(--jp);font-weight:500;font-size:17px}
-.nc small{color:var(--sub);font-size:12px}
-.nc .go{margin-left:auto;font-size:12px;letter-spacing:.2em}
-footer{padding-block:28px 64px;font-size:11px;letter-spacing:.15em;color:var(--sub);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;background:rgba(20,20,20,.8);color:#fff;font:600 10px/1 sans-serif;letter-spacing:.25em;padding:9px 14px;border-radius:20px}
-@media (prefers-reduced-motion:reduce){.hero h1 .ch,.line>span{transform:none!important;opacity:1!important}.hero .tate,.hero-foot{opacity:1!important}.ticker .row{animation:none}#loader{display:none}}
-.quiz{max-width:760px}.qbox,.result{border:1px solid rgba(238,241,230,.2);border-radius:20px;padding:clamp(26px,5vw,56px)}.qn{font-size:11px;letter-spacing:.3em;opacity:.65}.qt,.rt{font-family:var(--jp);font-size:clamp(22px,2.6vw,30px);margin:14px 0 28px;line-height:1.6}
-.opts{display:grid;gap:10px}.opts button,#again{all:unset;cursor:pointer;padding:16px 22px;border-radius:999px;border:1px solid rgba(238,241,230,.25);transition:background .35s,color .35s}.opts button:hover,.opts button:focus-visible,#again:hover{background:#eef1e6;color:#1f2a22}#again{margin-top:22px;display:inline-block}.hero h1{font-size:min(19vw,calc(150vw/5),300px)!important;white-space:nowrap}</style></head><body>
-<div id="loader"><div class="l">A</div><div class="bar"><i></i></div></div><div class="cursor"></div>
-<header id="hd"><div class="wrap"><a class="brand" href="#top">Atom.<small>HAIR ROOM</small></a>
-<nav><a href="#about">ABOUT</a><a href="#sig">CHECK</a><a href="#menu">MENU</a><a href="#faq">FAQ</a><a class="nav-cta" href="#reserve">RESERVE</a></nav></div></header>
+.qa .an{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.qa.open .an{grid-template-rows:1fr}
+.qa .an>div{overflow:hidden}
+.qa .an p{padding:0 32px 28px 54px;color:var(--mut);font-size:14px}
+@media(max-width:860px){.fgrid{grid-template-columns:1fr}}
+
+/* アクセス */
+.access{padding-bottom:clamp(110px,14vw,180px)}
+.agrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);margin-top:50px;align-items:end}
+.mapb{border:1px solid var(--line);aspect-ratio:16/10;background:var(--ink2);position:relative;overflow:hidden}
+.mapb svg{width:100%;height:100%;display:block}
+.adl{display:grid;gap:26px}
+.adl dt{color:var(--mut);margin-bottom:4px}
+.adl dd{font-size:16px;font-weight:400;letter-spacing:.06em}
+@media(max-width:860px){.agrid{grid-template-columns:1fr}.mapb{aspect-ratio:4/3}}
+
+/* 予約 */
+.reserve{position:relative;padding-block:clamp(120px,16vw,220px);overflow:hidden;border-top:1px solid var(--line)}
+.big{font-family:var(--en);font-weight:500;font-size:clamp(70px,17vw,280px);line-height:.82;letter-spacing:-.07em}
+.big .ln{display:block;overflow:hidden;padding-bottom:.05em}
+.big .ln>span{display:inline-block;transform:translateY(110%)}
+.big .ln:nth-child(2){padding-left:12vw}
+.rrow{display:flex;justify-content:space-between;gap:40px;align-items:center;flex-wrap:wrap;margin-top:60px}
+.rrow p{max-width:28em;color:var(--mut);font-size:14px}
+.btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.mag{width:190px;height:190px;border-radius:50%;background:var(--sig);color:#0b0b0c;display:grid;place-items:center;text-align:center;font-weight:600;font-size:14px;letter-spacing:.08em;line-height:1.6;will-change:transform;position:relative}
+.mag span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;font-weight:500}
+.mag em{font-style:normal;display:block;transition:transform .5s var(--ease)}
+.out{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(236,235,230,.35);border-radius:999px;padding:16px 26px;font-size:13px;letter-spacing:.1em;transition:background .4s,color .4s,border-color .4s}
+.out:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+/* パートナー・フッター */
+.partner{padding-block:40px 20px}
+.nc{display:flex;gap:14px 26px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);padding:18px 22px;font-size:12px;color:var(--mut);transition:border-color .4s}
+.nc:hover{border-color:var(--sig)}
+.nc b{color:var(--bone);font-weight:600;font-size:13px;letter-spacing:.06em}
+.nc .go{margin-left:auto}
+footer{padding-block:24px 80px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--mut);font-size:11px;letter-spacing:.06em}
+.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;background:var(--sig);color:#000;font:500 10px/1 var(--mono);letter-spacing:.24em;padding:9px 12px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  #ld{display:none}
+  .ln>span{transform:none!important}
+  .hero .jp p,.hero .meta,.trim{opacity:1!important}
+  .say .w{opacity:1!important}
+}
+</style>
+</head>
+<body>
+<div id="ld" aria-hidden="true"><div class="h t"></div><div class="h b"></div><div class="cnt" id="cnt">00:00</div><div class="cut"></div><p class="cap mono">one chair — one guest</p></div>
+<div class="cx" aria-hidden="true"><i></i></div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top">Atom.<span>MEN'S HAIR / EBISU</span></a>
+  <nav>
+    <a href="#about"><span>CONCEPT</span><span>CONCEPT</span></a>
+    <a href="#sig"><span>ORDER</span><span>ORDER</span></a>
+    <a href="#menu"><span>MENU</span><span>MENU</span></a>
+    <a href="#faq"><span>FAQ</span><span>FAQ</span></a>
+    <a class="dm" href="#reserve"><span>RESERVE</span><span>RESERVE</span></a>
+  </nav>
+</div></header>
+
 <main id="top">
-<section class="hero"><canvas id="hero" aria-hidden="true"></canvas>
-<div class="wrap hero-in"><h1 aria-label="Atom."><span class="mask">Atom.</span></h1><p class="tate">ひとりの美容師が、最初から最後まで。</p>
-<div class="hero-foot"><p>席はひとつだけの、小さな美容室。<br>カウンセリングから仕上げまで、<br>ひとりの美容師が担当します。</p><div class="scroll"><i></i>SCROLL</div></div></div></section>
-<div class="ticker" aria-hidden="true"><div class="row"><span>Hair Room Atom.</span><span>One Chair</span><span>Man-to-man</span><span>Easy to Style</span><span>Gentle Color</span><span>Hair Room Atom.</span><span>One Chair</span><span>Man-to-man</span><span>Easy to Style</span><span>Gentle Color</span></div></div>
-<section class="state" id="about"><div class="wrap state-grid"><div><p class="eyebrow">About</p><h2 class="split"><span class="line"><span>木もれ日の入る席で、</span></span><span class="line"><span>ほかの誰とも重ならない</span></span><span class="line"><span>静かな時間を。</span></span></h2><p class="lead reveal">席はひとつだけ。ほかのお客さまと重なることのない、静かな時間をお過ごしください。髪質に合わせたカットで、おうちでも扱いやすいスタイルをつくります。</p></div>
-<div class="photo reveal"><canvas id="ph1" aria-hidden="true"></canvas><span class="ph">PHOTO — 店内</span></div></div></section>
-<section class="feat"><div class="wrap feat-grid"><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6v8H4z"/><path d="M10 19v-5h4v5"/></svg><h3>マンツーマン</h3><p>最初から最後まで同じ美容師が担当。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 9.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-5.2-3L5 13.5a1.5 1.5 0 0 1 2.4-1.8L9 13.5"/></svg><h3>再現しやすいカット</h3><p>乾かすだけでまとまるスタイルに。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19 14 10"/></svg><h3>髪にやさしい薬剤</h3><p>ダメージを抑えたカラー・パーマ。</p></div></div></section>
-<section class="sig" id="sig"><div class="wrap head"><h2>Hair Check</h2><p>3つの質問に答えると、あなたの髪に合うメニューの目安がわかります。</p></div><div class="body"><div class="wrap quiz"><div class="qbox" id="qbox"><p class="qn" id="qn">Q1 / 3</p><p class="qt" id="qt"></p><div class="opts" id="opts"></div></div><div class="result" id="res" hidden><p class="qn">あなたへのおすすめ</p><p class="rt" id="rt"></p><p id="rd"></p><button id="again" data-hover>もう一度</button></div></div></div></section>
-<section class="menu" id="menu"><div class="wrap menu-grid"><div><p class="eyebrow">Menu</p><h2>Price<br>List</h2><p class="note">表示はすべて税込です。</p></div><ul class="list"><li class="reveal"><div><b>カット</b></div><div class="p">5,500円</div></li><li class="reveal"><div><b>カット＋カラー</b></div><div class="p">11,000円</div></li><li class="reveal"><div><b>カット＋パーマ</b></div><div class="p">12,100円</div></li><li class="reveal"><div><b>髪質改善トリートメント</b></div><div class="p">7,700円</div></li><li class="reveal"><div><b>前髪カット</b></div><div class="p">1,650円</div></li></ul></div></section>
-<section class="voice"><div class="wrap"><p class="eyebrow">Voice</p><h2>Our Guests</h2><div class="quotes"><figure class="reveal"><blockquote>気をつかわずに話せて、毎回リラックスできます。</blockquote><figcaption>30代・会社員</figcaption></figure><figure class="reveal"><blockquote>白髪ぼかしのカラーが自然で気に入っています。</blockquote><figcaption>50代・自営業</figcaption></figure></div></div></section>
-<section class="faq" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow">FAQ</p><h2>Q &amp; A</h2></div><div><div class="qa"><button aria-expanded="false">メンズも大丈夫ですか？<span class="pm"></span></button><div class="ans"><div><p>もちろんです。</p></div></div></div><div class="qa"><button aria-expanded="false">駐車場はありますか？<span class="pm"></span></button><div class="ans"><div><p>近くのコインパーキングをご利用ください。</p></div></div></div><div class="qa"><button aria-expanded="false">キャンセルはいつまで？<span class="pm"></span></button><div class="ans"><div><p>前日までにご連絡ください。</p></div></div></div></div></div></section>
-<section class="reserve" id="reserve"><div class="wrap"><h2>Reserve</h2><p>ご予約・空き状況はLINEでお問い合わせください。前日まで変更・キャンセルを承ります。</p><a class="mag" href="#reserve" data-mag>空き状況を<br>見る</a>
-<dl class="info"><div><dt>HOURS</dt><dd>10:00〜19:00（月曜定休）</dd></div><div><dt>ACCESS</dt><dd>〇〇駅 徒歩3分</dd></div><div><dt>ADDRESS</dt><dd>東京都〇〇区〇〇 1-2-3</dd></div></dl></div></section>
-<section class="partner"><div class="wrap"><a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><div><span class="m">NOCTURNE CONCIERGE</span><b>当店のお客さまへ：夜だけの家事代行</b><small>18:00〜翌3:00。作り置き・洗濯・片付けを、帰ってからの時間に。</small></div><span class="go">VIEW →</span></a></div></section>
-</main><footer class="wrap"><span>© アトム</span><span>※見本です。写真・文章・料金はお店の内容に差し替えてお作りします。</span></footer><div class="sample">SAMPLE</div>
-<script>window.__photo=['#dfe5d2','#9fb48c','#f4ecd2','#c9d6b8'];
-window.__heroFx=function(cv){const x=cv.getContext('2d');let w,h,d=Math.min(devicePixelRatio,1.5);const sz=()=>{w=cv.clientWidth;h=cv.clientHeight;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);};sz();addEventListener('resize',sz);
-let mx=.5,tx=.5;addEventListener('pointermove',e=>{tx=e.clientX/innerWidth;});const spots=[...Array(46)].map(()=>({x:Math.random(),y:Math.random(),r:20+Math.random()*90,p:Math.random()*6,s:.3+Math.random()}));
-const leaves=[...Array(26)].map(()=>({x:Math.random(),y:Math.random()*.6,r:30+Math.random()*70,a:Math.random()*6,p:Math.random()*6}));
-const f=t=>{mx+=(tx-mx)*.03;x.fillStyle='#e6ead9';x.fillRect(0,0,w,h);const sh=(mx-.5)*60;
-x.globalCompositeOperation='lighter';spots.forEach(s=>{const k=.5+.5*Math.sin(t/1800*s.s+s.p);const px=s.x*w+Math.sin(t/3000+s.p)*20+sh,py=s.y*h;const g=x.createRadialGradient(px,py,0,px,py,s.r);g.addColorStop(0,`rgba(255,244,205,${.38*k})`);g.addColorStop(1,'rgba(255,244,205,0)');x.fillStyle=g;x.fillRect(px-s.r,py-s.r,s.r*2,s.r*2);});
-x.globalCompositeOperation='multiply';leaves.forEach(l=>{const px=l.x*w+Math.sin(t/2600+l.p)*14+sh*1.4,py=l.y*h+Math.cos(t/3100+l.p)*8;x.save();x.translate(px,py);x.rotate(l.a+Math.sin(t/2800+l.p)*.12);x.fillStyle='rgba(120,140,100,.13)';x.beginPath();x.ellipse(0,0,l.r,l.r*.42,0,0,Math.PI*2);x.fill();x.restore();});
-x.globalCompositeOperation='source-over';if(!window.__reduce)requestAnimationFrame(f);};requestAnimationFrame(f);};
-window.__sigFx=function(){const Q=[['髪のいちばんの悩みは？',['まとまらない・広がる','パサつき・ダメージ','ボリュームが出ない']],['朝のスタイリングにかけられる時間は？',['5分以内','10〜15分','しっかり時間をかけたい']],['カラーはしていますか？',['している（白髪ぼかし含む）','していない','これから始めたい']]];
-let i=0,a=[];const qt=document.getElementById('qt'),qn=document.getElementById('qn'),op=document.getElementById('opts'),box=document.getElementById('qbox'),res=document.getElementById('res');
-function show(){qn.textContent=`Q${i+1} / 3`;qt.textContent=Q[i][0];op.innerHTML='';Q[i][1].forEach((t,j)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{a.push(j);i++;i<3?show():done();};op.appendChild(b);});}
-function done(){box.hidden=true;res.hidden=false;let t,d;if(a[0]===1){t='カット＋髪質改善トリートメント';d='ダメージ部分を整えながら、内側から補修します。手ざわりが変わるのを実感していただけます。';}else if(a[0]===0){t=a[1]===0?'カット（乾かすだけで決まる設計）':'カット＋パーマ';d='広がりやすい部分の量と長さを調整し、朝は乾かすだけでまとまるようにします。';}else{t='カット＋パーマ';d='根元をふんわりさせる軽いパーマで、ボリュームと扱いやすさを両立します。';}
-if(a[2]!==1)d+=' カラーは髪にやさしい薬剤で、白髪ぼかしにも対応します。';document.getElementById('rt').textContent=t;document.getElementById('rd').textContent=d;}
-document.getElementById('again').onclick=()=>{i=0;a=[];res.hidden=true;box.hidden=false;show();};show();};</script>
+<section class="hero" data-bg="#0b0b0c" data-fg="#ecebe6">
+  <canvas id="hair" aria-hidden="true"></canvas>
+  <div class="shade"></div>
+  <div class="hero-in wrap">
+    <h1 aria-label="One chair. One man."><span class="ln"><span>One chair<b class="dot">.</b></span></span><span class="ln"><span>One man<b class="dot">.</b></span></span></h1>
+    <div class="jp">
+      <p>ひと席だけの、静けさ。<small>恵比寿のメンズヘアサロン、1席1客。</small></p>
+      <div class="meta mono"><div>Seat<b>1</b></div><div>Guest<b>1</b></div><div>Station<b>Ebisu</b></div></div>
+    </div>
+  </div>
+  <div class="trim mono"><span>Scroll to trim</span><span class="bar"><i id="trimbar"></i></span><span id="mm">40mm</span></div>
+</section>
+
+<div class="band" aria-hidden="true"><div class="tr"><span>Cut</span><i>—</i><span>Fade</span><i>—</i><span>Perm</span><i>—</i><span>Color</span><i>—</i><span>Head spa</span><i>—</i><span>Eyebrow</span><i>—</i><span>Cut</span><i>—</i><span>Fade</span><i>—</i><span>Perm</span><i>—</i><span>Color</span><i>—</i><span>Head spa</span><i>—</i><span>Eyebrow</span><i>—</i></div></div>
+
+<section class="concept" id="about" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="wrap cgrid">
+  <div class="one" aria-hidden="true">1<span>seat</span></div>
+  <div>
+    <p class="ck mono">Concept</p>
+    <p class="say" id="say">店内にいるのは、あなたと、担当するひとりだけ。隣の会話も、待ち時間もない。鏡の前の60分を、髪のことだけに使うためのサロンです。</p>
+    <p class="cnote rv">Atom.は、恵比寿にある1席1客のメンズヘアサロン。最初のカウンセリングから仕上げまで、同じ手が担当します。「なんとなく伸びたから」ではなく、「次の1か月をどう過ごしたいか」から髪型を考えます。</p>
+  </div>
+</div></section>
+
+<section class="feat" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="wrap">
+  <div class="fh"><h2 class="ttl sp"><span class="ln"><span>Why Atom.</span></span><span class="jt">選ばれる理由（見本）</span></h2></div>
+  <div class="frs">
+    <div class="fr rv"><span class="n">/01</span><h3>1席1客の、完全な個室感</h3><p>ご予約の時間は、店内にお客さまはお一人だけ。人目を気にせず、髪の悩みを話せます。</p><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="25"/><circle cx="26" cy="26" r="3" fill="currentColor"/></svg></div>
+    <div class="fr rv"><span class="n">/02</span><h3>最初から最後まで、同じ手で</h3><p>シャンプーも、カットも、仕上げも。途中で担当が変わらないから、伝えたことがそのまま形になります。</p><svg viewBox="0 0 52 52"><path d="M2 26h48M26 2v48"/></svg></div>
+    <div class="fr rv"><span class="n">/03</span><h3>朝、自分で再現できる髪型</h3><p>乾かし方やスタイリング剤の量まで、その場でお伝えします。サロンの外で決まる髪型を。</p><svg viewBox="0 0 52 52"><path d="M4 40 Q26 4 48 40"/><path d="M4 48h44"/></svg></div>
+  </div>
+</div></section>
+
+<section class="sim" id="sig" data-bg="#141416" data-fg="#ecebe6"><div class="wrap">
+  <h2 class="ttl sp"><span class="ln"><span>Make your order.</span></span><span class="jt">仕上がりを、ことばにする。</span></h2>
+  <p class="rv" style="margin-top:24px;color:var(--mut);max-width:38em;font-size:14px">「サイドはどれくらい？」「トップは？」——美容室で一番むずかしいのは、希望を伝えること。下のつまみを動かすと横顔のシルエットが変わり、そのままDMで送れる文面ができあがります。（体験用の見本です。どこにも送信されません）</p>
+  <div class="sgrid">
+    <div class="stage rv"><span class="tag mono">Side view / イメージ</span><span class="tag2 mono" id="fadeTag">Fade 6mm</span><svg id="head" viewBox="0 0 400 400" aria-label="横顔のシルエット（イメージ）"></svg></div>
+    <div class="ctl">
+      <div><label for="rs"><b>サイド・えり足</b><output id="os">6<small>mm</small></output></label><input id="rs" type="range" min="1" max="18" step="1" value="6"><div class="ticks"><span>1mm</span><span>9mm</span><span>18mm</span></div></div>
+      <div><label for="rt"><b>トップの長さ</b><output id="ot">5<small>cm</small></output></label><input id="rt" type="range" min="2" max="12" step="1" value="5"><div class="ticks"><span>2cm</span><span>7cm</span><span>12cm</span></div></div>
+      <div><label><b>質感</b></label><div class="seg" id="seg"><button aria-pressed="true" data-v="dry">ナチュラル</button><button aria-pressed="false" data-v="wet">ウェット</button><button aria-pressed="false" data-v="perm">パーマ</button></div></div>
+      <div class="order" id="order"></div>
+      <button class="copy" id="copy">文面をコピー →</button>
+    </div>
+  </div>
+</div></section>
+
+<section class="flow" id="flow" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="flow-in">
+  <div class="flow-head">
+    <h2 class="ttl sp"><span class="ln"><span>60 min.</span></span><span class="jt">はじめての方へ — 当日の流れ（例）</span></h2>
+    <p style="margin-top:22px;color:var(--mut);font-size:14px;max-width:24em">時間はすべて目安です。メニューによって前後します。</p>
+    <svg class="clock" viewBox="0 0 140 140" aria-hidden="true"><circle class="bg" cx="70" cy="70" r="60"/><circle class="fg" id="clk" cx="70" cy="70" r="60"/><text x="70" y="80" id="clkT">00</text></svg>
+  </div>
+  <div class="track" id="track">
+    <div class="pn"><svg class="ic" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span class="t">00<small>min</small></span><div><h3>DMで予約</h3><p>インスタのDMかホットペッパーから。希望の日時と、なりたい雰囲気をひとことどうぞ。</p></div></div>
+    <div class="pn"><svg class="ic" viewBox="0 0 100 100"><path d="M2 50h96M50 2v96"/></svg><span class="t">05<small>min</small></span><div><h3>カウンセリング</h3><p>普段のスタイリング、仕事の場面、前回困ったこと。写真がなくても大丈夫です。</p></div></div>
+    <div class="pn"><svg class="ic" viewBox="0 0 100 100"><path d="M10 90 Q50 0 90 90"/></svg><span class="t">15<small>min</small></span><div><h3>シャンプー</h3><p>頭皮の状態を見ながら。カットの前に、髪のクセもここで確かめます。</p></div></div>
+    <div class="pn"><svg class="ic" viewBox="0 0 100 100"><path d="M10 10 90 90M90 10 10 90"/></svg><span class="t">25<small>min</small></span><div><h3>カット</h3><p>骨格とクセに合わせて。途中で長さを確認しながら進めます。</p></div></div>
+    <div class="pn"><svg class="ic" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg><span class="t">50<small>min</small></span><div><h3>仕上げと、再現のコツ</h3><p>乾かし方とスタイリング剤の量を一緒に。明日の朝、自分でできるように。</p></div></div>
+  </div>
+</div></section>
+
+<section class="menu" id="menu" data-bg="#ecebe6" data-fg="#0b0b0c"><div class="wrap">
+  <div class="fh"><h2 class="ttl sp"><span class="ln"><span>Menu.</span></span><span class="jt">メニューと料金（例）</span></h2><p class="note">※料金・時間はすべて見本用の例です。実際の内容に合わせて作り直します。</p></div>
+  <div class="mlist">
+    <div class="mi rv"><div class="nm">カット<span class="mono">Cut / 60min</span></div><p class="ds">シャンプー・眉カット・スタイリング込み</p><span class="pr">¥6,600<small>例</small></span></div>
+    <div class="mi rv"><div class="nm">カット＋フェード<span class="mono">Fade / 75min</span></div><p class="ds">えり足・サイドを細かく刈り上げるスタイルに</p><span class="pr">¥7,700<small>例</small></span></div>
+    <div class="mi rv"><div class="nm">カット＋パーマ<span class="mono">Perm / 120min</span></div><p class="ds">ニュアンス〜しっかりめまで、朝のセットを楽に</p><span class="pr">¥13,200<small>例</small></span></div>
+    <div class="mi rv"><div class="nm">カット＋カラー<span class="mono">Color / 120min</span></div><p class="ds">白髪ぼかし・暗めのトーンダウンにも</p><span class="pr">¥11,000<small>例</small></span></div>
+    <div class="mi rv"><div class="nm">ヘッドスパ追加<span class="mono">Option / 15min</span></div><p class="ds">どのメニューにも追加できます</p><span class="pr">¥2,200<small>例</small></span></div>
+  </div>
+</div></section>
+
+<section class="voice" data-bg="#ecebe6" data-fg="#0b0b0c"><div class="wrap">
+  <h2 class="ttl sp"><span class="ln"><span>Voices.</span></span><span class="jt" style="color:#6c6b66">お客さまの声（例）</span></h2>
+  <div class="vg">
+    <figure class="vc rv"><span class="ex mono">例</span><span class="q">“</span><blockquote>周りにお客さんがいないので、髪の悩みを素直に話せました。</blockquote><figcaption class="mono">— 例 / 30代 会社員</figcaption></figure>
+    <figure class="vc rv"><span class="ex mono">例</span><span class="q">“</span><blockquote>乾かし方まで教えてもらえたので、翌朝も同じ形にできました。</blockquote><figcaption class="mono">— 例 / 20代 学生</figcaption></figure>
+    <figure class="vc rv"><span class="ex mono">例</span><span class="q">“</span><blockquote>最初から最後まで同じ方なので、説明をくり返さなくていいのが楽です。</blockquote><figcaption class="mono">— 例 / 40代 自営業</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="faq" id="faq" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="wrap fgrid">
+  <h2 class="ttl sp"><span class="ln"><span>FAQ.</span></span><span class="jt">よくある質問</span></h2>
+  <div>
+    <div class="qa"><button aria-expanded="false"><span class="k">Q.01</span>ほかのお客さまと一緒になることはありますか？<span class="pm"></span></button><div class="an"><div><p>1席1客なので、ご予約の時間はお一人だけです。前後の方と重ならないよう時間を組んでいます。</p></div></div></div>
+    <div class="qa"><button aria-expanded="false"><span class="k">Q.02</span>希望の髪型をうまく伝えられません。<span class="pm"></span></button><div class="an"><div><p>大丈夫です。「伸びた部分を整えたい」「朝のセットを楽にしたい」くらいの言葉からで十分。上の「Make your order.」で作った文面をDMで送っていただくのもおすすめです。</p></div></div></div>
+    <div class="qa"><button aria-expanded="false"><span class="k">Q.03</span>予約はどこからできますか？<span class="pm"></span></button><div class="an"><div><p>インスタグラムのDM、またはホットペッパービューティーからご予約いただけます（見本のためリンク先は仮です）。</p></div></div></div>
+    <div class="qa"><button aria-expanded="false"><span class="k">Q.04</span>どれくらいの間隔で通うのがいいですか？<span class="pm"></span></button><div class="an"><div><p>短めのスタイルなら3〜4週間、長めなら5〜6週間がひとつの目安です（例）。次回のタイミングも当日ご相談ください。</p></div></div></div>
+  </div>
+</div></section>
+
+<section class="access" id="access" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="wrap">
+  <h2 class="ttl sp"><span class="ln"><span>Access.</span></span><span class="jt">恵比寿駅から、歩いて。</span></h2>
+  <div class="agrid">
+    <div class="mapb rv">
+      <svg viewBox="0 0 480 300" aria-label="恵比寿駅周辺の簡単な地図（イメージ）">
+        <g stroke="rgba(236,235,230,.07)"><path d="M0 50H480M0 110H480M0 170H480M0 230H480M60 0V300M140 0V300M220 0V300M300 0V300M380 0V300M440 0V300"/></g>
+        <path d="M150 -10 C 170 100, 200 200, 230 310" stroke="rgba(236,235,230,.5)" stroke-width="5" fill="none"/>
+        <path d="M150 -10 C 170 100, 200 200, 230 310" stroke="#0b0b0c" stroke-width="3" stroke-dasharray="10 10" fill="none"/>
+        <text x="96" y="32" fill="#8a8a8f" font-size="10" font-family="JetBrains Mono">JR LINE</text>
+        <path d="M-10 230 L490 130" stroke="rgba(236,235,230,.12)" stroke-width="10" fill="none"/>
+        <text x="330" y="146" fill="#8a8a8f" font-size="10" font-family="JetBrains Mono" transform="rotate(-11 330 146)">STREET</text>
+        <rect x="170" y="128" width="40" height="22" fill="#ecebe6"/>
+        <text x="216" y="144" fill="#ecebe6" font-size="13" font-family="IBM Plex Sans JP" font-weight="600">恵比寿駅</text>
+        <path id="route" d="M210 139 C 260 139, 290 110, 330 92" stroke="#ff5a1f" stroke-width="1.5" fill="none" stroke-dasharray="3 5"/>
+        <circle cx="336" cy="88" r="5" fill="#ff5a1f"/>
+        <circle cx="336" cy="88" r="5" fill="none" stroke="#ff5a1f"><animate attributeName="r" values="5;20" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="2.2s" repeatCount="indefinite"/></circle>
+        <text x="350" y="78" fill="#ecebe6" font-size="16" font-family="Space Grotesk" font-weight="700">Atom.</text>
+        <text x="350" y="94" fill="#8a8a8f" font-size="9" font-family="JetBrains Mono">LOCATION: IMAGE</text>
+      </svg>
+    </div>
+    <dl class="adl rv">
+      <div><dt class="mono">Station</dt><dd>JR・東京メトロ 恵比寿駅から徒歩圏内</dd></div>
+      <div><dt class="mono">Style</dt><dd>1席1客／完全予約制</dd></div>
+      <div><dt class="mono">Note</dt><dd>詳しい道順はご予約時にお送りします（見本）</dd></div>
+    </dl>
+  </div>
+</div></section>
+
+<section class="reserve" id="reserve" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="wrap">
+  <p class="ck mono">Reserve</p>
+  <h2 class="big sp" aria-label="Your seat is open."><span class="ln"><span>Your seat</span></span><span class="ln"><span>is open<b class="sig">.</b></span></span></h2>
+  <div class="rrow">
+    <p>ご予約・ご相談は、インスタグラムのDMがいちばん早くお返事できます（例）。ホットペッパービューティーからもご予約いただけます。</p>
+    <div class="btns">
+      <a class="mag" href="#" data-mag><em><span>INSTAGRAM</span>DMで予約</em></a>
+      <a class="out" href="#">ホットペッパーで予約 →</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="partner" data-bg="#0b0b0c" data-fg="#ecebe6"><div class="wrap">
+  <a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><span class="mono sig">Partner / 2.5万円プランの例</span><div><b>Partner: Nocturne Concierge（夜だけの家事代行）</b><br>仕事帰りに髪を整えた夜は、家事をまかせて早めに休む。そんな提携サービスの紹介枠です。</div><span class="go mono">View →</span></a>
+</div></section>
+</main>
+<footer class="wrap"><span>© men's hair salon Atom.</span><span>この見本は提案用に作成したもので、内容は仮のものです</span></footer>
+<div class="sample">SAMPLE</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(() => {
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hasG = typeof gsap !== 'undefined';
-window.__reduce = reduce;
-/* 写真の枠：お店の色でゆっくり揺らぐ（本番はお店の写真に差し替え） */
-function photoFx(cv,cols){const x=cv.getContext('2d');let w,h;const sz=()=>{w=cv.width=cv.clientWidth;h=cv.height=cv.clientHeight;};sz();addEventListener('resize',sz);
-  const blobs=cols.map((c,i)=>({c,x:Math.random(),y:Math.random(),r:.45+Math.random()*.3,s:.0002+Math.random()*.0003,p:Math.random()*6}));
-  let vis=true;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(cv);
-  const f=t=>{if(vis){x.fillStyle=cols[0];x.fillRect(0,0,w,h);x.globalCompositeOperation='lighter';
-    blobs.forEach((b,i)=>{const bx=(b.x+.25*Math.sin(t*b.s*3+b.p))*w,by=(b.y+.25*Math.cos(t*b.s*2+b.p))*h;const g=x.createRadialGradient(bx,by,0,bx,by,b.r*Math.max(w,h));g.addColorStop(0,b.c);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.globalAlpha=.55;x.fillRect(0,0,w,h);});
-    x.globalCompositeOperation='source-over';x.globalAlpha=1;}
-    if(!reduce)requestAnimationFrame(f);};requestAnimationFrame(f);}
-window.__photoFx=photoFx;
-const h1=document.querySelector('.hero h1 .mask');
-h1.innerHTML=[...h1.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
-const hd=document.getElementById('hd');const onScroll=()=>hd.classList.toggle('solid',scrollY>innerHeight*.6);addEventListener('scroll',onScroll,{passive:true});onScroll();
-document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}));
-const cur=document.querySelector('.cursor');
-if(matchMedia('(hover:hover)').matches){let cx=0,cy=0,x=0,y=0;addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;});
-  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
-  (function f(){x+=(cx-x)*.18;y+=(cy-y)*.18;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();}
-document.querySelectorAll('[data-mag]').forEach(m=>{m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
-  m.addEventListener('pointerleave',()=>{m.style.transition='transform .8s cubic-bezier(.22,1,.36,1),background .4s';m.style.transform='';setTimeout(()=>m.style.transition='',800);});});
-try{ window.__heroFx && window.__heroFx(document.getElementById('hero')); }catch(e){}
-try{ window.__photo && photoFx(document.getElementById('ph1'), window.__photo); }catch(e){}
-try{ window.__sigFx && window.__sigFx(); }catch(e){}
-const loader=document.getElementById('loader');
-if(reduce||!hasG){loader.remove();document.querySelectorAll('.hero .tate,.hero-foot').forEach(e=>e.style.opacity=1);document.querySelectorAll('.ch,.line>span').forEach(e=>{e.style.transform='none';e.style.opacity=1;});return;}
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasG=typeof gsap!=='undefined';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* ---------- 髪の場：カーソルで梳かし、スクロールで短く切る ---------- */
+let trim=0;
+(function hair(){
+  const c=$('#hair'),x=c.getContext('2d');
+  let W,H,dpr,pts=[],gap;
+  const mouse={x:-999,y:-999,vx:0,vy:0,px:-999,py:-999};
+  function build(){
+    dpr=Math.min(devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    gap=W<700?13:15;pts=[];
+    for(let yy=-gap;yy<H+gap*2;yy+=gap)for(let xx=-gap;xx<W+gap;xx+=gap){
+      pts.push({x:xx+(Math.random()-.5)*gap*.9,y:yy+(Math.random()-.5)*gap*.9,a:0,da:0,l:.7+Math.random()*.6,s:Math.random()});
+    }
+  }
+  build();addEventListener('resize',build);
+  c.parentElement.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
+  c.parentElement.addEventListener('pointerleave',()=>{mouse.x=mouse.y=-999});
+  const noise=(a,b,t)=>Math.sin(a*.006+t*.4)*Math.cos(b*.005-t*.3)+Math.sin((a+b)*.003+t*.2)*.6;
+  let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
+  const t0=performance.now();
+  function frame(now){
+    const t=reduce?2:(now-t0)/1000;
+    mouse.vx=mouse.x-mouse.px;mouse.vy=mouse.y-mouse.py;mouse.px=mouse.x;mouse.py=mouse.y;
+    x.clearRect(0,0,W,H);
+    const base=(W<700?30:38)*(1-trim*.82);
+    const buckets=[[],[],[]];
+    for(const p of pts){
+      let ang=1.25+noise(p.x,p.y,t)*.55;
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d2=dx*dx+dy*dy,R=150;
+      if(d2<R*R){const f=1-Math.sqrt(d2)/R;const sp=Math.hypot(mouse.vx,mouse.vy);
+        const tgt=sp>1?Math.atan2(mouse.vy,mouse.vx):Math.atan2(dy,dx);
+        p.da+=(Math.atan2(Math.sin(tgt-ang-p.a),Math.cos(tgt-ang-p.a)))*f*.08;}
+      p.da*=.86;p.a+=p.da;p.a*=.965;
+      const A=ang+p.a,L=base*p.l;
+      const b=p.s<.12?2:(p.s<.55?1:0);
+      buckets[b].push(p.x,p.y,p.x+Math.cos(A)*L,p.y+Math.sin(A)*L);
+    }
+    const st=['rgba(236,235,230,.16)','rgba(236,235,230,.32)','rgba(255,90,31,.55)'];
+    x.lineWidth=1;x.lineCap='round';
+    buckets.forEach((bk,i)=>{x.strokeStyle=st[i];x.beginPath();for(let k=0;k<bk.length;k+=4){x.moveTo(bk[k],bk[k+1]);x.lineTo(bk[k+2],bk[k+3]);}x.stroke();});
+  }
+  const loop=now=>{if(vis)frame(now);if(!reduce)requestAnimationFrame(loop);};
+  requestAnimationFrame(loop);
+})();
+
+/* ---------- コンセプト文を語ごとに ---------- */
+const say=$('#say');
+say.innerHTML=say.textContent.split(/(?<=[、。])/).map(s=>`<span class="w">${s}</span>`).join('');
+
+/* ---------- 横顔シミュレーター ---------- */
+const head=$('#head'),NS='http://www.w3.org/2000/svg';
+const S={side:6,top:5,tex:'dry'};
+const prof='M150 360 L150 318 Q150 300 136 292 Q120 284 118 262 Q100 258 104 240 Q90 236 96 222 L102 210 Q92 200 100 190 L112 172 Q104 160 108 148 Q112 110 140 88 Q178 60 228 64 Q290 70 310 128 Q324 172 304 220 Q294 248 280 262 L282 300 L282 360';
+const ear='M262 196 Q282 186 284 208 Q286 232 264 236';
+head.innerHTML=`<path d="${prof}" fill="#141416" stroke="#ecebe6" stroke-width="1.2" stroke-linejoin="round"/><path d="${ear}" fill="none" stroke="#ecebe6" stroke-width="1"/><g id="strands"></g><line id="fl" x1="0" x2="400" stroke="#ff5a1f" stroke-width=".8" stroke-dasharray="4 4"/>`;
+// 頭頂の輪郭（後頭部→額）のサンプル点を作る
+const cx0=210,cy0=150;
+function scalp(){
+  const arr=[];
+  for(let i=0;i<=70;i++){
+    const th=(-25+i*(205/70))*Math.PI/180; // 右（後頭部）から左（額）へ
+    const rx=96,ry=92;
+    const px=cx0+Math.cos(th)*rx*(th<0?1.02:1),py=cy0-Math.sin(th)*ry;
+    arr.push({x:px,y:py,th,u:i/70});
+  }
+  return arr;
+}
+const SC=scalp();
+function drawHead(){
+  const g=$('#strands');let d='';
+  const sideL=S.side*1.1+2, topL=S.top*9;
+  SC.forEach((p,i)=>{
+    // u:0=えり足側 1=額側
+    const u=p.u;
+    let zone=u<.28?'side':(u>.9?'front':'top');
+    let blend=u<.28?0:(u<.42?(u-.28)/.14:1);
+    let L=sideL+(topL-sideL)*blend;
+    if(u>.9)L=topL*.85;
+    for(let k=0;k<3;k++){
+      const jit=(k-1)*1.6;
+      const nx=Math.cos(p.th),ny=-Math.sin(p.th);
+      let dirx=nx,diry=ny;
+      // 質感による流れ
+      if(S.tex==='dry'){dirx=nx*.55-.8*(blend);diry=ny*.6+.15;}
+      if(S.tex==='wet'){dirx=nx*.35+.85*(blend);diry=ny*.45-.05;}
+      if(S.tex==='perm'){dirx=nx*.7-.4*blend;diry=ny*.8;}
+      const m=Math.hypot(dirx,diry);dirx/=m;diry/=m;
+      const x0=p.x+jit*nx*.3,y0=p.y+jit*ny*.3;
+      const len=L*(0.85+((i*7+k*3)%5)/20);
+      const x2=x0+dirx*len,y2=y0+diry*len+(blend*len*.18);
+      if(S.tex==='perm'&&blend>0){
+        const a=len*.28;
+        d+=`M${x0.toFixed(1)} ${y0.toFixed(1)} C ${(x0+dirx*len*.33+ny*a).toFixed(1)} ${(y0+diry*len*.33-nx*a).toFixed(1)}, ${(x0+dirx*len*.66-ny*a).toFixed(1)} ${(y0+diry*len*.66+nx*a).toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+      }else{
+        d+=`M${x0.toFixed(1)} ${y0.toFixed(1)} Q ${(x0+dirx*len*.6).toFixed(1)} ${(y0+diry*len*.5).toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+      }
+    }
+  });
+  g.innerHTML=`<path d="${d}" fill="none" stroke="#ecebe6" stroke-width=".9" stroke-linecap="round" opacity=".85"/>`;
+  const fy=268-S.side*4;const fl=$('#fl');fl.setAttribute('y1',fy);fl.setAttribute('y2',fy);
+  $('#fadeTag').textContent=`Fade ${S.side}mm`;
+  $('#os').innerHTML=`${S.side}<small>mm</small>`;$('#ot').innerHTML=`${S.top}<small>cm</small>`;
+  const tx={dry:'ナチュラル（自然に乾かした感じ）',wet:'ウェット（つや感のある後ろ流し）',perm:'パーマ（動きのあるニュアンス）'}[S.tex];
+  $('#order').textContent=`はじめまして。カットの予約をお願いしたいです。\n・サイド／えり足：${S.side}mmくらい\n・トップ：${S.top}cmくらい残したい\n・質感：${tx}\n・希望日時：〇月〇日 〇時ごろ`;
+}
+$('#rs').addEventListener('input',e=>{S.side=+e.target.value;drawHead();});
+$('#rt').addEventListener('input',e=>{S.top=+e.target.value;drawHead();});
+$$('#seg button').forEach(b=>b.addEventListener('click',()=>{$$('#seg button').forEach(o=>o.setAttribute('aria-pressed',o===b));S.tex=b.dataset.v;drawHead();if(hasG&&!reduce)gsap.fromTo('#strands',{opacity:.2},{opacity:1,duration:.6});}));
+$('#copy').addEventListener('click',()=>{const b=$('#copy');try{navigator.clipboard.writeText($('#order').textContent);}catch(e){}b.textContent='コピーしました ✓';setTimeout(()=>b.textContent='文面をコピー →',1800);});
+drawHead();
+
+/* ---------- 質問 ---------- */
+$$('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}));
+
+/* ---------- カーソル・磁石 ---------- */
+if(matchMedia('(hover:hover)').matches&&!reduce){
+  const cu=$('.cx');let mx=-60,my=-60,x=-60,y=-60;
+  addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;});
+  $$('a,button,input,.fr,.mi,.pn').forEach(el=>{el.addEventListener('pointerenter',()=>cu.classList.add('on'));el.addEventListener('pointerleave',()=>cu.classList.remove('on'));});
+  (function f(){x+=(mx-x)*.22;y+=(my-y)*.22;cu.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();
+  $$('[data-mag]').forEach(m=>{const em=m.querySelector('em');
+    m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2;m.style.transform=`translate(${dx*.3}px,${dy*.3}px)`;em.style.transform=`translate(${dx*.15}px,${dy*.15}px)`;});
+    m.addEventListener('pointerleave',()=>{m.style.transition='transform .9s cubic-bezier(.16,1,.3,1)';m.style.transform='';em.style.transform='';setTimeout(()=>m.style.transition='',900);});
+  });
+}
+
+const reveal=()=>{$$('.ln>span').forEach(e=>e.style.transform='none');$$('.hero .jp p,.hero .meta,.trim').forEach(e=>e.style.opacity=1);$$('.say .w').forEach(e=>e.style.opacity=1);};
+if(reduce||!hasG){$('#ld').remove();reveal();return;}
 gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- ローダー ---------- */
+const cnt={v:0};
 const tl=gsap.timeline();
-tl.to('#loader .bar i',{width:'100%',duration:.9,ease:'power2.inOut'}).to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1').set('#loader',{display:'none'})
-  .to('.hero h1 .ch',{y:0,opacity:1,duration:1.3,ease:'expo.out',stagger:.045},'-=.45').to('.hero .tate',{opacity:1,duration:1.2},'-=.9').to('.hero-foot',{opacity:1,duration:1},'-=.9');
-gsap.to('.hero h1',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.line>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 80%'}}));
-gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
-gsap.from('.photo',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.photo',start:'top 80%'}});
-try{ window.__sigGsap && window.__sigGsap(gsap); }catch(e){}
+tl.to(cnt,{v:60,duration:1.4,ease:'power2.inOut',onUpdate:()=>{$('#cnt').textContent=String(Math.round(cnt.v)).padStart(2,'0')+':00';}})
+  .to('#ld .cut',{scaleX:1,duration:.7,ease:'expo.inOut'},'-=.15')
+  .to('#ld .cnt,#ld .cap',{opacity:0,duration:.3},'-=.2')
+  .to('#ld .h.t',{yPercent:-100,duration:1.1,ease:'expo.inOut'},'+=.05')
+  .to('#ld .h.b',{yPercent:100,duration:1.1,ease:'expo.inOut'},'<')
+  .to('#ld .cut',{opacity:0,duration:.4},'<')
+  .set('#ld',{display:'none'})
+  .to('.hero h1 .ln>span',{y:0,duration:1.4,ease:'expo.out',stagger:.12},'-=.75')
+  .to('.hero .jp p,.hero .meta',{opacity:1,duration:1,stagger:.1},'-=1')
+  .to('.trim',{opacity:1,duration:.8},'-=.6');
+
+/* ---------- ヒーロー：スクロールで切る ---------- */
+ScrollTrigger.create({trigger:'.hero',start:'top top',end:'bottom top',scrub:true,onUpdate:s=>{trim=s.progress;$('#mm').textContent=Math.round(40-34*s.progress)+'mm';gsap.set('#trimbar',{scaleX:s.progress});}});
+gsap.to('.hero-in',{yPercent:-18,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+/* ---------- 見出し・出現 ---------- */
+$$('.sp').forEach(s=>gsap.to(s.querySelectorAll('.ln>span'),{y:0,duration:1.25,ease:'expo.out',stagger:.1,scrollTrigger:{trigger:s,start:'top 86%'}}));
+$$('.rv').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
+gsap.to('.say .w',{opacity:1,stagger:.15,ease:'none',scrollTrigger:{trigger:'#say',start:'top 80%',end:'bottom 50%',scrub:.5}});
+gsap.from('.one',{yPercent:20,opacity:0,duration:1.6,ease:'expo.out',scrollTrigger:{trigger:'.concept',start:'top 70%'}});
+
+/* ---------- 60分の横スクロール（PCのみ） ---------- */
+const mm=gsap.matchMedia();
+mm.add('(min-width:861px)',()=>{
+  const tr=$('#track');
+  const dist=()=>Math.max(0,tr.scrollWidth+$('.flow-head').offsetWidth-innerWidth);
+  const tw=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#flow',start:'top top',end:()=>'+='+dist(),pin:true,scrub:.6,invalidateOnRefresh:true,
+    onUpdate:s=>{$('#clk').style.strokeDashoffset=377*(1-s.progress);$('#clkT').textContent=String(Math.round(s.progress*60)).padStart(2,'0');}}});
+  return ()=>tw.kill();
+});
+mm.add('(max-width:860px)',()=>{
+  $$('.pn').forEach(p=>gsap.from(p,{x:40,opacity:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:p,start:'top 88%'}}));
+});
+
+/* ---------- 背景色の切り替え ---------- */
+$$('[data-bg]').forEach(s=>ScrollTrigger.create({trigger:s,start:'top 50%',end:'bottom 50%',onToggle:e=>{if(e.isActive){document.body.style.setProperty('--bg',s.dataset.bg);document.body.style.setProperty('--fg',s.dataset.fg);}}}));
+
+/* ---------- 予約の大見出し：少し横に流れる ---------- */
+gsap.to('.big .ln:nth-child(2)>span',{xPercent:-6,ease:'none',scrollTrigger:{trigger:'#reserve',start:'top bottom',end:'bottom top',scrub:true}});
 })();
 </script>
-</body></html>
+</body>
+</html>

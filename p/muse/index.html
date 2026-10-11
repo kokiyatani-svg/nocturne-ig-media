@@ -1,207 +1,541 @@
 <!doctype html>
-<html lang="ja"><head><script>try{history.scrollRestoration='manual'}catch(e){};if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));addEventListener('pageshow',()=>scrollTo(0,0));</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow"><title>MUSE｜うたとピアノの音楽教室MUSE（見本）</title>
+<html lang="ja">
+<head>
+<script>try{history.scrollRestoration='manual'}catch(e){};scrollTo(0,0);addEventListener('load',()=>setTimeout(()=>scrollTo(0,0),0));</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>うたとピアノの音楽教室 MUSE｜成城学園前（見本）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* コンセプト：「うたうように、ひく。ひくように、うたう。」── 五線譜・夜の紺・金の音 */
 :root{
-  --bg:#f6f3ec; --paper:#fbf9f4; --ink:#1c1b18; --sub:#6e6a60; --line:#e4ded1;
-  --acc:#a8862a; --acc2:#e7cf8a; --dark:#131210; --onDark:#f3efe4; --heroFg:#f3efe4;
-  --disp:'Bodoni Moda','Didot',serif; --jp:'Shippori Mincho B1','Hiragino Mincho ProN',serif; --body:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+  --night:#151a30; --navy:#232a4d; --paper:#f4efe5; --paper2:#ebe3d3; --ink:#1b1f33; --sub:#6c6a72;
+  --gold:#b98f45; --gold2:#e2c48a; --voice:#c0624f;
+  --bg:var(--paper); --fg:var(--ink);
+  --disp:'Cormorant Garamond',Georgia,serif; --jp:'Shippori Mincho','Hiragino Mincho ProN',serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:2;letter-spacing:.04em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font-family:var(--jp);font-size:15px;line-height:2.05;letter-spacing:.06em;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background-color .9s var(--ease),color .9s var(--ease)}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--acc);color:#fff}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
-#loader{position:fixed;inset:0;z-index:100;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:var(--onDark)}
-#loader .l{font-family:var(--disp);font-size:56px;line-height:1;font-style:italic;}
-#loader .bar{width:140px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
-#loader .bar i{display:block;height:100%;width:0;background:var(--acc2)}
-.cursor{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--acc);pointer-events:none;z-index:90;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .35s}
-.cursor.big{width:60px;height:60px;opacity:.35}
-@media (hover:none){.cursor{display:none}}
-header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s,color .5s;color:var(--heroFg)}
-header.solid{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);color:var(--ink)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{font-family:var(--disp);font-size:22px;letter-spacing:.02em;font-style:italic;}
-.brand small{font-family:var(--body);font-style:normal;font-weight:400;font-size:10px;letter-spacing:.3em;margin-left:10px;opacity:.7}
-nav{display:flex;gap:28px;font-size:12px;letter-spacing:.2em;align-items:center}
-nav a{position:relative;padding:4px 0}
-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
-nav a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{border:1px solid currentColor;border-radius:999px;padding:8px 18px!important}
-.nav-cta::after{display:none}
-@media(max-width:820px){nav a:not(.nav-cta){display:none}}
-.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--heroFg);background:#131210}
-#hero{position:absolute;inset:0;width:100%;height:100%}
-.hero-in{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding-bottom:clamp(28px,5vh,56px);pointer-events:none}
-.hero-in a,.hero-in button{pointer-events:auto}
-.hero h1{align-self:center;font-family:var(--disp);font-weight:400;font-size:clamp(64px,13vw,200px);line-height:.9;letter-spacing:-.01em;font-style:italic;}
-.hero h1 .ch{display:inline-block;transform:translateY(110%);opacity:0;white-space:pre}
-.hero h1 .mask{display:inline-block;overflow:hidden;padding:0 .04em .1em}
-.hero .tate{position:absolute;right:clamp(20px,5vw,56px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);font-size:clamp(17px,1.7vw,22px);letter-spacing:.4em;line-height:2.2;opacity:0}
-.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;letter-spacing:.2em;opacity:0}
-.hero-foot p{max-width:26em;line-height:2.1;letter-spacing:.08em;font-size:13px}
-.scroll{display:flex;align-items:center;gap:12px}
-.scroll i{display:block;width:1px;height:56px;background:currentColor;opacity:.3;position:relative;overflow:hidden}
-@media(max-width:820px){.hero .tate{top:auto;bottom:150px;transform:none}.hero-foot{flex-direction:column;align-items:flex-start}}
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0;background:var(--paper)}
-.ticker .row{display:inline-flex;gap:48px;font-family:var(--disp);font-size:26px;color:var(--sub);animation:tick 40s linear infinite;font-style:italic;}
-.ticker .row span::after{content:"♪";font-style:normal;font-size:12px;color:var(--acc);margin-left:48px;vertical-align:middle}
-@keyframes tick{to{transform:translateX(-50%)}}
-.state{padding-block:clamp(110px,16vw,220px)}
-.eyebrow{font-size:11px;letter-spacing:.35em;color:var(--acc);text-transform:uppercase;display:flex;align-items:center;gap:14px}
-.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
-.state h2{font-family:var(--jp);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.7;letter-spacing:.06em;margin-top:36px}
-.line{display:block;overflow:hidden}
-.line>span{display:inline-block;transform:translateY(105%)}
-.state .lead{margin-top:44px;max-width:34em;color:var(--sub)}
-.state-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,96px);align-items:end}
-.photo{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:4px;overflow:hidden;background:var(--paper)}
-.photo canvas{position:absolute;inset:0;width:100%;height:100%}
-.photo .ph{position:absolute;inset:auto 0 0 0;text-align:center;padding:24px;font-size:11px;letter-spacing:.3em;color:var(--onDark);mix-blend-mode:difference;opacity:.7}
-@media(max-width:820px){.state-grid{grid-template-columns:1fr}.photo{max-width:420px}}
-.feat{padding-block:0 clamp(100px,14vw,180px)}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.f{padding:44px 32px 44px 0;border-right:1px solid var(--line);min-width:0}
-.f:last-child{border-right:0}
-.f+.f{padding-left:32px}
-.f svg{width:34px;height:34px;color:var(--acc)}
-.f h3{font-family:var(--jp);font-size:21px;font-weight:500;margin:22px 0 10px;letter-spacing:.08em}
-.f p{color:var(--sub);font-size:14px}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr}.f,.f+.f{padding:32px 0;border-right:0;border-bottom:1px solid var(--line)}}
-.sig{background:var(--dark);color:var(--onDark);overflow:hidden;position:relative}
-.sig .head{padding-block:clamp(90px,12vw,150px) 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.sig h2{font-family:var(--disp);font-weight:400;font-size:clamp(48px,8vw,116px);line-height:.95;font-style:italic;}
-.sig .head p{max-width:26em;opacity:.72;font-size:14px}
-.sig .body{padding-bottom:clamp(90px,12vw,150px)}
-.menu{padding-block:clamp(110px,15vw,190px)}
-.menu-grid,.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px)}
-.menu h2,.voice h2,.faq h2{font-family:var(--disp);font-weight:400;font-size:clamp(46px,7vw,92px);line-height:.95;margin-top:18px;font-style:italic;}
-.menu .note{margin-top:28px;color:var(--sub);font-size:13px}
-.list{list-style:none;border-top:1px solid var(--ink)}
-.list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative}
-.list li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.list li:hover::before{transform:scaleX(1)}
-.list b{font-family:var(--jp);font-weight:500;font-size:clamp(17px,1.8vw,21px);letter-spacing:.06em}
-.list .p{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;font-style:normal}
-.voice{padding-block:clamp(100px,14vw,170px);background:var(--paper);border-block:1px solid var(--line)}
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);margin-top:64px}
-.quotes figure{border-top:1px solid var(--line);padding-top:30px}
-.quotes blockquote{font-family:var(--jp);font-size:clamp(19px,2vw,24px);line-height:1.9;letter-spacing:.06em}
-.quotes blockquote::before{content:"“";display:block;font-family:Georgia,serif;font-size:80px;line-height:.6;color:var(--acc);height:40px}
-.quotes figcaption{margin-top:18px;font-size:12px;letter-spacing:.2em;color:var(--sub)}
-@media(max-width:820px){.quotes,.menu-grid,.faq-grid{grid-template-columns:1fr}}
-.faq{padding-block:clamp(110px,15vw,190px)}
-.qa{border-bottom:1px solid var(--line)}
-.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--jp);font-size:clamp(16px,1.6vw,19px);letter-spacing:.06em}
-.qa button:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
-.qa .pm{position:relative;width:14px;height:14px;flex:none;margin-top:8px}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--ink);transition:transform .5s var(--ease)}
-.qa .pm::after{transform:rotate(90deg)}
-.qa.open .pm::after{transform:rotate(0)}
-.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
-.qa.open .ans{grid-template-rows:1fr}
-.qa .ans>div{overflow:hidden}
-.qa .ans p{padding-bottom:26px;color:var(--sub);font-size:14px}
-.reserve{position:relative;background:var(--dark);color:var(--onDark);padding-block:clamp(120px,16vw,210px);overflow:hidden;text-align:center}
-.reserve h2{font-family:var(--disp);font-weight:400;font-size:clamp(52px,10vw,160px);line-height:.95;font-style:italic;}
-.reserve p{margin:30px auto 0;max-width:30em;opacity:.78}
-.mag{display:inline-flex;align-items:center;justify-content:center;width:184px;height:184px;border-radius:50%;background:var(--acc);color:#fff;margin-top:56px;font-size:13px;letter-spacing:.2em;transition:background .4s;will-change:transform;text-align:center;line-height:1.6}
-.mag:hover{background:var(--acc2)}
-.info{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:12px 48px;margin-top:64px;font-size:13px;opacity:.85}
-.info dt{font-size:10px;letter-spacing:.3em;color:var(--acc2)}
-@media(max-width:820px){.info{grid-template-columns:1fr}}
-.partner{padding-block:56px}
-.nc{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:4px;padding:22px 26px;background:var(--paper);transition:border-color .4s}
-.nc:hover{border-color:var(--acc)}
-.nc .m{font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:.3em;color:#b8956a}
-.nc b{display:block;font-family:var(--jp);font-weight:500;font-size:17px}
-.nc small{color:var(--sub);font-size:12px}
-.nc .go{margin-left:auto;font-size:12px;letter-spacing:.2em}
-footer{padding-block:28px 64px;font-size:11px;letter-spacing:.15em;color:var(--sub);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;background:rgba(20,20,20,.8);color:#fff;font:600 10px/1 sans-serif;letter-spacing:.25em;padding:9px 14px;border-radius:20px}
-@media (prefers-reduced-motion:reduce){.hero h1 .ch,.line>span{transform:none!important;opacity:1!important}.hero .tate,.hero-foot{opacity:1!important}.ticker .row{animation:none}#loader{display:none}}
-.keys{position:relative;display:flex;height:clamp(180px,26vw,280px);user-select:none;-webkit-user-select:none;touch-action:none}.keys .w{flex:1;background:#f3efe4;border:1px solid #131210;border-radius:0 0 8px 8px;position:relative;cursor:pointer;transition:background .15s;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;font-size:12px;color:#6e6a60}
-.keys .w.on{background:#e7cf8a}.keys .b{position:absolute;top:0;width:calc(100%/8*.6);height:62%;background:#131210;border-radius:0 0 6px 6px;z-index:2;cursor:pointer;transform:translateX(-50%);box-shadow:inset 0 -6px 0 #2a2722}.keys .b.on{background:#a8862a}
-.kb-ctl{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:20px;flex-wrap:wrap}#twinkle{all:unset;cursor:pointer;padding:14px 26px;border:1px solid rgba(243,239,228,.3);border-radius:999px}#twinkle:hover{background:#f3efe4;color:#131210}#noteName{font-family:'Bodoni Moda',serif;font-style:italic;font-size:44px;color:var(--acc2)}.hero h1{font-size:min(19vw,calc(150vw/5),300px)!important;white-space:nowrap}</style></head><body>
-<div id="loader"><div class="l">M</div><div class="bar"><i></i></div></div><div class="cursor"></div>
-<header id="hd"><div class="wrap"><a class="brand" href="#top">MUSE<small>PIANO SCHOOL</small></a>
-<nav><a href="#about">ABOUT</a><a href="#sig">PLAY</a><a href="#menu">MENU</a><a href="#faq">FAQ</a><a class="nav-cta" href="#reserve">TRIAL</a></nav></div></header>
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--gold);color:#fff}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,60px)}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:inline-block;transform:translateY(112%)}
+.kick{font-family:var(--disp);font-style:italic;font-size:17px;letter-spacing:.06em;color:var(--gold);display:flex;align-items:center;gap:12px}
+.kick::before{content:"";width:34px;height:9px;background:repeating-linear-gradient(to bottom,currentColor 0 1px,transparent 1px 2px);opacity:.8}
+.h2{font-weight:500;font-size:clamp(26px,3.5vw,44px);line-height:1.6;letter-spacing:.08em;margin-top:18px}
+.h2 em{font-family:var(--disp);font-style:italic;font-weight:300;color:var(--gold);letter-spacing:.02em}
+section{position:relative}
+.pad{padding-block:clamp(96px,13vw,170px)}
+
+/* ローディング：五線が引かれ、ラの音が鳴る */
+#loader{position:fixed;inset:0;z-index:100;background:var(--night);display:grid;place-items:center;color:var(--gold2)}
+#loader .staff{width:min(66vw,520px);display:grid;gap:11px}
+#loader .staff i{display:block;height:1px;background:var(--gold2);transform:scaleX(0);transform-origin:left}
+#loader .hz{position:absolute;bottom:20%;left:0;right:0;text-align:center;font-family:var(--disp);font-style:italic;font-size:18px;letter-spacing:.12em}
+#loader .note{position:absolute;left:50%;top:50%;width:16px;height:12px;margin:-6px 0 0 -8px;border-radius:50%;background:var(--gold2);transform:rotate(-20deg) scale(0)}
+
+/* カーソル：音符の玉 */
+.cur{opacity:0;position:fixed;left:0;top:0;width:14px;height:10px;margin:-5px 0 0 -7px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:95;transition:width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease),background .45s,border-color .45s;border:1px solid transparent}
+.cur.big{width:54px;height:54px;margin:-27px 0 0 -27px;background:transparent;border-color:var(--gold)}
+@media (hover:none){.cur{display:none}}
+
+/* ヘッダー */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:transform .6s var(--ease);padding-top:env(safe-area-inset-top,0px);mix-blend-mode:difference;color:#f4efe5}
+header.hide{transform:translateY(-110%)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{display:flex;align-items:baseline;gap:12px}
+.logo b{font-family:var(--disp);font-weight:400;font-size:28px;letter-spacing:.32em}
+.logo small{font-size:10px;letter-spacing:.2em;opacity:.8}
+header nav{display:flex;gap:28px;font-size:12.5px;letter-spacing:.14em}
+header nav a{position:relative;padding-block:4px}
+header nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+header nav a:hover::after{transform:scaleX(1);transform-origin:left}
+@media(max-width:860px){header nav a:not(.cta){display:none}.logo small{display:none}}
+
+/* ヒーロー */
+.hero{height:100svh;min-height:640px;background:var(--night);color:var(--paper);overflow:hidden}
+#strings{position:absolute;inset:0;width:100%;height:100%}
+.hero-in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:40px}
+.hero .tag{font-family:var(--disp);font-style:italic;font-size:16px;letter-spacing:.2em;color:var(--gold2)}
+.hero h1{font-family:var(--disp);font-weight:300;font-size:clamp(96px,17vw,260px);line-height:.85;letter-spacing:.14em;margin:10px 0 26px -.04em}
+.hero h1 .c{display:inline-block;opacity:0;transform:translateY(40%);filter:blur(10px)}
+.hero .catch{font-size:clamp(20px,2.4vw,32px);letter-spacing:.18em;line-height:1.75;font-weight:500}
+.hero .sub{margin-top:18px;font-size:13.5px;max-width:28em;opacity:.75}
+.fade{opacity:0}
+.hero .scroll{position:absolute;right:clamp(20px,5vw,60px);bottom:30px;font-family:var(--disp);font-style:italic;font-size:14px;letter-spacing:.2em;writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;opacity:.7}
+.hero .scroll::after{content:"";width:1px;height:60px;background:linear-gradient(var(--gold2),transparent);animation:drip 2.2s var(--ease) infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media(max-width:860px){.hero-in{justify-content:flex-end;padding-bottom:96px}.hero h1{letter-spacing:.08em}.hero .scroll{display:none}.hero .tag{font-size:12.5px;letter-spacing:.1em}}
+
+/* コンセプト */
+.about .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,7vw,110px);align-items:end}
+.about p.body{margin-top:30px;color:var(--sub)}
+.about .quote{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(34px,4.6vw,64px);line-height:1.15;color:var(--ink);position:relative}
+.about .quote small{display:block;font-family:var(--jp);font-style:normal;font-size:13px;letter-spacing:.14em;color:var(--sub);margin-top:22px}
+.keys{position:relative;display:flex;gap:4px;margin-top:clamp(60px,8vw,110px);height:120px}
+.keys i{flex:1;border-radius:0 0 6px 6px;background:#fff;box-shadow:inset 0 -6px 0 var(--paper2),0 1px 0 rgba(0,0,0,.08);transform-origin:top}
+.keys i.b{position:absolute;top:0;height:62%;background:var(--ink);box-shadow:inset 0 -5px 0 #000;z-index:2;border-radius:0 0 4px 4px}
+@media(max-width:860px){.about .grid{grid-template-columns:1fr}.keys{height:84px}}
+
+/* 特徴：横に流れる楽譜 */
+.sig{background:var(--night);color:var(--paper);overflow:hidden}
+.sig .head{padding-top:clamp(90px,11vw,140px)}
+.sig .head .h2{color:var(--paper)}
+.sig .rail{position:relative;margin-top:50px;padding-bottom:clamp(80px,10vw,120px)}
+.sig .track{display:flex;gap:clamp(18px,3vw,40px);padding-inline:clamp(20px,5vw,60px);width:max-content;will-change:transform}
+.sig .staffbg{position:absolute;left:0;right:0;top:46%;display:grid;gap:12px;opacity:.14;pointer-events:none}
+.sig .staffbg i{height:1px;background:var(--gold2)}
+.card{position:relative;width:min(78vw,420px);min-height:440px;border:1px solid rgba(226,196,138,.28);border-radius:4px;padding:34px 30px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,0));display:flex;flex-direction:column;transition:border-color .5s,transform .6s var(--ease)}
+.card:hover{border-color:var(--gold2);transform:translateY(-6px)}
+.card .no{font-family:var(--disp);font-style:italic;font-size:15px;color:var(--gold2);letter-spacing:.12em}
+.card svg{width:100%;height:150px;margin:18px 0 10px}
+.card h3{font-weight:500;font-size:22px;letter-spacing:.12em}
+.card h3 small{display:block;font-family:var(--disp);font-style:italic;font-weight:300;font-size:16px;color:var(--gold2);letter-spacing:.06em}
+.card p{font-size:13.5px;opacity:.78;margin-top:12px}
+.sig .hint{font-family:var(--disp);font-style:italic;font-size:14px;color:var(--gold2);margin-top:20px;letter-spacing:.12em}
+.svgl{fill:none;stroke:var(--gold2);stroke-width:1.2;stroke-linecap:round}
+
+/* 体験：鍵盤 */
+.play .box{margin-top:50px;background:#fff;border-radius:18px;padding:clamp(20px,3.4vw,44px);box-shadow:0 30px 80px -40px rgba(27,31,51,.45)}
+.score{width:100%;height:150px;display:block}
+.score .sl{stroke:#c9c1b0;stroke-width:1}
+.score .clef{font-family:var(--disp);font-size:96px;fill:var(--ink)}
+.nh{transform-box:fill-box;transform-origin:center}
+.kb{position:relative;display:flex;height:clamp(150px,22vw,220px);margin-top:18px;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.kb .w{flex:1;background:linear-gradient(#fff,#f7f4ee);border:1px solid #d9d2c4;border-radius:0 0 8px 8px;margin-right:-1px;position:relative;transition:background .15s,transform .15s;transform-origin:top;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-size:11px;color:#a49c8c;letter-spacing:0}
+.kb .w.on{background:linear-gradient(#fff,#f3e3c3);transform:scaleY(.985)}
+.kb .bk{position:absolute;top:0;width:6.2%;height:60%;background:linear-gradient(#2a2f45,#0f1222);border-radius:0 0 5px 5px;z-index:2;transform:translateX(-50%);box-shadow:0 4px 8px rgba(0,0,0,.25);transition:background .15s,transform .15s;transform-origin:top}
+.kb .bk.on{background:linear-gradient(#3b3f55,var(--gold));transform:translateX(-50%) scaleY(.98)}
+.ctrl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+.chip{border:1px solid var(--ink);border-radius:999px;padding:9px 20px;font-size:13px;letter-spacing:.1em;transition:background .4s,color .4s}
+.chip:hover{background:var(--ink);color:var(--paper)}
+.ctrl .tip{font-size:12px;color:var(--sub);margin-left:auto}
+@media(max-width:860px){.ctrl .tip{margin-left:0;width:100%}.score .clef{font-size:80px}}
+
+/* メニュー：演奏会のプログラム */
+.menu .prog{margin-top:56px;display:grid;grid-template-columns:240px 1fr;gap:clamp(30px,6vw,90px)}
+.menu .side{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(48px,6vw,84px);line-height:1;color:var(--gold)}
+.menu .side small{display:block;font-family:var(--jp);font-style:normal;font-size:12px;color:var(--sub);letter-spacing:.12em;margin-top:18px;line-height:1.8}
+.item{display:grid;grid-template-columns:44px 1fr auto;gap:6px 18px;align-items:baseline;padding:24px 0;border-bottom:1px solid rgba(27,31,51,.14);position:relative}
+.item::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.item:hover::before{transform:scaleX(1)}
+.item .n{font-family:var(--disp);font-style:italic;color:var(--gold);font-size:18px}
+.item h3{font-weight:500;font-size:18px;letter-spacing:.1em}
+.item h3 small{font-size:12px;color:var(--sub);margin-left:10px;letter-spacing:.06em}
+.item .p{font-family:var(--disp);font-size:24px;letter-spacing:.02em;white-space:nowrap}
+.item .p small{font-family:var(--jp);font-size:11px;color:var(--sub);margin-left:4px}
+.item p{grid-column:2/4;font-size:13px;color:var(--sub);line-height:1.9}
+.note{font-size:12px;color:var(--sub);margin-top:22px}
+@media(max-width:860px){.menu .prog{grid-template-columns:1fr}.item{grid-template-columns:30px 1fr}.item .p{grid-column:2}.item p{grid-column:2}}
+
+/* 流れ：小節 */
+.flow .bars{margin-top:60px;position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-left:2px solid var(--ink)}
+.flow .bars::after{content:"";position:absolute;right:0;top:0;bottom:0;width:6px;border-left:1px solid var(--ink);border-right:4px solid var(--ink)}
+.bar{padding:30px clamp(16px,2vw,28px) 34px;border-right:1px solid rgba(27,31,51,.3);position:relative}
+.bar:last-child{border-right:0;padding-right:28px}
+.bar .m{font-family:var(--disp);font-style:italic;color:var(--gold);font-size:15px}
+.bar h3{font-weight:500;font-size:18px;letter-spacing:.1em;margin:8px 0 10px}
+.bar p{font-size:13px;color:var(--sub);line-height:1.9}
+.playhead{position:absolute;top:-14px;bottom:-14px;left:0;width:2px;background:var(--voice);z-index:2}
+.playhead::before{content:"";position:absolute;top:0;left:-5px;border:6px solid transparent;border-top:9px solid var(--voice)}
+@media(max-width:860px){.flow .bars{grid-template-columns:1fr;border-left:0;border-top:2px solid var(--ink)}.flow .bars::after{display:none}.bar{border-right:0;border-bottom:1px solid rgba(27,31,51,.3);padding-inline:4px}.playhead{display:none}}
+
+/* 声（例） */
+.voice .list{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.v{padding:30px 26px;border-top:1px solid var(--ink);position:relative}
+.v::before{content:"“";font-family:var(--disp);font-size:80px;line-height:.6;color:var(--gold);display:block;height:34px}
+.v p{font-size:14px}
+.v span{display:block;margin-top:16px;font-size:12px;color:var(--sub)}
+.ex{display:inline-block;font-size:11px;border:1px solid currentColor;border-radius:999px;padding:1px 10px;margin-left:10px;letter-spacing:.1em;vertical-align:middle;color:var(--sub)}
+@media(max-width:860px){.voice .list{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq .qs{margin-top:46px;max-width:860px}
+details{border-bottom:1px solid rgba(27,31,51,.18)}
+summary{list-style:none;cursor:pointer;display:flex;gap:16px;align-items:center;padding:24px 0;font-size:16px;font-weight:500;letter-spacing:.08em}
+summary::-webkit-details-marker{display:none}
+summary .q{font-family:var(--disp);font-style:italic;color:var(--gold);font-size:22px}
+summary .t{margin-left:auto;width:22px;height:22px;position:relative;flex:none}
+summary .t::before,summary .t::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:currentColor;transition:transform .5s var(--ease)}
+summary .t::after{transform:rotate(90deg)}
+details[open] summary .t::after{transform:rotate(0)}
+details .a{padding:0 38px 26px;font-size:14px;color:var(--sub)}
+
+/* アクセス */
+.access .grid{margin-top:50px;display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(30px,5vw,70px);align-items:center}
+.access dl{display:grid;grid-template-columns:7em 1fr;gap:14px 10px;font-size:14px}
+.access dt{color:var(--sub)}
+.mapsvg{width:100%;height:auto;background:var(--paper2);border-radius:14px}
+.mapsvg .rail{stroke:var(--ink);stroke-width:5;fill:none}
+.mapsvg .rail2{stroke:var(--paper2);stroke-width:3;stroke-dasharray:10 10;fill:none}
+.mapsvg .rd{stroke:#fff;stroke-width:10;fill:none;stroke-linecap:round}
+.pin{transform-box:fill-box;transform-origin:50% 100%}
+@media(max-width:860px){.access .grid{grid-template-columns:1fr}}
+
+/* 予約 */
+.reserve{background:var(--night);color:var(--paper);text-align:center;overflow:hidden}
+.reserve .h2{color:var(--paper);font-size:clamp(30px,4.6vw,58px)}
+.reserve .lead{opacity:.75;margin-top:18px;font-size:14px}
+.btns{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:56px}
+.mb{display:inline-flex;align-items:center;gap:14px;padding:22px 34px;border-radius:999px;border:1px solid var(--gold2);color:var(--paper);font-size:15px;letter-spacing:.12em;will-change:transform;transition:background .5s,color .5s}
+.mb.main{background:var(--gold2);color:var(--night);font-weight:700}
+.mb:hover{background:var(--paper);color:var(--night)}
+.mb small{font-size:11px;opacity:.7;font-weight:400}
+.reserve .ring{position:absolute;left:50%;top:50%;width:900px;height:900px;margin:-450px 0 0 -450px;border-radius:50%;border:1px solid rgba(226,196,138,.12);pointer-events:none}
+.reserve .ring.r2{width:600px;height:600px;margin:-300px 0 0 -300px}
+@media(max-width:860px){.mb{width:100%;justify-content:center;padding:20px}}
+.reserve .hours{font-size:12.5px;opacity:.6;margin-top:40px}
+
+/* パートナー・フッター */
+.partner{padding-block:50px 10px}
+.nc{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:1px solid rgba(27,31,51,.18);border-radius:6px;padding:18px 22px;font-size:12.5px;color:var(--sub);transition:border-color .4s}
+.nc:hover{border-color:var(--gold)}
+.nc b{color:var(--ink);font-size:14px}
+.nc .p{margin-left:auto;font-size:11px}
+footer{padding-block:24px 74px;font-size:11.5px;color:var(--sub);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sample{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:96;background:var(--gold);color:#fff;font:700 10px/1 var(--jp);letter-spacing:.28em;padding:9px 14px;border-radius:2px}
+
+.nojs .ln>span,.nojs .hero h1 .c{transform:none;opacity:1;filter:none}
+.nojs .fade{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .ln>span,.hero h1 .c{transform:none!important;opacity:1!important;filter:none!important}
+  .fade{opacity:1!important}
+  #loader,.cur{display:none}
+}
+</style>
+</head>
+<body>
+<div id="loader" aria-hidden="true"><div class="staff"><i></i><i></i><i></i><i></i><i></i></div><div class="note"></div><p class="hz">A = <span id="hz">0</span> Hz</p></div>
+<div class="cur" aria-hidden="true"></div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top"><b>MUSE</b><small>うたとピアノの音楽教室</small></a>
+  <nav><a href="#about">コンセプト</a><a href="#sig">レッスン</a><a href="#play">鍵盤</a><a href="#menu">料金</a><a class="cta" href="#reserve">体験のお申込み</a></nav>
+</div></header>
+
 <main id="top">
-<section class="hero"><canvas id="hero" aria-hidden="true"></canvas>
-<div class="wrap hero-in"><h1 aria-label="MUSE"><span class="mask">MUSE</span></h1><p class="tate">弾けた！のよろこびを、何度でも。</p>
-<div class="hero-foot"><p>3歳から大人まで。<br>ひとりひとりのペースに合わせた<br>完全個人レッスンです。</p><div class="scroll"><i></i>SCROLL</div></div></div></section>
-<div class="ticker" aria-hidden="true"><div class="row"><span>MUSE Piano School</span><span>Private Lessons</span><span>Age 3 to Adult</span><span>Annual Recital</span><span>Free Trial</span><span>MUSE Piano School</span><span>Private Lessons</span><span>Age 3 to Adult</span><span>Annual Recital</span><span>Free Trial</span></div></div>
-<section class="state" id="about"><div class="wrap state-grid"><div><p class="eyebrow">About</p><h2 class="split"><span class="line"><span>「弾けた！」の</span></span><span class="line"><span>よろこびを、</span></span><span class="line"><span>何度でも。</span></span></h2><p class="lead reveal">音楽を好きになることをいちばん大切にしています。基礎をしっかり身につけながら、好きな曲も一緒に楽しみましょう。</p></div>
-<div class="photo reveal"><canvas id="ph1" aria-hidden="true"></canvas><span class="ph">PHOTO — レッスン室</span></div></div></section>
-<section class="feat"><div class="wrap feat-grid"><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><h3>完全個人レッスン</h3><p>ペースも内容も、ひとりひとりに合わせて。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><h3>大人の方も歓迎</h3><p>初めての方、再開の方も大歓迎です。</p></div><div class="f reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><h3>発表会あり</h3><p>年に1回、ホールでの発表会があります。</p></div></div></section>
-<section class="sig" id="sig"><div class="wrap head"><h2>Play</h2><p>鍵盤を押すと音が鳴ります（スマホは音量にご注意ください）。「きらきら星」ボタンで自動演奏もできます。</p></div><div class="body"><div class="wrap kb"><div class="keys" id="keys" role="group" aria-label="鍵盤"></div><div class="kb-ctl"><button id="twinkle" data-hover>♪ きらきら星を弾く</button><span id="noteName" aria-live="polite">ド</span></div></div></div></section>
-<section class="menu" id="menu"><div class="wrap menu-grid"><div><p class="eyebrow">Menu</p><h2>Price<br>List</h2><p class="note">表示はすべて税込です。</p></div><ul class="list"><li class="reveal"><div><b>幼児（30分×月3回）</b></div><div class="p">7,000円／月</div></li><li class="reveal"><div><b>小学生（30分×月3回）</b></div><div class="p">8,000円／月</div></li><li class="reveal"><div><b>中学生以上（45分×月3回）</b></div><div class="p">10,000円／月</div></li><li class="reveal"><div><b>大人（45分×月2回）</b></div><div class="p">9,000円／月</div></li><li class="reveal"><div><b>体験レッスン</b></div><div class="p">無料</div></li></ul></div></section>
-<section class="voice"><div class="wrap"><p class="eyebrow">Voice</p><h2>Students</h2><div class="quotes"><figure class="reveal"><blockquote>毎週のレッスンを楽しみにしています。</blockquote><figcaption>小学2年生の保護者</figcaption></figure><figure class="reveal"><blockquote>子どもの頃の夢だった曲が弾けるようになりました。</blockquote><figcaption>50代・会社員</figcaption></figure></div></div></section>
-<section class="faq" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow">FAQ</p><h2>Q &amp; A</h2></div><div><div class="qa"><button aria-expanded="false">ピアノがなくても大丈夫？<span class="pm"></span></button><div class="ans"><div><p>最初は電子キーボードでも大丈夫です。</p></div></div></div><div class="qa"><button aria-expanded="false">振替はできますか？<span class="pm"></span></button><div class="ans"><div><p>月1回まで振替できます。</p></div></div></div><div class="qa"><button aria-expanded="false">入会金は？<span class="pm"></span></button><div class="ans"><div><p>5,000円です（体験当日入会で無料）。</p></div></div></div></div></div></section>
-<section class="reserve" id="reserve"><div class="wrap"><h2>Free Trial</h2><p>体験レッスンは無料です。ピアノがなくても大丈夫。お子さまの場合は保護者の方もご一緒にどうぞ。</p><a class="mag" href="#reserve" data-mag>体験を<br>申し込む</a>
-<dl class="info"><div><dt>HOURS</dt><dd>平日 14:00〜20:00／土曜 10:00〜17:00</dd></div><div><dt>ACCESS</dt><dd>〇〇駅 徒歩3分</dd></div><div><dt>ADDRESS</dt><dd>東京都〇〇区〇〇 1-2-3</dd></div></dl></div></section>
-<section class="partner"><div class="wrap"><a class="nc" href="https://nocturneconcierge.com/" target="_blank" rel="noopener"><div><span class="m">NOCTURNE CONCIERGE</span><b>当店のお客さまへ：夜だけの家事代行</b><small>18:00〜翌3:00。作り置き・洗濯・片付けを、帰ってからの時間に。</small></div><span class="go">VIEW →</span></a></div></section>
-</main><footer class="wrap"><span>© うたとピアノの音楽教室MUSE</span><span>※見本です。写真・文章・料金はお店の内容に差し替えてお作りします。</span></footer><div class="sample">SAMPLE</div>
-<script>window.__photo=['#1c1a16','#a8862a','#3a342a','#e7cf8a'];
-window.__heroFx=function(cv){const x=cv.getContext('2d');let w,h,d=Math.min(devicePixelRatio,2);const sz=()=>{w=cv.clientWidth;h=cv.clientHeight;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);};sz();addEventListener('resize',sz);const N=21;let lit=new Array(N).fill(0);const notes=[];let last=0,step=0;const mel=[0,4,7,11,14,11,7,4,2,5,9,12,16,12,9,5];
-window.__lightKey=f=>{const i=Math.max(0,Math.min(N-1,Math.round(Math.log2(f/261.63)*12/1.7)+6));lit[i]=1;notes.push({i,t:performance.now()});};
-const f=t=>{if(t-last>420){const i=mel[step%mel.length]+2;lit[i]=1;notes.push({i,t});step++;last=t;}x.fillStyle='#131210';x.fillRect(0,0,w,h);const kw=w/N,ky=h*.78,kh=h*.22;
-notes.forEach(n=>{const age=(t-n.t)/1000;const yy=ky-age*h*.35;const al=Math.max(0,1-age/2.2);const g=x.createLinearGradient(0,yy,0,ky);g.addColorStop(0,'rgba(231,207,138,0)');g.addColorStop(1,`rgba(231,207,138,${.55*al})`);x.fillStyle=g;x.fillRect(n.i*kw+kw*.2,yy,kw*.6,ky-yy);});
-for(let i=notes.length-1;i>=0;i--)if(t-notes[i].t>2400)notes.splice(i,1);
-for(let i=0;i<N;i++){lit[i]*=.92;const v=lit[i];x.fillStyle=`rgb(${243-v*12},${239-v*32},${228-v*90})`;x.fillRect(i*kw+1,ky,kw-2,kh);}
-x.fillStyle='#131210';for(let i=0;i<N;i++){if([0,1,3,4,5].includes(i%7)&&i<N-1)x.fillRect((i+1)*kw-kw*.3,ky,kw*.6,kh*.6);}
-if(!window.__reduce)requestAnimationFrame(f);};requestAnimationFrame(f);};
-window.__sigFx=function(){const W=[['ド',261.63],['レ',293.66],['ミ',329.63],['ファ',349.23],['ソ',392],['ラ',440],['シ',493.88],['ド',523.25]];const B=[[1,277.18],[2,311.13],[4,369.99],[5,415.3],[6,466.16]];const K=document.getElementById('keys');let ac;
-const play=(f,el,name)=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain(),o2=ac.createOscillator(),g2=ac.createGain();o.type='triangle';o.frequency.value=f;o2.type='sine';o2.frequency.value=f*2;g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.35,ac.currentTime+.01);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+1.6);g2.gain.value=.06;o.connect(g);o2.connect(g2);g2.connect(g);g.connect(ac.destination);o.start();o2.start();o.stop(ac.currentTime+1.7);o2.stop(ac.currentTime+1.7);}catch(e){}
-el.classList.add('on');setTimeout(()=>el.classList.remove('on'),260);document.getElementById('noteName').textContent=name;window.__lightKey&&window.__lightKey(f);};
-const ws=W.map(([n,f])=>{const k=document.createElement('div');k.className='w';k.textContent=n;k.onpointerdown=()=>play(f,k,n);K.appendChild(k);return k;});
-B.forEach(([i,f])=>{const k=document.createElement('div');k.className='b';k.style.left=(i/8*100)+'%';k.onpointerdown=e=>{e.stopPropagation();play(f,k,'♯');};K.appendChild(k);});
-const T=[0,0,4,4,5,5,4,3,3,2,2,1,1,0];document.getElementById('twinkle').onclick=()=>{T.forEach((n,i)=>setTimeout(()=>play(W[n][1],ws[n],W[n][0]),i*(i%7===6?520:380)+(i>6?140:0)));};};</script>
+<section class="hero" data-bg="#f4efe5" data-fg="#1b1f33">
+  <canvas id="strings" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <p class="tag fade">Voice &amp; Piano Lessons ── Seijogakuen-mae</p>
+    <h1 aria-label="MUSE"><span class="c">M</span><span class="c">U</span><span class="c">S</span><span class="c">E</span></h1>
+    <p class="catch fade">うたうように、ひく。<br>ひくように、うたう。</p>
+    <p class="sub fade">成城学園前の、うたとピアノの音楽教室。<br>小さなお子さまから大人の方まで、ひとりひとりの声と指に合わせてレッスンします。</p>
+  </div>
+  <p class="scroll" aria-hidden="true">scroll</p>
+</section>
+
+<section class="about pad" id="about" data-bg="#f4efe5" data-fg="#1b1f33">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="kick">Concept</p>
+        <h2 class="h2 split"><span class="ln"><span>声も、ピアノも、</span></span><span class="ln"><span>同じ<em>“うた”</em>から</span></span><span class="ln"><span>生まれます。</span></span></h2>
+        <p class="body rv">ピアノで旋律を歌わせるには、息の流れを知ること。うたで音程を安定させるには、和音の響きを耳で覚えること。MUSE では「うた」と「ピアノ」を別々の習いごとにせず、ひとつの音楽として行き来しながら学びます。弾き語りに憧れている方、子どもの頃のピアノをもう一度という方も、まずは好きな一曲から。</p>
+      </div>
+      <p class="quote rv">“Sing<br>with your<br>fingers.”<small>── 指でうたう、を合言葉に。</small></p>
+    </div>
+    <div class="keys" aria-hidden="true" id="keysband"></div>
+  </div>
+</section>
+
+<section class="sig" id="sig" data-bg="#151a30" data-fg="#f4efe5">
+  <div class="wrap head">
+    <p class="kick">Lessons</p>
+    <h2 class="h2 split"><span class="ln"><span>四つの<em>楽章</em>で、</span></span><span class="ln"><span>あなたの音楽をつくる。</span></span></h2>
+  </div>
+  <div class="rail">
+    <div class="staffbg" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="track" id="track">
+      <article class="card"><span class="no">I. — Voice</span>
+        <svg viewBox="0 0 360 150" aria-hidden="true"><path class="svgl" d="M0 75 C30 75 40 30 70 30 S110 120 140 120 180 40 210 40 250 100 280 100 330 75 360 75"/><path class="svgl" opacity=".45" d="M0 75 C30 75 45 50 70 50 S110 100 140 100 180 58 210 58 250 88 280 88 330 75 360 75"/><circle cx="70" cy="30" r="4" fill="#e2c48a"/></svg>
+        <h3>うた<small>Vocal</small></h3><p>呼吸と姿勢から、無理のない発声を。童謡・J-POP・ミュージカル・合唱曲など、歌いたい曲に合わせて進めます。</p></article>
+      <article class="card"><span class="no">II. — Piano</span>
+        <svg viewBox="0 0 360 150" aria-hidden="true"><g class="svgl"><rect x="20" y="20" width="320" height="110" rx="4"/><path d="M60 20v110M100 20v110M140 20v110M180 20v110M220 20v110M260 20v110M300 20v110"/></g><g fill="#e2c48a"><rect x="49" y="20" width="22" height="64"/><rect x="89" y="20" width="22" height="64"/><rect x="169" y="20" width="22" height="64"/><rect x="209" y="20" width="22" height="64"/><rect x="249" y="20" width="22" height="64"/></g></svg>
+        <h3>ピアノ<small>Piano</small></h3><p>はじめての方は、指の形と「聴く耳」づくりから。経験者の方は、表現や好きな曲の仕上げまで、ペースに合わせて。</p></article>
+      <article class="card"><span class="no">III. — Voice × Piano</span>
+        <svg viewBox="0 0 360 150" aria-hidden="true"><g class="svgl"><path d="M20 110h320"/><path d="M60 110v-30M100 110v-50M140 110v-24M180 110v-62M220 110v-40M260 110v-56M300 110v-30"/></g><path class="svgl" d="M20 60 C80 10 120 100 180 40 S290 30 340 60" stroke="#c0624f"/></svg>
+        <h3>弾き語り<small>Sing &amp; Play</small></h3><p>コードの押さえ方から、伴奏しながら歌うコツまで。「この一曲を弾き語りたい」というゴールから逆算します。</p></article>
+      <article class="card"><span class="no">IV. — Ensemble</span>
+        <svg viewBox="0 0 360 150" aria-hidden="true"><g class="svgl"><circle cx="120" cy="75" r="46"/><circle cx="180" cy="75" r="46"/><circle cx="240" cy="75" r="46"/></g><circle cx="180" cy="75" r="5" fill="#e2c48a"/></svg>
+        <h3>聴く・合わせる<small>Ear &amp; Ensemble</small></h3><p>先生のピアノに合わせて歌う、連弾で合わせる。人と音を重ねる楽しさを、レッスンの中で少しずつ。発表の場は例として年1回を想定しています。</p></article>
+    </div>
+    <p class="wrap hint">→ scroll</p>
+  </div>
+</section>
+
+<section class="play pad" id="play" data-bg="#ebe3d3" data-fg="#1b1f33">
+  <div class="wrap">
+    <p class="kick">Try the keys</p>
+    <h2 class="h2 split"><span class="ln"><span>最初の一音を、</span></span><span class="ln"><span>ここで鳴らしてみる。</span></span></h2>
+    <p class="rv" style="margin-top:20px;color:var(--sub);font-size:14px">鍵盤にふれると音が鳴り、五線に音符が書き込まれます。「かえるのうた」ボタンで、お手本を弾きます。（音が出ます）</p>
+    <div class="box rv">
+      <svg class="score" id="score" viewBox="0 0 900 150" preserveAspectRatio="xMinYMid meet" aria-label="弾いた音が並ぶ五線譜">
+        <g id="lines"></g><text class="clef" x="8" y="118">𝄞</text><g id="notes"></g>
+      </svg>
+      <div class="kb" id="kb" role="group" aria-label="鍵盤（ドからミまで）"></div>
+      <div class="ctrl">
+        <button class="chip" id="demo" type="button">♪ かえるのうた</button>
+        <button class="chip" id="clear" type="button">五線をきれいにする</button>
+        <span class="tip">PC はキーボードの A S D F G H J K L ; でも弾けます</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu pad" id="menu" data-bg="#f4efe5" data-fg="#1b1f33">
+  <div class="wrap">
+    <p class="kick">Program</p>
+    <h2 class="h2 split"><span class="ln"><span>レッスンと料金<em>（例）</em></span></span></h2>
+    <div class="prog">
+      <p class="side rv">Program<small>料金・時間はすべて見本用の例です。<br>実際の内容は教室にお問い合わせください。</small></p>
+      <div>
+        <div class="item rv"><span class="n">i.</span><h3>体験レッスン<small>30分</small></h3><span class="p">¥1,000<small>例</small></span><p>うた・ピアノどちらでも。お話を聞いて、レッスンの進め方をご提案します。</p></div>
+        <div class="item rv"><span class="n">ii.</span><h3>ピアノ<small>月3回・30分</small></h3><span class="p">¥8,800<small>例</small></span><p>幼児〜大人。はじめての方・再開の方も。</p></div>
+        <div class="item rv"><span class="n">iii.</span><h3>うた（ボーカル）<small>月3回・45分</small></h3><span class="p">¥9,900<small>例</small></span><p>発声・呼吸・表現。好きなジャンルの曲で。</p></div>
+        <div class="item rv"><span class="n">iv.</span><h3>弾き語り<small>月3回・45分</small></h3><span class="p">¥11,000<small>例</small></span><p>コード伴奏と歌を、一曲ずつ仕上げます。</p></div>
+        <div class="item rv"><span class="n">v.</span><h3>大人のチケット制<small>1回・45分</small></h3><span class="p">¥4,400<small>例</small></span><p>お仕事や家事の合間に、ご都合のよい日だけ。</p></div>
+        <p class="note">※表示はすべて例です（税込想定）。入会金・教材費の有無も教室にご確認ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow pad" id="flow" data-bg="#f4efe5" data-fg="#1b1f33" style="padding-top:0;padding-bottom:clamp(70px,8vw,110px)">
+  <div class="wrap">
+    <p class="kick">For beginners</p>
+    <h2 class="h2 split"><span class="ln"><span>はじめての方へ、</span></span><span class="ln"><span>四小節の流れ。</span></span></h2>
+    <div class="bars" id="bars">
+      <div class="playhead" id="ph"></div>
+      <div class="bar"><span class="m">bar 1</span><h3>お問い合わせ</h3><p>メールまたは公式LINEで、ご希望のレッスンと曜日をお知らせください。</p></div>
+      <div class="bar"><span class="m">bar 2</span><h3>体験レッスン</h3><p>好きな曲や、これまでの経験をお聞きします。楽譜が読めなくても大丈夫。</p></div>
+      <div class="bar"><span class="m">bar 3</span><h3>プランを決める</h3><p>うた・ピアノ・弾き語り。目標とペースに合わせてご提案します。</p></div>
+      <div class="bar"><span class="m">bar 4</span><h3>レッスン開始</h3><p>一曲ずつ、できたことを一緒に喜びながら進めていきます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="voice pad" id="voice" data-bg="#ebe3d3" data-fg="#1b1f33">
+  <div class="wrap">
+    <p class="kick">Voices</p>
+    <h2 class="h2 split"><span class="ln"><span>お客さまの声<span class="ex">例</span></span></span></h2>
+    <div class="list">
+      <div class="v rv" data-par="-20"><p>子どもがピアノの前で鼻歌を歌うようになりました。家でも音楽が増えた気がします。</p><span>小学生の保護者さま（例）</span></div>
+      <div class="v rv" data-par="10"><p>ずっと憧れていた弾き語りに挑戦中。コードの考え方がわかって、楽しくなってきました。</p><span>30代・会社員の方（例）</span></div>
+      <div class="v rv" data-par="-6"><p>声の出し方を教わって、合唱で高い音が楽に出るように。毎回のレッスンが楽しみです。</p><span>60代の方（例）</span></div>
+    </div>
+    <p class="note">※掲載の声は見本用に作成した例文で、実在のお客さまの感想ではありません。</p>
+  </div>
+</section>
+
+<section class="faq pad" id="faq" data-bg="#f4efe5" data-fg="#1b1f33">
+  <div class="wrap">
+    <p class="kick">Q &amp; A</p>
+    <h2 class="h2 split"><span class="ln"><span>よくあるご質問</span></span></h2>
+    <div class="qs">
+      <details><summary><span class="q">Q.</span>楽譜が読めなくても大丈夫ですか？<span class="t"></span></summary><p class="a">大丈夫です。耳で覚える・まねして弾くところから始め、少しずつ読めるようにしていきます。</p></details>
+      <details><summary><span class="q">Q.</span>何歳から通えますか？<span class="t"></span></summary><p class="a">例として、ピアノは3歳ごろから、うたは小学生ごろからを目安にしています。大人の方の初心者も歓迎です。</p></details>
+      <details><summary><span class="q">Q.</span>家にピアノがありません。<span class="t"></span></summary><p class="a">はじめは電子ピアノやキーボードでも練習できます。選び方もレッスンでご相談ください。</p></details>
+      <details><summary><span class="q">Q.</span>うたとピアノ、両方習えますか？<span class="t"></span></summary><p class="a">はい。弾き語りコースのほか、月ごとに内容を組み合わせることもできます（例）。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="access pad" id="access" data-bg="#ebe3d3" data-fg="#1b1f33">
+  <div class="wrap">
+    <p class="kick">Access</p>
+    <h2 class="h2 split"><span class="ln"><span>成城学園前から、</span></span><span class="ln"><span>並木道を歩いて。</span></span></h2>
+    <div class="grid">
+      <dl class="rv">
+        <dt>最寄り駅</dt><dd>小田急線「成城学園前」駅</dd>
+        <dt>レッスン</dt><dd>個人レッスン（例：平日 10:00–20:00 ／ 土曜）</dd>
+        <dt>ご案内</dt><dd>詳しい場所は、お問い合わせ後にご案内します。</dd>
+      </dl>
+      <svg class="mapsvg rv" viewBox="0 0 600 380" role="img" aria-label="成城学園前駅周辺のイメージ図">
+        <path class="rd" d="M0 250 H600 M300 0 V380 M120 0 C140 120 160 240 120 380 M460 0 V380"/>
+        <g fill="#cdbf9f" opacity=".55"><circle cx="300" cy="60" r="10"/><circle cx="300" cy="110" r="10"/><circle cx="300" cy="160" r="10"/><circle cx="330" cy="60" r="10"/><circle cx="330" cy="110" r="10"/><circle cx="330" cy="160" r="10"/></g>
+        <path class="rail" d="M0 300 C200 290 400 300 600 290"/><path class="rail2" d="M0 300 C200 290 400 300 600 290"/>
+        <rect x="236" y="282" width="128" height="30" rx="4" fill="#1b1f33"/><text x="300" y="302" text-anchor="middle" fill="#f4efe5" font-size="14" font-family="Shippori Mincho">成城学園前</text>
+        <text x="20" y="335" font-size="12" fill="#6c6a72" font-family="Shippori Mincho">小田急線</text>
+        <g class="pin" id="pin"><path d="M400 150c-14 0-24 10-24 24 0 18 24 42 24 42s24-24 24-42c0-14-10-24-24-24z" fill="#b98f45"/><circle cx="400" cy="174" r="8" fill="#f4efe5"/></g>
+        <text x="400" y="138" text-anchor="middle" font-size="13" fill="#1b1f33" font-family="Shippori Mincho">MUSE（イメージ）</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="reserve pad" id="reserve" data-bg="#151a30" data-fg="#f4efe5">
+  <div class="ring" aria-hidden="true"></div><div class="ring r2" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="kick" style="justify-content:center">Reservation</p>
+    <h2 class="h2 split"><span class="ln"><span>最初の一音を、</span></span><span class="ln"><span><em>いっしょに。</em></span></span></h2>
+    <p class="lead rv">体験レッスンのお申込み・ご相談は、メールがいちばん確実です。</p>
+    <div class="btns">
+      <a class="mb main" href="#" data-mag>メールで問い合わせる <small>おすすめ</small></a>
+      <a class="mb" href="#" data-mag>公式LINE</a>
+      <a class="mb" href="#" data-mag>Instagram DM</a>
+    </div>
+    <p class="hours">返信は例として2日以内。レッスン中はお返事が遅れることがあります。</p>
+  </div>
+</section>
+
+<section class="partner" data-bg="#f4efe5" data-fg="#1b1f33"><div class="wrap">
+  <a class="nc" href="#"><span>Partner: <b>Nocturne Concierge（夜だけの家事代行）</b><br>習いごとの送り迎えで忙しい夜に。作り置き・洗濯・片付けをお手伝いします。</span><span class="p">※2.5万円プランの掲載例</span></a>
+</div></section>
+</main>
+<footer class="wrap"><span>© うたとピアノの音楽教室 MUSE（見本）</span><span>この見本は提案用に作成したもので、内容は仮のものです</span></footer>
+<div class="sample">SAMPLE</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (() => {
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hasG = typeof gsap !== 'undefined';
-window.__reduce = reduce;
-/* 写真の枠：お店の色でゆっくり揺らぐ（本番はお店の写真に差し替え） */
-function photoFx(cv,cols){const x=cv.getContext('2d');let w,h;const sz=()=>{w=cv.width=cv.clientWidth;h=cv.height=cv.clientHeight;};sz();addEventListener('resize',sz);
-  const blobs=cols.map((c,i)=>({c,x:Math.random(),y:Math.random(),r:.45+Math.random()*.3,s:.0002+Math.random()*.0003,p:Math.random()*6}));
-  let vis=true;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(cv);
-  const f=t=>{if(vis){x.fillStyle=cols[0];x.fillRect(0,0,w,h);x.globalCompositeOperation='lighter';
-    blobs.forEach((b,i)=>{const bx=(b.x+.25*Math.sin(t*b.s*3+b.p))*w,by=(b.y+.25*Math.cos(t*b.s*2+b.p))*h;const g=x.createRadialGradient(bx,by,0,bx,by,b.r*Math.max(w,h));g.addColorStop(0,b.c);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.globalAlpha=.55;x.fillRect(0,0,w,h);});
-    x.globalCompositeOperation='source-over';x.globalAlpha=1;}
-    if(!reduce)requestAnimationFrame(f);};requestAnimationFrame(f);}
-window.__photoFx=photoFx;
-const h1=document.querySelector('.hero h1 .mask');
-h1.innerHTML=[...h1.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
-const hd=document.getElementById('hd');const onScroll=()=>hd.classList.toggle('solid',scrollY>innerHeight*.6);addEventListener('scroll',onScroll,{passive:true});onScroll();
-document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}));
-const cur=document.querySelector('.cursor');
-if(matchMedia('(hover:hover)').matches){let cx=0,cy=0,x=0,y=0;addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;});
-  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
-  (function f(){x+=(cx-x)*.18;y+=(cy-y)*.18;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(f);})();}
-document.querySelectorAll('[data-mag]').forEach(m=>{m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
-  m.addEventListener('pointerleave',()=>{m.style.transition='transform .8s cubic-bezier(.22,1,.36,1),background .4s';m.style.transform='';setTimeout(()=>m.style.transition='',800);});});
-try{ window.__heroFx && window.__heroFx(document.getElementById('hero')); }catch(e){}
-try{ window.__photo && photoFx(document.getElementById('ph1'), window.__photo); }catch(e){}
-try{ window.__sigFx && window.__sigFx(); }catch(e){}
+const hasG = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* ── 鍵盤の帯 ── */
+const band=document.getElementById('keysband');
+const pat=[0,1,0,1,0,0,1,0,1,0,1,0];
+const nb=innerWidth<860?14:24,bw=100/nb;let wi=0;
+for(let i=0;wi<nb;i++){const b=pat[i%12];const k=document.createElement('i');if(b){k.className='b';k.style.left=`calc(${wi*bw}% - ${bw*.3}%)`;k.style.width=bw*.6+'%';if(wi===0)continue;}else wi++;band.appendChild(k);}
+
+/* ── ヒーロー：はじかれる五本の弦 ── */
+const cv=document.getElementById('strings'),cx=cv.getContext('2d');
+let W,H,dpr=Math.min(devicePixelRatio||1,2);
+const N=5,SEG=90;let lines=[],mx=-999,my=-999,pmy=-999,appear=reduce?1:0;
+function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+  const gap=Math.min(26,H*.03),base=H*(innerWidth<860?.36:.5);
+  lines=[...Array(N)].map((_,i)=>({y:base+(i-2)*gap,d:new Float32Array(SEG+1),v:new Float32Array(SEG+1)}));}
+size();addEventListener('resize',size);
+const motes=[...Array(26)].map(()=>({x:Math.random(),y:Math.random(),s:.4+Math.random()*.8,sp:.00015+Math.random()*.0004,ph:Math.random()*6}));
+cv.parentElement.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();pmy=my;mx=e.clientX-r.left;my=e.clientY-r.top;
+  lines.forEach(L=>{if((pmy-L.y)*(my-L.y)<0){const i=Math.round(mx/W*SEG);for(let k=-6;k<=6;k++){const j=i+k;if(j>0&&j<SEG)L.v[j]+=(my>pmy?1:-1)*(7-Math.abs(k))*.9;}}});});
+let t=0,vis=true;
+new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(cv);
+function draw(){
+  if(vis){t+=1;cx.clearRect(0,0,W,H);
+    const g=cx.createRadialGradient(W*.7,H*.4,0,W*.7,H*.4,W*.7);g.addColorStop(0,'rgba(60,70,120,.45)');g.addColorStop(1,'rgba(21,26,48,0)');cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    lines.forEach((L,li)=>{
+      if(!reduce){for(let i=1;i<SEG;i++){const a=(L.d[i-1]+L.d[i+1]-2*L.d[i])*.35;L.v[i]+=a;L.v[i]*=.985;}for(let i=1;i<SEG;i++)L.d[i]+=L.v[i];}
+      cx.beginPath();const len=W*appear;
+      for(let i=0;i<=SEG;i++){const x=i/SEG*W;if(x>len)break;const amb=reduce?0:Math.sin(i*.12+t*.02+li)*1.2;const y=L.y+L.d[i]+amb;i?cx.lineTo(x,y):cx.moveTo(x,y);}
+      cx.strokeStyle=`rgba(226,196,138,${.32+li*.05})`;cx.lineWidth=1;cx.stroke();});
+    motes.forEach(m=>{if(!reduce){m.y-=m.sp;if(m.y<-.05)m.y=1.05;}
+      const x=(m.x+Math.sin(t*.004+m.ph)*.02)*W,y=m.y*H;cx.save();cx.translate(x,y);cx.rotate(-.35);cx.globalAlpha=.25*appear*m.s;cx.fillStyle='#e2c48a';cx.beginPath();cx.ellipse(0,0,5*m.s,3.6*m.s,0,0,7);cx.fill();cx.fillRect(4.2*m.s,-22*m.s,1,22*m.s);cx.restore();});
+  }
+  if(!reduce)requestAnimationFrame(draw);
+}
+draw();
+
+/* ── 体験：鍵盤 ── */
+const score=document.getElementById('score'),notesG=document.getElementById('notes'),linesG=document.getElementById('lines');
+const SW=innerWidth<640?480:900;score.setAttribute('viewBox',`0 0 ${SW} 150`);
+const SP=11,BOT=104;/* 第1線(ミ)のy */
+for(let i=0;i<5;i++){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',0);l.setAttribute('x2',SW);l.setAttribute('y1',BOT-i*SP*2);l.setAttribute('y2',BOT-i*SP*2);l.setAttribute('class','sl');linesG.appendChild(l);}
+const WN=[['ド',60,0],['レ',62,1],['ミ',64,2],['ファ',65,3],['ソ',67,4],['ラ',69,5],['シ',71,6],['ド',72,7],['レ',74,8],['ミ',76,9]];
+const BK=[[61,0],[63,1],[66,3],[68,4],[70,5],[73,7],[75,8]];
+const kb=document.getElementById('kb'),keyEls={};
+WN.forEach(([n,m,s])=>{const k=document.createElement('button');k.type='button';k.className='w';k.textContent=n;k.dataset.m=m;k.dataset.s=s;k.setAttribute('aria-label',n);kb.appendChild(k);keyEls[m]=k;});
+BK.forEach(([m,s])=>{const k=document.createElement('button');k.type='button';k.className='bk';k.style.left=((s+1)/WN.length*100)+'%';k.dataset.m=m;k.dataset.s=s;k.dataset.sh=1;k.setAttribute('aria-label','黒鍵');kb.appendChild(k);keyEls[m]=k;});
+let ac;
+function tone(m){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();
+  const f=440*Math.pow(2,(m-69)/12),now=ac.currentTime,out=ac.createGain(),lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=2600;
+  out.gain.setValueAtTime(0,now);out.gain.linearRampToValueAtTime(.22,now+.008);out.gain.exponentialRampToValueAtTime(.0008,now+1.8);
+  [[1,'triangle',1],[2,'sine',.35],[3,'sine',.12]].forEach(([h,ty,g])=>{const o=ac.createOscillator(),gg=ac.createGain();o.type=ty;o.frequency.value=f*h;gg.gain.value=g;o.connect(gg).connect(lp);o.start(now);o.stop(now+1.9);});
+  lp.connect(out).connect(ac.destination);}catch(e){}}
+let nx=110;const NS='http://www.w3.org/2000/svg';
+function write(s,sh){
+  if(nx>SW-30){[...notesG.children].forEach(n=>n.remove());nx=110;}
+  const y=BOT-(s-2)*SP,g=document.createElementNS(NS,'g');g.setAttribute('class','nh');
+  if(s<=0){const l=document.createElementNS(NS,'line');l.setAttribute('x1',nx-14);l.setAttribute('x2',nx+14);l.setAttribute('y1',BOT+SP*2);l.setAttribute('y2',BOT+SP*2);l.setAttribute('stroke','#1b1f33');g.appendChild(l);}
+  const e=document.createElementNS(NS,'ellipse');e.setAttribute('cx',nx);e.setAttribute('cy',y);e.setAttribute('rx',8.5);e.setAttribute('ry',6.2);e.setAttribute('transform',`rotate(-20 ${nx} ${y})`);e.setAttribute('fill',sh?'#b98f45':'#1b1f33');g.appendChild(e);
+  const st=document.createElementNS(NS,'line');const up=s<6;st.setAttribute('x1',up?nx+7.6:nx-7.6);st.setAttribute('x2',up?nx+7.6:nx-7.6);st.setAttribute('y1',y);st.setAttribute('y2',up?y-38:y+38);st.setAttribute('stroke',sh?'#b98f45':'#1b1f33');st.setAttribute('stroke-width',1.4);g.appendChild(st);
+  if(sh){const tx=document.createElementNS(NS,'text');tx.setAttribute('x',nx-24);tx.setAttribute('y',y+5);tx.setAttribute('font-size',16);tx.setAttribute('fill','#b98f45');tx.textContent='♯';g.appendChild(tx);}
+  notesG.appendChild(g);
+  if(hasG&&!reduce)gsap.from(g,{y:-18,opacity:0,scale:.6,duration:.6,ease:'back.out(2.4)'});
+  nx+=sh?52:42;
+}
+function press(m){const k=keyEls[m];if(!k)return;tone(m);k.classList.add('on');setTimeout(()=>k.classList.remove('on'),220);write(+k.dataset.s,!!k.dataset.sh);}
+kb.addEventListener('pointerdown',e=>{const k=e.target.closest('button');if(k){e.preventDefault();press(+k.dataset.m);}});
+kb.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const k=e.target.closest('button');if(k){e.preventDefault();press(+k.dataset.m);}}});
+const map={a:60,w:61,s:62,e:63,d:64,f:65,t:66,g:67,y:68,h:69,u:70,j:71,k:72,o:73,l:74,p:75,';':76};
+addEventListener('keydown',e=>{if(e.repeat||e.metaKey||e.ctrlKey)return;const r=document.getElementById('play').getBoundingClientRect();if(r.top>innerHeight||r.bottom<0)return;const m=map[e.key];if(m)press(m);});
+let demoT=[];
+document.getElementById('demo').addEventListener('click',()=>{demoT.forEach(clearTimeout);demoT=[];
+  const mel=[60,62,64,65,64,62,60,0,64,65,67,69,67,65,64];mel.forEach((m,i)=>{if(m)demoT.push(setTimeout(()=>press(m),i*330));});});
+document.getElementById('clear').addEventListener('click',()=>{notesG.innerHTML='';nx=110;});
+
+/* ── カーソル ── */
+const cur=document.querySelector('.cur');
+if(fine&&!reduce){let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y;
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cur.style.opacity=1;});
+  document.querySelectorAll('a,button,summary,.card').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
+  (function f(){x+=(tx-x)*.18;y+=(ty-y)*.18;cur.style.transform=`translate(${x}px,${y}px) rotate(-20deg)`;requestAnimationFrame(f);})();
+}else cur.remove();
+
+/* ── 磁石ボタン ── */
+if(fine&&!reduce)document.querySelectorAll('[data-mag]').forEach(m=>{
+  m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();m.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.28}px,${(e.clientY-r.top-r.height/2)*.4}px)`;});
+  m.addEventListener('pointerleave',()=>{m.style.transition='transform .9s cubic-bezier(.34,1.56,.64,1),background .5s,color .5s';m.style.transform='';setTimeout(()=>m.style.transition='',900);});
+});
+
 const loader=document.getElementById('loader');
-if(reduce||!hasG){loader.remove();document.querySelectorAll('.hero .tate,.hero-foot').forEach(e=>e.style.opacity=1);document.querySelectorAll('.ch,.line>span').forEach(e=>{e.style.transform='none';e.style.opacity=1;});return;}
+if(reduce||!hasG){loader.remove();appear=1;document.documentElement.classList.add('nojs');if(reduce)draw();return;}
+
 gsap.registerPlugin(ScrollTrigger);
-const tl=gsap.timeline();
-tl.to('#loader .bar i',{width:'100%',duration:.9,ease:'power2.inOut'}).to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1').set('#loader',{display:'none'})
-  .to('.hero h1 .ch',{y:0,opacity:1,duration:1.3,ease:'expo.out',stagger:.045},'-=.45').to('.hero .tate',{opacity:1,duration:1.2},'-=.9').to('.hero-foot',{opacity:1,duration:1},'-=.9');
-gsap.to('.hero h1',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.line>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:s,start:'top 80%'}}));
-gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
-gsap.from('.photo',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.photo',start:'top 80%'}});
-try{ window.__sigGsap && window.__sigGsap(gsap); }catch(e){}
+addEventListener('load',()=>ScrollTrigger.refresh());
+/* はじまり：五線→ラの音→幕が上がる */
+const hz={v:0};
+gsap.timeline()
+ .to('#loader .staff i',{scaleX:1,duration:.9,ease:'expo.inOut',stagger:.08})
+ .to(hz,{v:442,duration:1,ease:'power2.out',onUpdate:()=>document.getElementById('hz').textContent=Math.round(hz.v)},'<.2')
+ .to('#loader .note',{scale:1.4,duration:.5,ease:'back.out(3)'},'-=.4')
+ .to('#loader .staff i',{scaleY:6,opacity:0,duration:.5,stagger:.04},'+=.15')
+ .to('#loader',{clipPath:'inset(0 0 100% 0)',duration:.9,ease:'expo.inOut'},'-=.3')
+ .set('#loader',{display:'none'})
+ .to({v:0},{v:1,duration:1.6,ease:'expo.out',onUpdate:function(){appear=this.targets()[0].v}},'-=.5')
+ .to('.hero h1 .c',{y:0,opacity:1,filter:'blur(0px)',duration:1.4,ease:'expo.out',stagger:.09},'<')
+ .to('.hero .fade',{opacity:1,duration:1.1,stagger:.14},'<.4');
+
+gsap.to('.hero-in',{yPercent:-14,opacity:.15,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+/* 見出しが行ごとに立ち上がる */
+document.querySelectorAll('.split').forEach(s=>gsap.to(s.querySelectorAll('.ln>span'),{y:0,duration:1.3,ease:'expo.out',stagger:.11,scrollTrigger:{trigger:s,start:'top 86%'}}));
+gsap.utils.toArray('.rv').forEach(el=>gsap.from(el,{y:40,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 92%'}}));
+
+/* 鍵盤の帯：スクロールで順に押し込まれる */
+gsap.from('#keysband i',{scaleY:0,duration:.9,ease:'expo.out',stagger:.035,scrollTrigger:{trigger:'#keysband',start:'top 92%'}});
+const hd=document.querySelector('header');
+ScrollTrigger.create({start:0,end:'max',onUpdate:x=>hd.classList.toggle('hide',x.direction>0&&x.scroll()>innerHeight*.6)});
+
+/* 背景色の切り替え */
+document.querySelectorAll('[data-bg]').forEach(s=>ScrollTrigger.create({trigger:s,refreshPriority:-1,start:'top 55%',end:'bottom 55%',onToggle:x=>{if(x.isActive){document.body.style.backgroundColor=s.dataset.bg;document.body.style.color=s.dataset.fg;}}}));
+
+/* 楽章カード：ピン留めして横へ流れる */
+const track=document.getElementById('track');
+gsap.to(track,{x:()=>-(track.scrollWidth-innerWidth),ease:'none',scrollTrigger:{trigger:'#sig',start:'top top',end:()=>'+='+(track.scrollWidth-innerWidth),pin:true,scrub:.8,invalidateOnRefresh:true,anticipatePin:1}});
+gsap.to('.sig .staffbg',{x:-120,ease:'none',scrollTrigger:{trigger:'#sig',start:'top top',end:()=>'+='+(track.scrollWidth-innerWidth),scrub:true}});
+
+/* 四小節の再生ヘッド */
+gsap.fromTo('#ph',{left:'0%'},{left:'100%',ease:'none',scrollTrigger:{trigger:'#bars',start:'top 75%',end:'bottom 40%',scrub:.6}});
+
+/* 声：ずれて浮く */
+document.querySelectorAll('[data-par]').forEach(el=>gsap.to(el,{y:+el.dataset.par*2,ease:'none',scrollTrigger:{trigger:'.voice',start:'top bottom',end:'bottom top',scrub:true}}));
+
+/* 地図のピンが落ちる */
+gsap.from('#pin',{y:-60,opacity:0,duration:1,ease:'bounce.out',scrollTrigger:{trigger:'.mapsvg',start:'top 75%'}});
+
+/* 予約：輪が広がる */
+gsap.fromTo('.reserve .ring',{scale:.4,opacity:0},{scale:1.1,opacity:1,stagger:.2,ease:'none',scrollTrigger:{trigger:'.reserve',start:'top 90%',end:'center center',scrub:true}});
 })();
 </script>
-</body></html>
+</body>
+</html>
